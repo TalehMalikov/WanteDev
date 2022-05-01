@@ -8,13 +8,14 @@
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         Title="LoginWindow" Height="500" Width="800">
 
-    
+
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition  Width="*"/>
             <ColumnDefinition  Width="1.5*"/>
         </Grid.ColumnDefinitions>
-        <Image Source="D:\Acer\Visual Studio Projets\repos\WanteDev\WanteDev\Images\close.png" Grid.Column="1" Panel.ZIndex="1" Style="{StaticResource imgClose}"/>
+        <Image Source="\Images\close.png" Grid.Column="1" Panel.ZIndex="1" Style="{StaticResource imgClose}"/>
 
         <Border CornerRadius="10 0 0 10">
             <Border.Background>
@@ -35,7 +36,7 @@
                 <StackPanel VerticalAlignment="Center">
                     <TextBlock Text="Sign Up" Style="{StaticResource titleText}"/>
                     <TextBlock Text="Enter your personal info and create new account to connect us" Style="{StaticResource normalText}" Opacity="0.8" Margin="20 30"/>
-                    <Button Content="Sign Up" Style="{StaticResource button}"/>
+                    <Button x:Name="signUpButton" Content="Sign Up" Command="{Binding SignUp}" Style="{StaticResource button}"/>
 
                 </StackPanel>
 
@@ -44,82 +45,83 @@
 
         </Border>
 
-
         <Border Background="#ffffff" Grid.Column="1" CornerRadius="0 10 10 0" >
-            <StackPanel VerticalAlignment="Center">
-                <TextBlock Text="Sign in to WanteDev" Style="{StaticResource titleText}" Foreground="#3AB19B"/>
-                <StackPanel Orientation="Horizontal" Margin="0 20" HorizontalAlignment="Center">
-                    <Button Style="{StaticResource buttonCircle}">
-                        <Image Source="\Images\google.png" Width="20" Height="20"/>
-                        <!--google sehifesine yonelt-->
-                    </Button>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="Sign in to WanteDev" Style="{StaticResource titleText}" Foreground="#3AB19B"/>
+                    <StackPanel Orientation="Horizontal" Margin="0 20" HorizontalAlignment="Center">
+                        <Button Style="{StaticResource buttonCircle}">
+                            <Image Source="\Images\google.png" Width="20" Height="20"/>
+                            <!--google sehifesine yonelt-->
+                        </Button>
 
-                    <Button Style="{StaticResource buttonCircle}">
-                        <Image Source="\Images\facebook.png" Width="20" Height="20"/>
-                        <!--linkedin lehifesine yonelt-->
-                    </Button>
+                        <Button Style="{StaticResource buttonCircle}">
+                            <Image Source="\Images\facebook.png" Width="20" Height="20"/>
+                            <!--linkedin lehifesine yonelt-->
+                        </Button>
 
-                    <Button Style="{StaticResource buttonCircle}">
-                        <Image Source="\Images\linkedin.png" Width="20" Height="20"/>
-                        <!--facebook sehifesine yonelt-->
-                    </Button>
+                        <Button Style="{StaticResource buttonCircle}">
+                            <Image Source="\Images\linkedin.png" Width="20" Height="20"/>
+                            <!--facebook sehifesine yonelt-->
+                        </Button>
+                    </StackPanel>
+
+                    <TextBlock Text="or use your email info :" Style="{StaticResource normalText}" Foreground="#878787" Margin="0 0 0 10"/>
+
+                    <Border BorderThickness="1" BorderBrush="#acb0af" Margin="70 7 70 10" CornerRadius="5">
+                        <Grid Margin="7 9">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="\Images\email.png" Height="20"/>
+                            <TextBox x:Name="txtEmail" Text="{Binding Email, Mode=TwoWay}"  Style="{StaticResource textBox}">
+                                <TextBox.InputBindings>
+                                    <KeyBinding Command="{Binding Path=SignIn}" CommandParameter="{Binding ElementName=passwordTxt}" Key="Enter" />
+                                </TextBox.InputBindings>
+                            </TextBox>
+                        </Grid>
+                    </Border>
+
+
+
+                    <Border BorderThickness="1" BorderBrush="#acb0af" Margin="70 7 70 10" CornerRadius="5">
+                        <Grid Margin="7 9">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="\Images\lock.png" Height="20"/>
+                            <PasswordBox x:Name="passwordTxt"  Style="{StaticResource textBox}" PasswordChar="*">
+                                <PasswordBox.InputBindings>
+                                    <KeyBinding Command="{Binding Path=SignIn}" CommandParameter="{Binding ElementName=passwordTxt}" Key="Enter" />
+                                </PasswordBox.InputBindings>
+                            </PasswordBox>
+                            <TextBox x:Name="passwordTxtBox" Style="{StaticResource textBox}" Visibility="Collapsed">
+                                <TextBox.InputBindings>
+                                    <KeyBinding Command="{Binding Path=SignIn}" CommandParameter="{Binding ElementName=passwordTxt}" Key="Enter" />
+                                </TextBox.InputBindings>
+                            </TextBox>
+
+                        </Grid>
+
+                    </Border>
+
+                    <WrapPanel>
+                        <CheckBox Margin="70 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black" FontWeight="Bold" FontSize="14" Content="Show password" x:Name="showPassword" Unchecked="ShowPassword_Unchecked" Checked="ShowPassword_Checked"/>
+                        <!--Unchecked="ShowPassword_Unchecked" Checked="ShowPassword_Checked"/>-->
+                        <TextBlock Text="Email or password is incorrect" VerticalAlignment="Center" HorizontalAlignment="Right" Background="White" FontFamily="Times New Roman" FontSize="20" 
+                               Foreground="Red" Margin="70 0" Visibility="{Binding LoginErrorVisibility}"/>
+                        <!--<Button  Style="{StaticResource LinkButton}" Command="{Binding Path=ForgotPassword}" Content="Forget password?" FontFamily="Times New Roman" FontSize="20"  Margin="10,0,0,10"/>-->
+                    </WrapPanel>
+
+                    <Button Content="Sign In" Command="{Binding SignIn}" CommandParameter="{Binding ElementName=passwordTxt}" Style="{StaticResource mainbutton}"/>
+
                 </StackPanel>
 
-                <TextBlock Text="or use your email info :" Style="{StaticResource normalText}" Foreground="#878787" Margin="0 0 0 10"/>
-
-                <Border BorderThickness="1" BorderBrush="#acb0af" Margin="70 7 70 10" CornerRadius="5">
-                    <Grid Margin="7 9">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Image Source="\Images\email.png" Height="20"/>
-                        <TextBox x:Name="txtEmail" Text="{Binding Email, Mode=TwoWay}"  Style="{StaticResource textBox}">
-                            <TextBox.InputBindings>
-                                <KeyBinding Command="{Binding Path=SignIn}" CommandParameter="{Binding ElementName=passwordTxt}" Key="Enter" />
-                            </TextBox.InputBindings>
-                        </TextBox>
-                    </Grid>
-                </Border>
-
-
-
-                <Border BorderThickness="1" BorderBrush="#acb0af" Margin="70 7 70 10" CornerRadius="5">
-                    <Grid Margin="7 9">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Image Source="\Images\lock.png" Height="20"/>
-                        <PasswordBox x:Name="passwordTxt"  Style="{StaticResource textBox}" PasswordChar="*">
-                            <PasswordBox.InputBindings>
-                                <KeyBinding Command="{Binding Path=SignIn}" CommandParameter="{Binding ElementName=passwordTxt}" Key="Enter" />
-                            </PasswordBox.InputBindings>
-                        </PasswordBox>
-                        <TextBox x:Name="passwordTxtBox" Style="{StaticResource textBox}" Visibility="Collapsed">
-                            <TextBox.InputBindings>
-                                <KeyBinding Command="{Binding Path=SignIn}" CommandParameter="{Binding ElementName=passwordTxt}" Key="Enter" />
-                            </TextBox.InputBindings>
-                        </TextBox>
-
-                    </Grid>
-
-                </Border>
-
-                <WrapPanel>
-                    <CheckBox Margin="70 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black" FontWeight="Bold" FontSize="14" Content="Show password" x:Name="showPassword" Unchecked="ShowPassword_Unchecked" Checked="ShowPassword_Checked"/>
-                    <!--Unchecked="ShowPassword_Unchecked" Checked="ShowPassword_Checked"/>-->
-                    <TextBlock Text="Email or password is incorrect" VerticalAlignment="Center" HorizontalAlignment="Right" Background="White" FontFamily="Times New Roman" FontSize="20" 
-                               Foreground="Red" Margin="70 0" Visibility="{Binding LoginErrorVisibility}"/>
-                    <!--<Button  Style="{StaticResource LinkButton}" Command="{Binding Path=ForgotPassword}" Content="Forget password?" FontFamily="Times New Roman" FontSize="20"  Margin="10,0,0,10"/>-->
-                </WrapPanel>
-
-                <Button Content="Sign In" Command="{Binding SignIn}" CommandParameter="{Binding ElementName=passwordTxt}" Style="{StaticResource mainbutton}"/>
-
-            </StackPanel>
-        </Border>
-
+            </Border>
+            
     </Grid>
+
 </Window>

@@ -70,7 +70,7 @@ namespace WanteDev.Core.DataAccess.Implementation.Sql
                     var reader = cmd.ExecuteReader();
                     if (reader.Read())
                     {
-                        return GetFromReaderAsEmployer(reader);
+                        return GetFromReaderAsAdmin(reader);
                     }
                     else
                     {
@@ -92,7 +92,7 @@ namespace WanteDev.Core.DataAccess.Implementation.Sql
                     var reader = cmd.ExecuteReader();
                     if (reader.Read())
                     {
-                        return GetFromReaderAsEmployer(reader);
+                        return GetFromReaderAsUser(reader);
                     }
                     else
                     {
@@ -100,6 +100,16 @@ namespace WanteDev.Core.DataAccess.Implementation.Sql
                     }
                 }
             }
+        }
+
+        private Admin GetFromReaderAsUser(SqlDataReader reader)
+        {
+            return new Admin
+            {
+                Id = reader.Get<int>(nameof(Admin.Id)),
+                Email = reader.Get<string>(nameof(Admin.Email)),
+                PasswordHash = reader.Get<string>(nameof(Admin.PasswordHash))
+            };
         }
 
         public List<Admin> GetAll()
@@ -117,7 +127,7 @@ namespace WanteDev.Core.DataAccess.Implementation.Sql
 
                     while (reader.Read())
                     {
-                        admin = GetFromReaderAsEmployer(reader);
+                        admin = GetFromReaderAsAdmin(reader);
                         employers.Add(admin);
                     }
                     return employers;
@@ -168,7 +178,7 @@ namespace WanteDev.Core.DataAccess.Implementation.Sql
             }
         }
 
-        private Admin GetFromReaderAsEmployer(SqlDataReader reader)
+        private Admin GetFromReaderAsAdmin(SqlDataReader reader)
         {
             return new Admin()
             {

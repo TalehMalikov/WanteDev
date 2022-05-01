@@ -98,7 +98,7 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                     var reader = cmd.ExecuteReader();
                     if (reader.Read())
                     {
-                        return GetFromReaderAsDeveloper(reader);
+                        return GetFromReaderAsUser(reader);
                     }
                     else
                     {
@@ -106,6 +106,16 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                     }
                 }
             }
+        }
+
+        private Developer GetFromReaderAsUser(SqlDataReader reader)
+        {
+            return new Developer
+            {
+                Id = reader.Get<int>(nameof(Developer.Id)),
+                Email = reader.Get<string>(nameof(Developer.Email)),
+                PasswordHash = reader.Get<string>(nameof(Developer.PasswordHash))
+            };
         }
 
         public List<Developer> GetAll()

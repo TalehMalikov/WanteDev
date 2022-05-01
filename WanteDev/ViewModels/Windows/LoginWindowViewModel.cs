@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using WanteDev.Commands.Auth;
+using WanteDev.Commands.Main;
 using WanteDev.Core.DataAccess.Abstraction;
 using WanteDev.Views.Windows;
 
@@ -57,7 +59,14 @@ namespace WanteDev.ViewModels.Windows
 
         //public string NewPassword { get; set; }
         //public string ConfirmNewPassword { get; set; }
+
         public LoginCommand SignIn => new LoginCommand(this);
+        public RegistrationCommand SignUp => new RegistrationCommand(this);
+
+
+        
+
+       
 
         //public ForgotPassword ForgotPassword => new ForgotPassword(this);
         //public SendConfirmationCode SendConfirmationCode => new SendConfirmationCode(this);
@@ -191,6 +200,10 @@ namespace WanteDev.ViewModels.Windows
                 OnPropertyChanged(nameof(LoginWindowVisibility));
             }
         }
+
+
+       
+
 
         private Visibility loginErrorVisibility = Visibility.Collapsed;
         public Visibility LoginErrorVisibility

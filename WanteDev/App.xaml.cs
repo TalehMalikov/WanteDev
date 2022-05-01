@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using WantedDev.Core.Domain.Enums;
 using WanteDev.Core.Factories;
+using WanteDev.Core.Utils;
 using WanteDev.Infrasturcture;
 using WanteDev.ViewModels.Windows;
 using WanteDev.Views.Windows;
@@ -20,6 +21,7 @@ namespace WanteDev
     {
         public App()
         {
+            this.InitializeComponent();
             var connectionString = ConfigurationManager.ConnectionStrings["DBWanteDev"].ConnectionString;
             Kernel.DB = DBFactory.Create(ServerType.MsSql, connectionString);
             LoginWindow loginWindow = new();

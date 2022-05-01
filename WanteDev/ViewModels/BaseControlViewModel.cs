@@ -10,25 +10,25 @@ using WanteDev.Models;
 
 namespace WanteDev.ViewModels
 {
-    public abstract class BaseControlViewModel<T> : BaseViewModel where T : BaseModel, new()
+    public abstract class BaseWindowViewModel<T> : BaseViewModel where T : BaseModel, new()
     {
         public IUnitOfWork DB { get; }
         public DataProvider DataProvider { get; }
-        public BaseControlViewModel(IUnitOfWork db)
+        public BaseWindowViewModel(IUnitOfWork db)
         {
             DB = db;
             DataProvider = new DataProvider(db);
         }
 
         #region 
-        /*
-         public virtual void Initialize()
+        
+        /* public virtual void Initialize()
         {
             Values = new ObservableCollection<T>(AllValues);
             CurrentSituation = (byte)Situations.NORMAL;
             CurrentValue = new T();
         }
-
+*/
         private T currentValue = new T();
         public T CurrentValue
         {
@@ -42,7 +42,8 @@ namespace WanteDev.ViewModels
                 OnPropertyChanged(nameof(CurrentValue));
             }
         }
-
+        
+        /*
         private T selectedValue = new T();
         public virtual T SelectedValue
         {
