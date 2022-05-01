@@ -4,11 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WanteDev.Views.Windows"
-        mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" BorderThickness="3" BorderBrush="White" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         Title="LoginWindow" Height="300" Width="400">
     <Grid>
-
-
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="4*"/>

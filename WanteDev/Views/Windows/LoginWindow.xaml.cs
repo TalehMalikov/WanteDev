@@ -36,5 +36,9 @@ namespace WanteDev.Views.Windows
             passwordTxtBox.Visibility = Visibility.Collapsed;
             passwordTxt.Visibility = Visibility.Visible;
         }
+        private void OnCloseClicked(object sender, EventArgs e)
+        {
+            Visibility = Visibility.Collapsed;
+        }
     }
 }

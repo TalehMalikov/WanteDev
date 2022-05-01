@@ -23,5 +23,9 @@ namespace WanteDev.Views.Windows
         {
             InitializeComponent();
         }
+        private void OnCloseClicked(object sender, EventArgs e)
+        {
+            Visibility = Visibility.Collapsed;
+        }
     }
 }
