@@ -28,8 +28,8 @@
     <Border Grid.Row="0" Background="White">
             <TextBlock Margin="10 25 10 20" FontSize="30" Text="Let's get to know you :" Style="{StaticResource titleText}" Foreground="#3AB19B"/>
         </Border>
-    <Button HorizontalAlignment="Right" VerticalAlignment="top" Width="30" Height="30"  Background="White" Click="OnCloseClicked">
-            <materialDesign:PackIcon  Kind="Close" Width="25" Height="25" Foreground="#3AB19B"/>
+    <Button HorizontalAlignment="Right" VerticalAlignment="top" Width="30" Height="30" Background="Transparent" BorderThickness="0" Click="OnCloseClicked">
+        <materialDesign:PackIcon  Kind="Close" Width="30" Height="30" Foreground="LightSeaGreen"/>
     </Button>
 
         <Border Grid.Row="1" Background="#3AA9AD">
