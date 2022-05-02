@@ -4,9 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WanteDev.Views.Windows"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" Background="Transparent" WindowStyle="None"
-        mc:Ignorable="d"
-        Title="EmployerRegistrationWindow" Height="450" Width="800">
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" BorderBrush="DodgerBlue" BorderThickness="3" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        Title="EmployerRegistrationWindow" Height="450" Width="700">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush StartPoint="0.1,0" EndPoint="0.9,1">
@@ -16,8 +16,19 @@
         </Grid.Background>
         <TextBlock Text="Developer Registration Window"/>
         <Border Height="390" VerticalAlignment="Top" CornerRadius="0 0 180 0" Background="#3AA9AD"></Border>
-        <Button HorizontalAlignment="Right" VerticalAlignment="top" Width="30" Height="30"  Background="#3AA9AD" Click="OnCloseClicked">
-            <materialDesign:PackIcon  Kind="Close" Width="25" Height="25" Foreground="White"/>
+        <Button Background="Transparent" BorderThickness="0" HorizontalAlignment="Right" VerticalAlignment="top" Width="30" Height="30" Click="OnCloseClicked">
+            <materialDesign:PackIcon  Kind="Close" Width="30" Height="30" Foreground="White"/>
+        </Button>
+        <Button
+            Width="15"
+            Height="15"
+            Padding="0"
+            HorizontalAlignment="Center"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="Transparent"
+            BorderThickness="0"
+            Foreground="Red">
         </Button>
         <StackPanel Orientation="Horizontal">
             <StackPanel Width="350">
@@ -25,7 +36,7 @@
             </StackPanel>
             <StackPanel Width="350">
                 <StackPanel >
-                    <TextBlock Margin="0 0 30 0" Text="Registration" FontStyle="Oblique"  Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="Great Vibes"></TextBlock>
+                    <TextBlock Margin="0 0 30 0" Text="Registration" FontStyle="Normal"  Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="Great Vibes"></TextBlock>
                     <StackPanel Orientation="Horizontal" Margin="10">
                         <materialDesign:PackIcon Kind="User" Width="25" Height="25" Foreground="White"/>
                         <TextBox x:Name="txtUsername" Style="{StaticResource MyWaterMarkStyle}" Tag="First Name" Margin="10 0" materialDesign:HintAssist.Hint="Enter Username / Email" Foreground="black" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448">
@@ -47,13 +58,46 @@
                         </TextBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10">
-                        <CheckBox Width="25" Height="25" Foreground="Black" FontWeight="Bold" FontSize="14" x:Name="showPassword" Unchecked="ShowPassword_Unchecked" Checked="ShowPassword_Checked"/>
-                        <PasswordBox x:Name="passwordTxt" Margin="10 0" materialDesign:HintAssist.Hint="********" Foreground="blue" Width="250" BorderBrush="black" CaretBrush="#FFD94448" SelectionBrush="#FFD94448">
-                            <PasswordBox.Resources>
-                                <Style TargetType="{x:Type Border}">
-                                    <Setter Property="CornerRadius" Value="10"/>
+                        <CheckBox Width="24" Height="25" Foreground="Black" FontWeight="Bold" FontSize="14" x:Name="showPassword" Unchecked="ShowPassword_Unchecked" Checked="ShowPassword_Checked"/>
+                        <PasswordBox x:Name="passwordTxt" Margin="10 0" materialDesign:HintAssist.Hint="********" Foreground="blue" Width="252" CaretBrush="#FFD94448" SelectionBrush="#FFD94448">
+                            <PasswordBox.Style>
+                                <Style TargetType="{x:Type PasswordBox}">
+                                    <Style.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="8" />
+                                        </Style>
+                                    </Style.Resources>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type PasswordBox}">
+                                                <Border x:Name="border" CornerRadius="8" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                    <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsEnabled" Value="false">
+                                                        <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsMouseOver" Value="true">
+                                                        <Setter Property="BorderBrush" TargetName="border" Value="#FF7EB4EA"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsKeyboardFocused" Value="true">
+                                                        <Setter Property="BorderBrush" TargetName="border" Value="#FF569DE5"/>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <MultiTrigger>
+                                            <MultiTrigger.Conditions>
+                                                <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                                                <Condition Property="IsSelectionActive" Value="false"/>
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                                        </MultiTrigger>
+                                    </Style.Triggers>
                                 </Style>
-                            </PasswordBox.Resources>
+                            </PasswordBox.Style>
                         </PasswordBox>
                         <TextBox x:Name="passwordTxtBox" Width="250" Style="{StaticResource textBox}" Visibility="Collapsed">
                             <TextBox.Resources>
@@ -65,7 +109,46 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10">
                         <materialDesign:PackIcon Kind="Lock" Width="25" Height="25" Foreground="White"/>
-                        <PasswordBox x:Name="txtPassword"  Margin="10 0" materialDesign:HintAssist.Hint="********" Foreground="blue" Width="250" BorderBrush="black" CaretBrush="#FFD94448" SelectionBrush="#FFD94448" />
+                        <PasswordBox  x:Name="txtPassword"  Margin="10 0" materialDesign:HintAssist.Hint="********" Foreground="blue" Width="250" CaretBrush="#FFD94448" SelectionBrush="#FFD94448">
+                            <PasswordBox.Style>
+                                <Style TargetType="{x:Type PasswordBox}">
+                                    <Style.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="8" />
+                                        </Style>
+                                    </Style.Resources>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type PasswordBox}">
+                                                <Border x:Name="border" CornerRadius="8" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                    <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsEnabled" Value="false">
+                                                        <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsMouseOver" Value="true">
+                                                        <Setter Property="BorderBrush" TargetName="border" Value="#FF7EB4EA"/>
+                                                    </Trigger>
+                                                    <Trigger Property="IsKeyboardFocused" Value="true">
+                                                        <Setter Property="BorderBrush" TargetName="border" Value="#FF569DE5"/>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <MultiTrigger>
+                                            <MultiTrigger.Conditions>
+                                                <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                                                <Condition Property="IsSelectionActive" Value="false"/>
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                                        </MultiTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </PasswordBox.Style>
+                        </PasswordBox>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10">
                         <materialDesign:PackIcon Kind="Email" Width="25" Height="25" Foreground="White"/>
