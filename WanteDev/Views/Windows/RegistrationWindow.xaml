@@ -51,6 +51,11 @@
                 </RadioButton>
 
                 <Button Foreground="#3AA9AD" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Submit" Width="100" Height="30" Margin="30 0 10 0" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
                     <Button.Style>
                         <Style TargetType="Button">
                             <Style.Triggers>
