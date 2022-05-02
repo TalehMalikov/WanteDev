@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:WanteDev.Views.Windows"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" BorderThickness="3" BorderBrush="White" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         Title="LoginWindow" Height="300" Width="400">
-    <Grid>
+
+
+<Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="4*"/>
@@ -45,7 +47,7 @@
                 <RadioButton  FontSize="20" Margin="50 12 30 8" GroupName="radiobutton"  IsChecked="{Binding Path=DeveloperChecked}" Content="Developer">
                 </RadioButton>
 
-                <Button Content="Submit" Width="100" Height="30" Margin="290 0 10 0" >
+                <Button Foreground="#3AA9AD" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Submit" Width="100" Height="30" Margin="30 0 10 0" >
                     <Button.Style>
                         <Style TargetType="Button">
                             <Style.Triggers>
@@ -59,6 +61,7 @@
                         </Style>
                     </Button.Style>
                 </Button>
+                
 
             </StackPanel>
 

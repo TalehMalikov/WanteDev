@@ -37,7 +37,6 @@
                     <TextBlock Text="Sign Up" Style="{StaticResource titleText}"/>
                     <TextBlock Text="Enter your personal info and create new account to connect us" Style="{StaticResource normalText}" Opacity="0.8" Margin="20 30"/>
                     <Button x:Name="signUpButton" Content="Sign Up" Command="{Binding SignUp}" Style="{StaticResource button}"/>
-
                 </StackPanel>
 
 
