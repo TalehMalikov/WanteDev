@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WanteDev.Views.Windows"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" BorderThickness="3" BorderBrush="White" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         Title="LoginWindow" Height="300" Width="400">
 
@@ -24,10 +25,12 @@
 
 
         </Border>
-
-        <Border Grid.Row="0" Background="White">
+    <Border Grid.Row="0" Background="White">
             <TextBlock Margin="10 25 10 20" FontSize="30" Text="Let's get to know you :" Style="{StaticResource titleText}" Foreground="#3AB19B"/>
         </Border>
+    <Button HorizontalAlignment="Right" VerticalAlignment="top" Width="30" Height="30"  Background="White" Click="OnCloseClicked">
+            <materialDesign:PackIcon  Kind="Close" Width="25" Height="25" Foreground="#3AB19B"/>
+    </Button>
 
         <Border Grid.Row="1" Background="#3AA9AD">
 
