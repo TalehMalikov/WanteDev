@@ -29,7 +29,6 @@ namespace WanteDev.Views.Windows
             passwordTxt.Visibility = Visibility.Collapsed;
             passwordTxtBox.Visibility = Visibility.Visible;
         }
-
         private void ShowPassword_Unchecked(object sender, RoutedEventArgs e)
         {
             passwordTxt.Password = passwordTxtBox.Text;
