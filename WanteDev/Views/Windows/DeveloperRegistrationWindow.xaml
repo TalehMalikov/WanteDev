@@ -21,7 +21,7 @@
         </Button>
         <StackPanel Orientation="Horizontal">
             <StackPanel Width="350">
-                <Image Source="/Views/Windows/login.png" Width="300" Height="300" VerticalAlignment="Top" Margin="30" Stretch="Fill"/>
+                <Image Source="\Images\login.png" Width="300" Height="300" VerticalAlignment="Top" Margin="30" Stretch="Fill"/>
             </StackPanel>
             <StackPanel Width="350">
                 <StackPanel >

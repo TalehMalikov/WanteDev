@@ -15,7 +15,6 @@
     <None Remove="Images\linkedin.png" />
     <None Remove="Images\lock.png" />
     <None Remove="Images\login.png" />
-    <None Remove="Views\Windows\login.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,7 +37,6 @@
     <Resource Include="Images\linkedin.png" />
     <Resource Include="Images\lock.png" />
     <Resource Include="Images\login.png" />
-    <Resource Include="Views\Windows\login.png" />
   </ItemGroup>
 
   <ItemGroup>
