@@ -162,6 +162,28 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                 }
             }
         }
+        public List<Developer> GetAllDevelopers()
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionstring))
+            {
+                connection.Open();
+                string cmdText = "select Id,FirstName,LastName,PasswordHash,Email,Phone,Address,Gender from Developers where IsDeleted=0";
+
+                List<Developer> developers = new List<Developer>();
+                using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    Developer employee = null;
+
+                    while (reader.Read())
+                    {
+                        employee = GetFromReaderDeveloper(reader);
+                        developers.Add(employee);
+                    }
+                    return developers;
+                }
+            }
+        }
 
         public void Update(Developer value)
         {
@@ -234,6 +256,20 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                 AdditionalSkills=reader.Get<string>(nameof(Developer.AdditionalSkills)),
                 Photo=reader.Get<byte[]>(nameof(Developer.Photo)),
                 CV=reader.Get<byte[]>(nameof(Developer.CV))
+            };
+        }
+        private Developer GetFromReaderDeveloper(SqlDataReader reader)
+        {
+            return new Developer()
+            {
+                Id = reader.Get<int>(nameof(Developer.Id)),
+                FirstName = reader.Get<string>(nameof(Developer.FirstName)),
+                LastName = reader.Get<string>(nameof(Developer.LastName)),
+                Email = reader.Get<string>(nameof(Developer.Email)),
+                PasswordHash = reader.Get<string>(nameof(Developer.PasswordHash)),
+                Address = reader.Get<string>(nameof(Developer.Address)),
+                Phone = reader.Get<string>(nameof(Developer.Phone)),
+                Gender = reader.Get<bool>(nameof(Developer.Gender))
             };
         }
     }

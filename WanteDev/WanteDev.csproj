@@ -15,6 +15,9 @@
     <None Remove="Images\linkedin.png" />
     <None Remove="Images\lock.png" />
     <None Remove="Images\login.png" />
+    <None Remove="Images\logo1.jpeg" />
+    <None Remove="Images\logo2.jpeg" />
+    <None Remove="Views\Windows\logo1.jpeg" />
   </ItemGroup>
 
   <ItemGroup>

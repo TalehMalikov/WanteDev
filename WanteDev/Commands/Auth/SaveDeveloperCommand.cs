@@ -35,7 +35,8 @@ namespace WanteDev.Commands.Auth
                 DeveloperMapper developerMapper = new DeveloperMapper();
                 var developer = developerMapper.Map(_viewModel.CurrentValue);
                 PasswordBox password = param as PasswordBox;
-                developer.PasswordHash = SecurityUtil.ComputeSha256Hash(password.Password);
+                developer.PasswordHash = SecurityUtil.ComputeSha256Hash(password.Password); 
+                _viewModel.CurrentValue.PasswordHash = developer.PasswordHash;
                 if (dataValidator.IsDeveloperValid(_viewModel.CurrentValue, out string message) == false)
                 {
                     MessageBox.Show(message, "Validation error", MessageBoxButton.OK, MessageBoxImage.Error);

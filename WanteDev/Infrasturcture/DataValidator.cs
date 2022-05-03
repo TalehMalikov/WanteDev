@@ -22,19 +22,44 @@ namespace WanteDev.Infrasturcture
         {
             if (currentDeveloper.IsValid(out message) == false)
                 return false;
-            var allDevelopers = _db.DeveloperRepository.GetAll();
+            var allDevelopers = _db.DeveloperRepository.GetAllDevelopers();
 
             //Name
             if (currentDeveloper.FirstName.Any(x=>char.IsLetter(x)==false))
             {
                 message = ValidationHelper.GetLetterMessage("First Name");
+                return false;
             }
 
             //Surname
             if (currentDeveloper.LastName.Any(x => char.IsLetter(x) == false))
             {
                 message = ValidationHelper.GetLetterMessage("Last Name");
+                return false;
             }
+            //Password
+            /*if (currentDeveloper.PasswordHash.Length < 8)
+            {
+                message = "uzunluq 8";
+                return false;
+            }
+
+            if (!currentDeveloper.PasswordHash.Any(char.IsUpper))
+            {
+              message = "en azi bir boyuk";
+               return false;
+            }
+            if (!currentDeveloper.PasswordHash.Any(char.IsLower))
+            {
+                message = "en azi bir kicik";
+                return false;
+            }
+            if (!currentDeveloper.PasswordHash.Any(char.IsDigit))
+            {
+                message = "en azi bir reqem";
+                return false;
+            }*/
+
 
             //Email
             if (currentDeveloper.Email.Contains('@') == false || currentDeveloper.Email.Contains('.') == false)
@@ -49,7 +74,7 @@ namespace WanteDev.Infrasturcture
                                                || char.IsNumber(x)
                                                || permittedSymbols.Contains(x)) == false)
             {
-                message = "Email address should contain only letters, numbers and @ . symbols";
+                message = "Email address should contain only letters, numbers and '@','.' symbols";
                 return false;
             }
             if (allDevelopers.Any(x => x.Id != currentDeveloper.Id && x.Email == currentDeveloper.Email))
@@ -63,7 +88,6 @@ namespace WanteDev.Infrasturcture
                 message = ValidationHelper.GetRequiredLength("Phone number", 10);
                 return false;
             }
-
             if (currentDeveloper.Phone.All(x => char.IsNumber(x)) == false)
             {
                 message = ValidationHelper.GetLetterMessage("Phone Number");
@@ -71,7 +95,7 @@ namespace WanteDev.Infrasturcture
             }
             if (allDevelopers.Any(x => x.Id != currentDeveloper.Id && x.Phone == currentDeveloper.Phone))
             {
-                message = ValidationHelper.GetUniqueMessage("Phone");
+                message = ValidationHelper.GetUniqueMessage("Phone Number");
                 return false;
             }
 
