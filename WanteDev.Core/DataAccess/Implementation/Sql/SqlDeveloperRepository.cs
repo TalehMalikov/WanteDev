@@ -21,7 +21,7 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                 connection.Open();
 
                 string query = "Insert into Developers(FirstName, LastName, Email, PasswordHash, Address, Phone, BirthDate, Gender, CompanyName, ApartmentName, Position, Bio, Experience, AdditionalSkills, Photo, CV,ModifiedDate)" +
-                               "output inserted.id values(@firstname,@lastname,@email,@passwordhash,@adress,@phone,@birthdate,@gender,@companyname,@apartmentname,@position,@bio,@experience,@additionalskills,@photo,@CV,@modifieddate)";
+                               "output inserted.id values(@firstname,@lastname,@email,@passwordhash,@address,@phone,@birthdate,@gender,@companyname,@apartmentname,@position,@bio,@experience,@additionalskills,@photo,@CV,@modifieddate)";
 
                 using(SqlCommand cmd = new SqlCommand(query, connection))
                 {
@@ -29,7 +29,7 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                     cmd.Parameters.AddWithValue("@lastname", value.LastName);
                     cmd.Parameters.AddWithValue("@email", value.Email);
                     cmd.Parameters.AddWithValue("@passwordhash", value.PasswordHash);
-                    cmd.Parameters.AddWithValue("@adress", value.Address);
+                    cmd.Parameters.AddWithValue("@address", value.Address);
                     cmd.Parameters.AddWithValue("@phone", value.Phone);
                     cmd.Parameters.AddWithValue("@birthdate", value.BirthDate);
                     cmd.Parameters.AddWithValue("@gender", value.Gender);
@@ -43,6 +43,28 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                     cmd.Parameters.AddWithValue("@CV", value.CV);
                     cmd.Parameters.AddWithValue("@modifieddate", value.ModifiedDate);
 
+                    value.Id = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+        }
+        public void AddDeveloper(Developer value)
+        {
+            using (var connection = new SqlConnection(_connectionstring))
+            {
+                connection.Open();
+
+                string query = "Insert into Developers(FirstName, LastName, Email, PasswordHash, Address, Phone, Gender)" +
+                               "output inserted.id values(@firstname,@lastname,@email,@passwordhash,@address,@phone,@gender)";
+
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@firstname", value.FirstName);
+                    cmd.Parameters.AddWithValue("@lastname", value.LastName);
+                    cmd.Parameters.AddWithValue("@email", value.Email);
+                    cmd.Parameters.AddWithValue("@passwordhash", value.PasswordHash);
+                    cmd.Parameters.AddWithValue("@address", value.Address);
+                    cmd.Parameters.AddWithValue("@phone", value.Phone);
+                    cmd.Parameters.AddWithValue("@gender", value.Gender);
                     value.Id = Convert.ToInt32(cmd.ExecuteScalar());
                 }
             }
@@ -147,7 +169,7 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
             {
                 connection.Open();
                 string cmdText = "update Developers set FirstName=@firstname,LastName=@lastname,Email=@email," +
-                    "PasswordHash=@passwordhash,Address=@adress,Phone=@phone,BirthDate=@birthdate,Gender=@gender," +
+                    "PasswordHash=@passwordhash,Address=@address,Phone=@phone,BirthDate=@birthdate,Gender=@gender," +
                     "CompanyName=@companyname,ApartmentName=@apartmentname,Position=@position,Bio=@bio,Experience=@experience," +
                     "AdditionalSkills=@additionalskills,Photo=@photo,CV=@cv,ModifiedDate=@modifieddate where ID=@value and IsDeleted=0";
                 using (SqlCommand cmd = new SqlCommand(cmdText, connection))
@@ -157,7 +179,7 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                     cmd.Parameters.AddWithValue("@lastname", value.LastName);
                     cmd.Parameters.AddWithValue("@email", value.Email);
                     cmd.Parameters.AddWithValue("@passwordhash", value.PasswordHash);
-                    cmd.Parameters.AddWithValue("@adress", value.Address);
+                    cmd.Parameters.AddWithValue("@address", value.Address);
                     cmd.Parameters.AddWithValue("@phone", value.Phone);
                     cmd.Parameters.AddWithValue("@birthdate", value.BirthDate);
                     cmd.Parameters.AddWithValue("@gender", value.Gender);

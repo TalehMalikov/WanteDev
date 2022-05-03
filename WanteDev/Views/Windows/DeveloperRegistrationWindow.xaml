@@ -48,7 +48,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="10">
                         <CheckBox Width="24" Height="25" Foreground="Black" FontWeight="Bold" FontSize="14" x:Name="showPassword" Unchecked="ShowPassword_Unchecked" Checked="ShowPassword_Checked"/>
-                        <PasswordBox x:Name="passwordTxt" BorderBrush="Gray" materialDesign:HintAssist.Hint="********" Foreground="blue" Width="252" CaretBrush="#FFD94448" SelectionBrush="#FFD94448">
+                        <PasswordBox Margin="10 0 5 0" x:Name="passwordTxt" BorderBrush="Gray" materialDesign:HintAssist.Hint="********" Foreground="blue" Width="252" CaretBrush="#FFD94448" SelectionBrush="#FFD94448">
                             <PasswordBox.Style>
                                 <Style TargetType="{x:Type PasswordBox}">
                                     <Style.Resources>
@@ -182,7 +182,7 @@
                         <RadioButton Content="Female"></RadioButton>
                     </StackPanel>
                     <StackPanel  HorizontalAlignment="Center">
-                        <Button Command="{Binding Add}" Margin="0 0 35 0" Width="100" Height="30" 
+                        <Button CommandParameter="{Binding ElementName=passwordTxt}" Command="{Binding Add}" Margin="0 0 35 0" Width="100" Height="30" 
                                 materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="DarkBlue"
                                 Background="DodgerBlue" Foreground="White" ToolTip="Login" x:Name="btnLogin" Content="Register">
                             <Button.Resources>

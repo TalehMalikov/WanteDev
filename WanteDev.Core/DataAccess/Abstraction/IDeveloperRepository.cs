@@ -11,5 +11,6 @@ namespace WantedDev.Core.DataAccess.Abstraction
     {
         Developer Get(string email);
         bool UpdatePassword(string email, string passwordhash);
+        void AddDeveloper(Developer developer);
     }
 }
