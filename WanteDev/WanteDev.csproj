@@ -41,6 +41,7 @@
 
   <ItemGroup>
     <Folder Include="ViewModels\Controls\" />
+    <Folder Include="ViewModels\Registrations\" />
     <Folder Include="Views\Controls\" />
   </ItemGroup>
 

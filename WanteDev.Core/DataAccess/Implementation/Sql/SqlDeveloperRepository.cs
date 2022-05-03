@@ -20,7 +20,7 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
             {
                 connection.Open();
 
-                string query = "Insert into Developers(FirstName, LastName, Email, PasswordHash, Adress, Phone, BirthDate, Gender, CompanyName, ApartmentName, Position, Bio, Experience, AdditionalSkills, Photo, CV,ModifiedDate)" +
+                string query = "Insert into Developers(FirstName, LastName, Email, PasswordHash, Address, Phone, BirthDate, Gender, CompanyName, ApartmentName, Position, Bio, Experience, AdditionalSkills, Photo, CV,ModifiedDate)" +
                                "output inserted.id values(@firstname,@lastname,@email,@passwordhash,@adress,@phone,@birthdate,@gender,@companyname,@apartmentname,@position,@bio,@experience,@additionalskills,@photo,@CV,@modifieddate)";
 
                 using(SqlCommand cmd = new SqlCommand(query, connection))
@@ -29,7 +29,7 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                     cmd.Parameters.AddWithValue("@lastname", value.LastName);
                     cmd.Parameters.AddWithValue("@email", value.Email);
                     cmd.Parameters.AddWithValue("@passwordhash", value.PasswordHash);
-                    cmd.Parameters.AddWithValue("@adress", value.Adress);
+                    cmd.Parameters.AddWithValue("@adress", value.Address);
                     cmd.Parameters.AddWithValue("@phone", value.Phone);
                     cmd.Parameters.AddWithValue("@birthdate", value.BirthDate);
                     cmd.Parameters.AddWithValue("@gender", value.Gender);
@@ -147,7 +147,7 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
             {
                 connection.Open();
                 string cmdText = "update Developers set FirstName=@firstname,LastName=@lastname,Email=@email," +
-                    "PasswordHash=@passwordhash,Adress=@adress,Phone=@phone,BirthDate=@birthdate,Gender=@gender," +
+                    "PasswordHash=@passwordhash,Address=@adress,Phone=@phone,BirthDate=@birthdate,Gender=@gender," +
                     "CompanyName=@companyname,ApartmentName=@apartmentname,Position=@position,Bio=@bio,Experience=@experience," +
                     "AdditionalSkills=@additionalskills,Photo=@photo,CV=@cv,ModifiedDate=@modifieddate where ID=@value and IsDeleted=0";
                 using (SqlCommand cmd = new SqlCommand(cmdText, connection))
@@ -157,7 +157,7 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                     cmd.Parameters.AddWithValue("@lastname", value.LastName);
                     cmd.Parameters.AddWithValue("@email", value.Email);
                     cmd.Parameters.AddWithValue("@passwordhash", value.PasswordHash);
-                    cmd.Parameters.AddWithValue("@adress", value.Adress);
+                    cmd.Parameters.AddWithValue("@adress", value.Address);
                     cmd.Parameters.AddWithValue("@phone", value.Phone);
                     cmd.Parameters.AddWithValue("@birthdate", value.BirthDate);
                     cmd.Parameters.AddWithValue("@gender", value.Gender);
@@ -200,7 +200,7 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                 LastName=reader.Get<string>(nameof(Developer.LastName)),
                 Email=reader.Get<string>(nameof(Developer.Email)),
                 PasswordHash=reader.Get<string>(nameof(Developer.PasswordHash)),
-                Adress=reader.Get<string>(nameof(Developer.Adress)),
+                Address=reader.Get<string>(nameof(Developer.Address)),
                 Phone=reader.Get<string>(nameof(Developer.Phone)),
                 BirthDate=reader.Get<DateTime>(nameof(Developer.BirthDate)),
                 Gender=reader.Get<bool>(nameof(Developer.Gender)),

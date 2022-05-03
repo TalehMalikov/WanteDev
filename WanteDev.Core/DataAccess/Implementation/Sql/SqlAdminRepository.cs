@@ -21,7 +21,7 @@ namespace WanteDev.Core.DataAccess.Implementation.Sql
             {
                 connection.Open();
 
-                string query = "Insert into Employers(FirstName, LastName, Email, PasswordHash, Adress, Phone, BirthDate, Gender, Position, Photo,ModifiedDate)" +
+                string query = "Insert into Employers(FirstName, LastName, Email, PasswordHash, Address, Phone, BirthDate, Gender, Position, Photo,ModifiedDate)" +
                                "output inserted.id values(@firstname,@lastname,@email,@passwordhash,@adress,@phone,@birthdate,@gender,@position,@photo,@modifieddate)";
 
                 using (SqlCommand cmd = new SqlCommand(query, connection))
@@ -141,7 +141,7 @@ namespace WanteDev.Core.DataAccess.Implementation.Sql
             {
                 connection.Open();
                 string cmdText = "update Admins set FirstName=@firstname,LastName=@lastname,Email=@email," +
-                    "PasswordHash=@passwordhash,Adress=@adress,Phone=@phone,BirthDate=@birthdate," +
+                    "PasswordHash=@passwordhash,Address=@adress,Phone=@phone,BirthDate=@birthdate," +
                     "Gender=@gender,Position=@position,Photo=@photo,ModifiedDate=@modifieddate where ID=@value and IsDeleted=0";
                 using (SqlCommand cmd = new SqlCommand(cmdText, connection))
                 {

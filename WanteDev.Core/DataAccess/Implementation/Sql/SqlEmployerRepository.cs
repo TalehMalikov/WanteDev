@@ -19,7 +19,7 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
             {
                 connection.Open();
 
-                string query = "Insert into Employers(FirstName, LastName, Email, PasswordHash, Adress, Phone, BirthDate, Gender, CompanyName, ApartmentName, Position, Bio, Photo,ModifiedDate)" +
+                string query = "Insert into Employers(FirstName, LastName, Email, PasswordHash, Address, Phone, BirthDate, Gender, CompanyName, ApartmentName, Position, Bio, Photo,ModifiedDate)" +
                                "output inserted.id values(@firstname,@lastname,@email,@passwordhash,@adress,@phone,@birthdate,@gender,@companyname,@apartmentname,@position,@bio,@photo,@modifieddate)";
 
                 using (SqlCommand cmd = new SqlCommand(query, connection))
@@ -132,7 +132,7 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
             {
                 connection.Open();
                 string cmdText = "update Employers set FirstName=@firstname,LastName=@lastname,Email=@email," +
-                    "PasswordHash=@passwordhash,Adress=@adress,Phone=@phone,BirthDate=@birthdate," +
+                    "PasswordHash=@passwordhash,Address=@adress,Phone=@phone,BirthDate=@birthdate," +
                     "Gender=@gender,CompanyName=@companyname,ApartmentName=@apartmentname,Position=@position," +
                     "Bio=@bio,Photo=@photo,ModifiedDate=@modifieddate where ID=@value and IsDeleted=0";
                 using (SqlCommand cmd = new SqlCommand(cmdText, connection))
