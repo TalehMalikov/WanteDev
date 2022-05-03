@@ -63,11 +63,6 @@ namespace WanteDev.ViewModels.Windows
         public LoginCommand SignIn => new LoginCommand(this);
         public RegistrationCommand SignUp => new RegistrationCommand(this);
 
-
-        
-
-       
-
         //public ForgotPassword ForgotPassword => new ForgotPassword(this);
         //public SendConfirmationCode SendConfirmationCode => new SendConfirmationCode(this);
         //public VerifyConfirmationCode VerifyConfirmationCode => new VerifyConfirmationCode(this);
