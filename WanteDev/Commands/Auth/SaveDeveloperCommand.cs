@@ -22,7 +22,7 @@ namespace WanteDev.Commands.Auth
             _viewModel = viewModel;
         }
         public override void Execute(object parameter)
-        {
+        { 
             Save(parameter);
         }
 
@@ -32,8 +32,6 @@ namespace WanteDev.Commands.Auth
             {
                 DeveloperMapper developerMapper = new DeveloperMapper();
                 var developer = developerMapper.Map(_viewModel.CurrentValue);
-                developer.ModifiedDate=DateTime.Now;
-                developer.BirthDate = DateTime.Now;
                 PasswordBox password = param as PasswordBox;
                 developer.PasswordHash = SecurityUtil.ComputeSha256Hash(password.Password);
                 if (developer.Id != 0)
@@ -42,7 +40,7 @@ namespace WanteDev.Commands.Auth
                 }
                 else
                 {
-                    _viewModel.DB.DeveloperRepository.Add(developer);
+                    _viewModel.DB.DeveloperRepository.AddDeveloper(developer);
                 }
                 MessageBox.Show("Successfully!");
                 _viewModel.Window.Close();
