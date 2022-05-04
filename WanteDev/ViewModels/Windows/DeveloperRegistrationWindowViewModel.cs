@@ -20,5 +20,22 @@ namespace WanteDev.ViewModels.Windows
 
         public DeveloperModel CurrentValue { get; set; } = new DeveloperModel();
         public ICommand Add => new SaveDeveloperCommand(this);
+
+        //private Visibility passwordErrorVisibility;
+
+        //public Visibility PasswordErrorVisibility
+        //{
+        //    get { return passwordErrorVisibility; }
+        //    set { passwordErrorVisibility = value; }
+        //}
+
+
+        //private string passwordText;
+        //public string PasswordText
+        //{
+        //    get { return passwordText; }
+        //    set { passwordText = value; }
+        //}
+
     }
 }

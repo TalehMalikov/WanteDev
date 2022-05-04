@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using MaterialDesignThemes.Wpf;
-using Microsoft.VisualBasic.CompilerServices;
 using WanteDev.Core.Utils;
 using WanteDev.Infrasturcture;
 using WanteDev.Mappers;
@@ -35,13 +29,15 @@ namespace WanteDev.Commands.Auth
                 DeveloperMapper developerMapper = new DeveloperMapper();
                 var developer = developerMapper.Map(_viewModel.CurrentValue);
                 PasswordBox password = param as PasswordBox;
-                developer.PasswordHash = SecurityUtil.ComputeSha256Hash(password.Password); 
-                _viewModel.CurrentValue.PasswordHash = developer.PasswordHash;
+                _viewModel.CurrentValue.PasswordHash = password?.Password;
                 if (dataValidator.IsDeveloperValid(_viewModel.CurrentValue, out string message) == false)
                 {
                     MessageBox.Show(message, "Validation error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
+                developer.PasswordHash = SecurityUtil.ComputeSha256Hash(password.Password); 
+                _viewModel.CurrentValue.PasswordHash = developer.PasswordHash;
+               
                 if (developer.Id != 0)
                 {
                     _viewModel.DB.DeveloperRepository.Update(developer);

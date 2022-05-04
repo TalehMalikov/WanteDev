@@ -93,10 +93,10 @@
                             </PasswordBox>
                             <TextBox x:Name="passwordTxtBox" Width="250" Style="{StaticResource textBox}" Visibility="Collapsed">
                                 <TextBox.Resources>
-                                    <Style TargetType="{x:Type Border}">
-                                        <Setter Property="CornerRadius" Value="10"/>
-                                    </Style>
-                                </TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </TextBox.Resources>
                                 <TextBox.InputBindings>
                                     <KeyBinding Command="{Binding Add}" CommandParameter="{Binding ElementName=passwordTxt}" Key="Enter" />
                                 </TextBox.InputBindings>

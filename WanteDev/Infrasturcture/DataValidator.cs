@@ -38,33 +38,19 @@ namespace WanteDev.Infrasturcture
                 return false;
             }
             //Password
-            /*if (currentDeveloper.PasswordHash.Length < 8)
+            if (currentDeveloper.PasswordHash.Length < 8 || !currentDeveloper.PasswordHash.Any(char.IsUpper)
+                || !currentDeveloper.PasswordHash.Any(char.IsLower) || !currentDeveloper.PasswordHash.Any(char.IsDigit))
             {
-                message = "uzunluq 8";
+                message = "Wrong password format";
                 return false;
             }
-
-            if (!currentDeveloper.PasswordHash.Any(char.IsUpper))
-            {
-              message = "en azi bir boyuk";
-               return false;
-            }
-            if (!currentDeveloper.PasswordHash.Any(char.IsLower))
-            {
-                message = "en azi bir kicik";
-                return false;
-            }
-            if (!currentDeveloper.PasswordHash.Any(char.IsDigit))
-            {
-                message = "en azi bir reqem";
-                return false;
-            }*/
 
 
             //Email
             if (currentDeveloper.Email.Contains('@') == false || currentDeveloper.Email.Contains('.') == false)
             {
-                message = "Email must contain @ and .";
+                message = "Email must contain @ and . ";
+                //xxxxx@xxxxx.xxx
                 return false;
             }
             char[] permittedSymbols = { '@','.'};
