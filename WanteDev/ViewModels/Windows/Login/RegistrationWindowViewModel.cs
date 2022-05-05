@@ -7,7 +7,7 @@ using System.Windows;
 using WanteDev.Commands.Main;
 using WanteDev.Core.DataAccess.Abstraction;
 
-namespace WanteDev.ViewModels.Windows
+namespace WanteDev.ViewModels.Windows.Login
 {
     public class RegistrationWindowViewModel : BaseWindowViewModel
     {

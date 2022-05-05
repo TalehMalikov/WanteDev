@@ -10,11 +10,11 @@ using WanteDev.Models;
 
 namespace WanteDev.ViewModels
 {
-    public abstract class BaseWindowViewModel<T> : BaseViewModel where T : BaseModel, new()
+    public abstract class BaseControlViewModel<T> : BaseViewModel where T : BaseModel, new()
     {
         public IUnitOfWork DB { get; }
         public DataProvider DataProvider { get; }
-        public BaseWindowViewModel(IUnitOfWork db)
+        public BaseControlViewModel(IUnitOfWork db)
         {
             DB = db;
             DataProvider = new DataProvider(db);

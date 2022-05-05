@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ViewModels\Registrations\**" />
+    <EmbeddedResource Remove="ViewModels\Registrations\**" />
+    <None Remove="ViewModels\Registrations\**" />
+    <Page Remove="ViewModels\Registrations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Images\close.png" />
     <None Remove="Images\email.png" />
     <None Remove="Images\facebook.png" />
@@ -15,6 +22,10 @@
     <None Remove="Images\linkedin.png" />
     <None Remove="Images\lock.png" />
     <None Remove="Images\login.png" />
+    <None Remove="Images\logo.jpeg" />
+    <None Remove="Images\search.png" />
+    <None Remove="Images\search1.png" />
+    <None Remove="Images\user.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,12 +48,11 @@
     <Resource Include="Images\linkedin.png" />
     <Resource Include="Images\lock.png" />
     <Resource Include="Images\login.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ViewModels\Controls\" />
-    <Folder Include="ViewModels\Registrations\" />
-    <Folder Include="Views\Controls\" />
+    <Resource Include="Images\logo.jpeg" />
+    <Resource Include="Images\search.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\user.png" />
   </ItemGroup>
 
 </Project>

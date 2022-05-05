@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using WanteDev.Core.DataAccess.Abstraction;
 
-namespace WanteDev.ViewModels.Windows
+namespace WanteDev.ViewModels.Windows.Login
 {
     public class EmployerRegistrationWindowViewModel : BaseWindowViewModel
     {
