@@ -9,7 +9,7 @@ using MaterialDesignThemes.Wpf;
 using Microsoft.VisualBasic.CompilerServices;
 using WanteDev.Core.Utils;
 using WanteDev.Mappers;
-using WanteDev.ViewModels.Windows;
+using WanteDev.ViewModels.Windows.Login;
 
 namespace WanteDev.Commands.Auth
 {

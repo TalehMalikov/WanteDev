@@ -93,7 +93,7 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                     var reader = cmd.ExecuteReader();
                     if (reader.Read())
                     {
-                        return GetFromReaderAsEmployer(reader);
+                        return GetFromReaderAsUser(reader);
                     }
                     else
                     {
@@ -171,6 +171,16 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                     return cmd.ExecuteNonQuery() == 1;
                 }
             }
+        }
+
+        private Employer GetFromReaderAsUser(SqlDataReader reader)
+        {
+            return new Employer
+            {
+                Id = reader.Get<int>(nameof(Employer.Id)),
+                Email = reader.Get<string>(nameof(Employer.Email)),
+                PasswordHash = reader.Get<string>(nameof(Employer.PasswordHash))
+            };
         }
 
         private Employer GetFromReaderAsEmployer(SqlDataReader reader)
