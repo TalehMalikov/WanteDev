@@ -53,8 +53,8 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
             {
                 connection.Open();
 
-                string query = "Insert into Developers(FirstName, LastName, Email, PasswordHash, Address, Phone, Gender)" +
-                               "output inserted.id values(@firstname,@lastname,@email,@passwordhash,@address,@phone,@gender)";
+                string query = "Insert into Developers(FirstName, LastName, Email, PasswordHash, Address, Phone,BirthDate,Gender)" +
+                               "output inserted.id values(@firstname,@lastname,@email,@passwordhash,@address,@phone,@birthdate,@gender)";
 
                 using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
@@ -64,6 +64,7 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                     cmd.Parameters.AddWithValue("@passwordhash", value.PasswordHash);
                     cmd.Parameters.AddWithValue("@address", value.Address);
                     cmd.Parameters.AddWithValue("@phone", value.Phone);
+                    cmd.Parameters.AddWithValue("@birthdate", value.BirthDate);
                     cmd.Parameters.AddWithValue("@gender", value.Gender);
                     value.Id = Convert.ToInt32(cmd.ExecuteScalar());
                 }
@@ -167,7 +168,7 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
             using (SqlConnection connection = new SqlConnection(_connectionstring))
             {
                 connection.Open();
-                string cmdText = "select Id,FirstName,LastName,PasswordHash,Email,Phone,Address,Gender from Developers where IsDeleted=0";
+                string cmdText = "select Id,FirstName,LastName,PasswordHash,Email,Phone,Address,BirthDate,Gender from Developers where IsDeleted=0";
 
                 List<Developer> developers = new List<Developer>();
                 using (SqlCommand cmd = new SqlCommand(cmdText, connection))
@@ -269,6 +270,7 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                 PasswordHash = reader.Get<string>(nameof(Developer.PasswordHash)),
                 Address = reader.Get<string>(nameof(Developer.Address)),
                 Phone = reader.Get<string>(nameof(Developer.Phone)),
+                BirthDate = reader.Get<DateTime>(nameof(Developer.BirthDate)),
                 Gender = reader.Get<bool>(nameof(Developer.Gender))
             };
         }

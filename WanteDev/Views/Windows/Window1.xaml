@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WanteDev.Views.Windows"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None" BorderBrush="DodgerBlue" BorderThickness="3" AllowsTransparency="True" Background="Transparent"
-        Title="Window1" Height="450" Width="1050">
+        Title="Window1" Height="450" Width="700">
     <Grid Background="LightSeaGreen">
         <StackPanel Orientation="Horizontal">
             <Button Click="OpenWindow" Background="Transparent" BorderThickness="0">

@@ -16,7 +16,7 @@ namespace WanteDev.Models
         public string PasswordHash { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
-        public DateTime BirthDate { get; set; }
+        public DateTime BirthDate { get; set; } = DateTime.Now;
         public bool Gender { get; set; }
         public string CompanyName { get; set; }
         public string ApartmentName { get; set; }

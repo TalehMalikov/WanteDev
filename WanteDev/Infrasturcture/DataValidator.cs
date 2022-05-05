@@ -38,13 +38,34 @@ namespace WanteDev.Infrasturcture
                 return false;
             }
             //Password
-            if (currentDeveloper.PasswordHash.Length < 8 || !currentDeveloper.PasswordHash.Any(char.IsUpper)
-                || !currentDeveloper.PasswordHash.Any(char.IsLower) || !currentDeveloper.PasswordHash.Any(char.IsDigit))
+            if (currentDeveloper.PasswordHash.Length < 8)
             {
-                message = "Wrong password format";
+                message = "Password length must be equal and greater than 8";
                 return false;
             }
 
+            if (!currentDeveloper.PasswordHash.Any(char.IsUpper))
+            {
+                message = "Password must contain at least one capital letter";
+                return false;
+            }
+
+            if (!currentDeveloper.PasswordHash.Any(char.IsLower))
+            {
+                message = "Password must contain at least one lower letter";
+                return false;
+            }
+
+            if (!currentDeveloper.PasswordHash.Any(char.IsDigit))
+            {
+                message = "Password must contain at least one digit";
+                return false;
+            }
+            /*if (!currentDeveloper.PasswordHash.Any(char.IsSymbol))
+            {
+                message = "Password must contain at least one symbol";
+                return false;
+            }*/
 
             //Email
             if (currentDeveloper.Email.Contains('@') == false || currentDeveloper.Email.Contains('.') == false)
@@ -84,7 +105,13 @@ namespace WanteDev.Infrasturcture
                 message = ValidationHelper.GetUniqueMessage("Phone Number");
                 return false;
             }
-
+            //Date
+            int age = DateUtil.GetAge(currentDeveloper.BirthDate);
+            if (age<15)
+            {
+                message = "Users who are smaller than 14 can't sign up";
+                return false;
+            }
             message = string.Empty;
             return true;
         }

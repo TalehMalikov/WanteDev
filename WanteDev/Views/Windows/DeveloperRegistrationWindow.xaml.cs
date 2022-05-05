@@ -40,12 +40,12 @@ namespace WanteDev.Views.Windows
             passwordTxtBox.Visibility = Visibility.Collapsed;
             passwordTxt.Visibility = Visibility.Visible;
         }
-        private void OpenWindow(object sender, RoutedEventArgs e)
+        private void btnRegisterInClick(object sender, RoutedEventArgs e)
         {
-            Window1 window = new Window1();
-            this.Visibility = Visibility.Hidden;
-            window.Show();
+            if (showPassword.IsChecked == true)
+            {
+                passwordTxt.Password = passwordTxtBox.Text;
+            }
         }
-
     }
 }
