@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace WanteDev.Views.Windows
+namespace WanteDev.Views.Windows.Login
 {
     /// <summary>
-    /// Interaction logic for EmployerRegistrationWindow.xaml
+    /// Interaction logic for DeveloperRegistrationWindow.xaml
     /// </summary>
-    public partial class EmployerRegistrationWindow : Window
+    public partial class DeveloperRegistrationWindow : Window
     {
-        public EmployerRegistrationWindow()
+        public DeveloperRegistrationWindow()
         {
             InitializeComponent();
         }
@@ -39,6 +39,13 @@ namespace WanteDev.Views.Windows
             passwordTxt.Password = passwordTxtBox.Text;
             passwordTxtBox.Visibility = Visibility.Collapsed;
             passwordTxt.Visibility = Visibility.Visible;
+        }
+        private void btnRegisterInClick(object sender, RoutedEventArgs e)
+        {
+            if (showPassword.IsChecked == true)
+            {
+                passwordTxt.Password = passwordTxtBox.Text;
+            }
         }
     }
 }

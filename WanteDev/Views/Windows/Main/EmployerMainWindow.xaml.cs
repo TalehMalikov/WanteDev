@@ -12,20 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace WanteDev.Views.Windows
+namespace WanteDev.Views.Windows.Main
 {
     /// <summary>
-    /// Interaction logic for RegistrationWindow.xaml
+    /// Interaction logic for EmployerMainWindow.xaml
     /// </summary>
-    public partial class RegistrationWindow : Window
+    public partial class EmployerMainWindow : Window
     {
-        public RegistrationWindow()
+        public EmployerMainWindow()
         {
             InitializeComponent();
-        }
-        private void OnCloseClicked(object sender, EventArgs e)
-        {
-            Visibility = Visibility.Collapsed;
         }
     }
 }

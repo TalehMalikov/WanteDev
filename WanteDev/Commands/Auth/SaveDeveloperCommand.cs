@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using WanteDev.Core.Utils;
 using WanteDev.Infrasturcture;
 using WanteDev.Mappers;
-using WanteDev.ViewModels.Windows;
+using WanteDev.ViewModels.Windows.Login;
 
 namespace WanteDev.Commands.Auth
 {

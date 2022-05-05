@@ -9,8 +9,8 @@ using WantedDev.Core.Domain.Enums;
 using WanteDev.Core.Factories;
 using WanteDev.Core.Utils;
 using WanteDev.Infrasturcture;
-using WanteDev.ViewModels.Windows;
-using WanteDev.Views.Windows;
+using WanteDev.ViewModels.Windows.Login;
+using WanteDev.Views.Windows.Login;
 
 namespace WanteDev
 {

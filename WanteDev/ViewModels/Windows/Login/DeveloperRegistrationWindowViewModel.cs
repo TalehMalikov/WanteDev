@@ -9,7 +9,7 @@ using WanteDev.Commands.Auth;
 using WanteDev.Core.DataAccess.Abstraction;
 using WanteDev.Models;
 
-namespace WanteDev.ViewModels.Windows
+namespace WanteDev.ViewModels.Windows.Login
 {
     public class DeveloperRegistrationWindowViewModel : BaseWindowViewModel
     {
