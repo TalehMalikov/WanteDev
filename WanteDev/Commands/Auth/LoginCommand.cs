@@ -46,7 +46,7 @@ namespace WanteDev.Commands.Auth
                 return;
             }
 
-            string password = "MTT2906@";//passwordBox.Password;
+            string password = passwordBox.Password;
 
             string passwordHash = SecurityUtil.ComputeSha256Hash(password);
 
