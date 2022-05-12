@@ -66,7 +66,7 @@ namespace WanteDev.ViewModels.Windows
             {
                 if (!isImageSet)
                 {
-                    currentValue.Photo = File.ReadAllBytes(@"/Images/avatar.jpg");
+                    currentValue.Photo = File.ReadAllBytes(@"\Images\avatar.jpg");
                 }
                 return currentValue;
             }
