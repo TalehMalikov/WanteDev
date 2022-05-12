@@ -34,27 +34,6 @@ namespace WanteDev.ViewModels.Windows
 
             }
         }
-        //private BitmapImage _imgSource;
-        //public BitmapImage ImgSource
-        //{
-        //    get { return _imgSource; }
-        //    set
-        //    {
-        //        _imgSource = value;
-        //        OnPropertyChanged(nameof(ImgSource));
-        //    }
-        //}
-
-        //private async void SetImage()
-        //{
-        //    var file = await System.Windows.Annotations.Storage.KnownFolders.PicturesLibrary.GetFileAsync("MyImage.png");
-        //    var fileStream = await file.OpenAsync(Windows.Storage.FileAccessMode.Read);
-        //    var img = new BitmapImage();
-        //    img.SetSource(fileStream);
-
-        //    ImgSource = img;
-        //}
-
         private ImageSource profileImageSource = new BitmapImage(new Uri(@"pack://application:,,,/WanteDev;component/Images/avatar.png"));
 
         public ImageSource ProfileImageSource
