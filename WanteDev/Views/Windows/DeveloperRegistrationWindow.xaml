@@ -33,6 +33,7 @@
 
 
 
+
             </StackPanel>
 
 
@@ -44,9 +45,9 @@
                         </Setter>
                     </Style>
                 </StackPanel.Style>
-                
-                
-                
+                       
+
+               
                 <StackPanel Orientation="Horizontal" Margin="10 15 10 10" Name="ForBio">
                     <materialDesign:PackIcon Kind="Bio" Width="25" Height="25" Margin="0 5 5 0" Foreground="White"/>
                     <TextBox Text="{Binding CurrentValue.Bio, Mode=TwoWay}" Margin="5 0" x:Name="txtBio" Tag="Your bio goes here" 
