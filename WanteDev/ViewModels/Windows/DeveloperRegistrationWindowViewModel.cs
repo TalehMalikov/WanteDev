@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WanteDev.Commands.Auth;
+using WanteDev.Commands.DeveloperCommand;
 using WanteDev.Core.DataAccess.Abstraction;
 using WanteDev.Models;
 
@@ -23,11 +24,14 @@ namespace WanteDev.ViewModels.Windows
 
         public ICommand Add => new SaveDeveloperCommand(this);
 
+        public ICommand UploadCv => new UploadCv(this);
+
+        public ICommand UploadPhoto => new UploadImage(this);
+
 
         private bool isImageSet;
-        public bool IsImageSet
+        public bool IsImageSet 
         {
-
             set
             {
                 isImageSet = value;
@@ -39,7 +43,7 @@ namespace WanteDev.ViewModels.Windows
 
             }
         }
-        private ImageSource profileImageSource = new BitmapImage(new Uri(@"pack://application:,,,/WanteDev;component/Images/avatar.png"));
+        private ImageSource profileImageSource = new BitmapImage(new Uri(@"pack://application:,,,/WanteDev;component/Images/avatar.jpg"));
 
         public ImageSource ProfileImageSource
         {
@@ -55,14 +59,14 @@ namespace WanteDev.ViewModels.Windows
         }
 
 
-        private DeveloperModel currentValue = new ();
+        private DeveloperModel currentValue = new();
         public DeveloperModel CurrentValue
         {
             get
             {
                 if (!isImageSet)
                 {
-                    CurrentValue.Photo = File.ReadAllBytes(@"/Images/avatar.png");
+                    currentValue.Photo = File.ReadAllBytes(@"/Images/avatar.jpg");
                 }
                 return currentValue;
             }
@@ -72,6 +76,10 @@ namespace WanteDev.ViewModels.Windows
                 OnPropertyChanged(nameof(CurrentValue));
             }
         }
+
+
+
+
         //private Visibility passwordErrorVisibility;
 
         //public Visibility PasswordErrorVisibility

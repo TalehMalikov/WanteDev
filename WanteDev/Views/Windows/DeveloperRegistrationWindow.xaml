@@ -50,10 +50,10 @@
                     <Image  Width="150" Height="150" Source="{Binding ProfileImageSource}"/>
                 </Border>
 
-                <Button Content="Upload Image" Width="100" Height="50" Command="{Binding UploadImage}">
+                <Button Content="Upload Image" Width="100" Height="50" Command="{Binding UploadPhoto}">
 
                 </Button>
-                <Button Content="Upload CV" Width="100" Height="50" Command="{Binding UploadCV}" ></Button>
+                <Button Content="Upload CV" Width="100" Height="50" Command="{Binding UploadCv}" ></Button>
                 <StackPanel  HorizontalAlignment="Center">
                     <Button  Command="{Binding Add}" Margin="0 20 35 0" Width="100" Height="30" 
                                 materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="DarkBlue"
