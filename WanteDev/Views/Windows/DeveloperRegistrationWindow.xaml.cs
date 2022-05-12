@@ -47,5 +47,13 @@ namespace WanteDev.Views.Windows
                 passwordTxt.Password = passwordTxtBox.Text;
             }
         }
+
+        private void btnNext_Click(object sender, RoutedEventArgs e)
+        {
+            GirlPictureStackPanel.Visibility = Visibility.Collapsed;
+            FirstStackPanel.Visibility = Visibility.Collapsed;
+            SecondStackPanel.Visibility = Visibility.Visible;
+            ThirdStackPanel.Visibility = Visibility.Visible;
+        }
     }
 }
