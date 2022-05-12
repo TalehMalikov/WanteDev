@@ -22,7 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\avatar.jpg" />
+    <Resource Include="Images\avatar.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\email.png" />
   </ItemGroup>
 
