@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using WanteDev.Core.DataAccess.Abstraction;
+using WanteDev.Models;
 
 namespace WanteDev.ViewModels.Windows
 {
@@ -13,6 +17,8 @@ namespace WanteDev.ViewModels.Windows
         public EmployerRegistrationWindowViewModel(Window window, IUnitOfWork db) : base(window, db)
         {
         }
+
+
         private bool isImageSet;
         public bool IsImageSet
         {
