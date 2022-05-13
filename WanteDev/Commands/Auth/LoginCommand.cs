@@ -45,6 +45,7 @@ namespace WanteDev.Commands.Auth
             }
             else if (developereuser?.PasswordHash == passwordHash)// && user.Role == Role.User)
             {
+
                 // main developer window show
             }
             else if (employeruser?.PasswordHash == passwordHash)// && user.Role == Role.User)
