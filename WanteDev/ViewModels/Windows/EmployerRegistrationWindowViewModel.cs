@@ -31,7 +31,6 @@ namespace WanteDev.ViewModels.Windows
             get
             {
                 return isImageSet;
-
             }
         }
         private ImageSource profileImageSource = new BitmapImage(new Uri(@"pack://application:,,,/WanteDev;component/Images/avatar.png"));
@@ -55,10 +54,10 @@ namespace WanteDev.ViewModels.Windows
         {
             get
             {
-                if (!isImageSet)
-                {
-                    CurrentValue.Photo = File.ReadAllBytes(@"/Images/avatar.jpg");
-                }
+                //if (!isImageSet)
+                //{
+                //    CurrentValue.Photo = File.ReadAllBytes(@"/Images/avatar.jpg");
+                //}
                 return currentValue;
             }
             set

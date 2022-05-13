@@ -64,10 +64,10 @@ namespace WanteDev.ViewModels.Windows
         {
             get
             {
-                if (!isImageSet)
-                {
-                    currentValue.Photo = File.ReadAllBytes(@"\Images\avatar.jpg");
-                }
+                //if (!isImageSet)
+                //{
+                //    currentValue.Photo = File.ReadAllBytes(@"\Images\avatar.jpg");
+                //}
                 return currentValue;
             }
             set
