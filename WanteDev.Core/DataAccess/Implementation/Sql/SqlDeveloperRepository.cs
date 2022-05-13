@@ -37,12 +37,11 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                     cmd.Parameters.AddWithValue("@apartmentname", value.ApartmentName);
                     cmd.Parameters.AddWithValue("@position", value.Position);
                     cmd.Parameters.AddWithValue("@bio", value.Bio);
-                    cmd.Parameters.AddWithValue("@experience", value.Experience);
+                    cmd.Parameters.AddWithValue("@experience", short.Parse(value.Experience));
                     cmd.Parameters.AddWithValue("@additionalskills", value.AdditionalSkills);
                     cmd.Parameters.AddWithValue("@photo", value.Photo);
                     cmd.Parameters.AddWithValue("@CV", value.CV);
                     cmd.Parameters.AddWithValue("@modifieddate", value.ModifiedDate);
-
                     value.Id = Convert.ToInt32(cmd.ExecuteScalar());
                 }
             }

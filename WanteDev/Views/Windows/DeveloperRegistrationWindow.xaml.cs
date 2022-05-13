@@ -47,5 +47,13 @@ namespace WanteDev.Views.Windows
                 passwordTxt.Password = passwordTxtBox.Text;
             }
         }
+
+        private void btnNext_Click(object sender, RoutedEventArgs e)
+        {
+            GirlPictureStackPanel.Visibility = Visibility.Collapsed;
+            FirstStackPanel.Visibility = Visibility.Hidden; // NAME, SUR
+            SecondStackPanel.Visibility = Visibility.Visible; // COMPANY
+            ThirdStackPanel.Visibility = Visibility.Visible; // SHEKIL BIO CV
+        }
     }
 }
