@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WanteDev.Views.Windows"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:System="clr-namespace:System;assembly=System.Runtime"
-        mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None" BorderBrush="DodgerBlue" BorderThickness="3" AllowsTransparency="True" Background="Transparent"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" BorderBrush="DodgerBlue" BorderThickness="3" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         Title="DeveloperRegistrationWindow" Height="450" Width="700">
     <Grid>
 
@@ -25,15 +25,9 @@
         </Button>
         <StackPanel Orientation="Horizontal" >
             <!--Change it later  -->
-            <StackPanel Width="350"  Name="GirlPictureStackPanel">
-
-
+            <StackPanel Width="250"  Name="GirlPictureStackPanel">
                 <TextBlock Text="Registration" FontStyle="Normal"  Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="Great Vibes"></TextBlock>
-                <Image Source="\Images\login.png" Width="300" Height="300" VerticalAlignment="Top" Margin="30" Stretch="Fill"/>
-
-
-
-
+                <Image Source="\Images\login.png" Width="250" Height="320" VerticalAlignment="Top" Stretch="Fill"/>
             </StackPanel>
 
 
@@ -45,18 +39,32 @@
                         </Setter>
                     </Style>
                 </StackPanel.Style>
-
-                <Border CornerRadius="150" BorderThickness="60" Background="AliceBlue" Margin="0" Height="auto" Width="auto">
-                    <Image  Width="150" Height="150" Source="{Binding ProfileImageSource}"/>
-                </Border>
-
-                <Button Content="Upload Image" Width="100" Height="50" Command="{Binding UploadPhoto}">
-
-                </Button>
-                <Button Content="Upload CV" Width="100" Height="50" Command="{Binding UploadCv}" ></Button>
+                
+                <StackPanel VerticalAlignment="Top" Margin="-50">
+                    <Border CornerRadius="50" BorderThickness="60" Background="AliceBlue"  Height="300" Width="300">
+                        <Image  Width="150" Height="150" Source="{Binding ProfileImageSource}"/>
+                    </Border>
+                </StackPanel>
+                <StackPanel Margin="50 0 50 50" Orientation="Horizontal">
+                    <Button Foreground="Gray"  Background="AliceBlue" Content="Upload Image" Width="100" Height="50" Margin="10" Command="{Binding UploadPhoto}">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Button Background="AliceBlue" Foreground="Gray" Content="Upload CV" Width="100" Height="50" Command="{Binding UploadCv}" >
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </StackPanel>
+                
                 <StackPanel  HorizontalAlignment="Center">
-                    <StackPanel Orientation="Horizontal" Margin="2 2 2 2" Name="ForBio">
-                        <materialDesign:PackIcon Kind="Bio" Width="25" Height="25" Margin="0 5 5 0" Foreground="White"/>
+                    <StackPanel Orientation="Horizontal" Margin="0  -40 30 30" Name="ForBio">
+                        <materialDesign:PackIcon Kind="Bio" Width="25" Height="25" Margin="0 5 9 0" Foreground="White"/>
                         <TextBox Text="{Binding CurrentValue.Bio, Mode=TwoWay}" Margin="5 0" x:Name="txtBio" Tag="Your bio goes here" 
                              Foreground="black" Width="250" Height="100" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448">
                             <TextBox.Resources>
@@ -77,7 +85,7 @@
             </StackPanel>
                 <StackPanel x:Name="FirstStackPanel">
                     <StackPanel Width="350">
-                        <StackPanel Margin="5" >
+                        <StackPanel Margin="20 10 20 20" >
 
                             <StackPanel Orientation="Horizontal" Margin="10 15 10 10">
                                 <materialDesign:PackIcon Kind="User" Width="25" Height="25" Foreground="White"/>
@@ -90,7 +98,7 @@
                                 </TextBox>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="10">
-                                <materialDesign:PackIcon Kind="User" Width="25" Height="25" Foreground="White"/>
+                                <materialDesign:PackIcon Kind="User" Width="25" Height="25" Foreground="white"/>
                                 <TextBox Text="{Binding CurrentValue.LastName,Mode=TwoWay}" x:Name="txtUsersurname" Style="{StaticResource MyWaterMarkStyle}" Tag="Last Name" Margin="10 0" materialDesign:HintAssist.Hint="Enter Username / Email" Foreground="black" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448">
                                     <TextBox.Resources>
                                         <Style TargetType="{x:Type Border}">
@@ -201,7 +209,7 @@
                             </StackPanel>
                             <StackPanel  HorizontalAlignment="Center">
                                 <StackPanel>
-                                    <Button Click="btnNext_Click" Margin="0 0 35 0" Width="100" Height="30" 
+                                    <Button Click="btnNext_Click" Margin="0 -8 10 0" Width="100" Height="30" 
                                 materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="DarkBlue"
                                 Background="DodgerBlue" Foreground="White" ToolTip="Login" x:Name="btnNext" Content="Next">
                                         <Button.Resources>
@@ -213,11 +221,6 @@
                                 </StackPanel>
 
                             </StackPanel>
-
-
-
-
-
 
                         </StackPanel>
 
@@ -280,7 +283,7 @@
 
 
                     <StackPanel Orientation="Horizontal" Margin="10 15 10 10">
-                        <materialDesign:PackIcon Kind="Contract" Width="25" Height="25" Foreground="White"/>
+                    <materialDesign:PackIcon Kind="ClipboardTextDate" Width="25" Height="25" Foreground="White"/>
                         <TextBox Text="{Binding CurrentValue.Experience,Mode=TwoWay}" x:Name="txtExperience"  Style="{StaticResource MyWaterMarkStyle}" Tag="Tell us about your experience" Margin="10 0" 
                              Foreground="black" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448">
                             <TextBox.Resources>
@@ -292,7 +295,7 @@
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="10 15 10 10">
-                        <materialDesign:PackIcon Kind="Nail" Width="25" Height="25" Foreground="White"/>
+                    <materialDesign:PackIcon Kind="Contract" Width="25" Height="25" Foreground="White"/>
                         <TextBox Text="{Binding CurrentValue.AdditionalSkills,Mode=TwoWay}" x:Name="txtSkills"  Style="{StaticResource MyWaterMarkStyle}" Tag="What are your skills?" Margin="10 0" 
                              Foreground="black" Width="250" Height="80" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448">
                             <TextBox.Resources>
@@ -304,8 +307,17 @@
                     </StackPanel>
 
 
-                    <StackPanel  HorizontalAlignment="Center">
-                        <Button Click="btnRegisterInClick" CommandParameter="{Binding ElementName=passwordTxt}" Command="{Binding Add}" Margin="0 0 35 0" Width="100" Height="30" 
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <Button Click="btnBack_Click" Margin="20 0 30 0" Width="100" Height="30" 
+                                 materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="DarkBlue"
+                                 Background="DodgerBlue" Foreground="White" ToolTip="Login" x:Name="btnBack" Content="Back">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    <Button Click="btnRegisterInClick" CommandParameter="{Binding ElementName=passwordTxt}" Command="{Binding Add}" Margin="0 0 35 0" Width="100" Height="30" 
                                 materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="DarkBlue"
                                 Background="DodgerBlue" Foreground="White" ToolTip="Login" x:Name="btnLogin" Content="Register">
                             <Button.Resources>
@@ -314,7 +326,8 @@
                                 </Style>
                             </Button.Resources>
                         </Button>
-                    </StackPanel>
+                        
+                </StackPanel>
 
                 </StackPanel>
             </StackPanel>

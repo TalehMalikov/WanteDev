@@ -51,9 +51,16 @@ namespace WanteDev.Views.Windows
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
             GirlPictureStackPanel.Visibility = Visibility.Collapsed;
-            FirstStackPanel.Visibility = Visibility.Hidden; // NAME, SUR
-            SecondStackPanel.Visibility = Visibility.Visible; // COMPANY
-            ThirdStackPanel.Visibility = Visibility.Visible; // SHEKIL BIO CV
+            FirstStackPanel.Visibility = Visibility.Hidden;
+            SecondStackPanel.Visibility = Visibility.Visible;
+            ThirdStackPanel.Visibility = Visibility.Visible;
+        }
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            GirlPictureStackPanel.Visibility = Visibility.Visible;
+            SecondStackPanel.Visibility = Visibility.Hidden;
+            FirstStackPanel.Visibility = Visibility.Visible;
+            ThirdStackPanel.Visibility = Visibility.Collapsed;
         }
     }
 }
