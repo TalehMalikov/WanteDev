@@ -22,9 +22,7 @@ namespace WanteDev.Commands.Main
             _viewModel.Window.Close();
 
             DeveloperRegistrationWindow developerRegistrationWindow = new DeveloperRegistrationWindow();
-
             DeveloperRegistrationWindowViewModel developerWindowViewModel = new DeveloperRegistrationWindowViewModel(developerRegistrationWindow, Kernel.DB);
-
             developerRegistrationWindow.DataContext = developerWindowViewModel;
             developerRegistrationWindow.Show();
         }

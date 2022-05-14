@@ -4,6 +4,7 @@ using WantedDev.Core.Domain.Entities;
 using WanteDev.Core.Domain.Entities;
 using WanteDev.Core.Utils;
 using WanteDev.ViewModels.Windows;
+using WanteDev.Views.Windows.Main;
 
 namespace WanteDev.Commands.Auth
 {
@@ -28,7 +29,7 @@ namespace WanteDev.Commands.Auth
             Employer employeruser = viewModel.DB.EmployerRepository.Get(viewModel.Email);
             Developer developereuser = viewModel.DB.DeveloperRepository.Get(viewModel.Email);
 
-            if (admineuser == null && employeruser==null && developereuser==null)
+            if (admineuser == null && employeruser == null && developereuser == null)
             {
                 viewModel.LoginErrorVisibility = Visibility.Visible;
                 return;
@@ -41,16 +42,21 @@ namespace WanteDev.Commands.Auth
             if (admineuser?.PasswordHash == passwordHash) //&& user.Role == Role.Admin)
             {
                 // main admin window show 
-                
+
             }
             else if (developereuser?.PasswordHash == passwordHash)// && user.Role == Role.User)
             {
+
+
+                DeveloperMainWindow developerMain = new DeveloperMainWindow();
+                developerMain.DataContext = new object(); // --- appropriate viewModel
+                developerMain.Show();
 
                 // main developer window show
             }
             else if (employeruser?.PasswordHash == passwordHash)// && user.Role == Role.User)
             {
-                // main employer window show
+               //
             }
             else
             {

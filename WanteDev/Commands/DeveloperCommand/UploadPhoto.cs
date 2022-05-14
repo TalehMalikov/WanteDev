@@ -7,8 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using WanteDev.ViewModels.Windows;
-using WanteDev.ViewModels.Windows.Login;
-
 namespace WanteDev.Commands.DeveloperCommand
 {
     public class UploadImage : BaseCommand
