@@ -11,5 +11,6 @@ namespace WantedDev.Core.DataAccess.Abstraction
     {
         Employer Get(string email);
         bool UpdatePassword(string email, string passwordhash);
+        List<Employer> GetAllAsUser();
     }
 }

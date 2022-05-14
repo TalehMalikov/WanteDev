@@ -130,6 +130,27 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
             }
         }
 
+        public List<Developer> GetAllAsUser()
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionstring))
+            {
+
+                List<Developer> list = new List<Developer>();
+                connection.Open();
+                string cmdText = "select * from Developers where IsDeleted=0";
+                using (SqlCommand cmd = new(cmdText, connection))
+                {
+                    var reader = cmd.ExecuteReader();
+                   while(reader.Read())
+                    {
+                        list.Add(GetFromReaderAsUser(reader));
+                    }
+                    return list;
+                    
+                }
+            }
+        }
+
         private Developer GetFromReaderAsUser(SqlDataReader reader)
         {
             return new Developer

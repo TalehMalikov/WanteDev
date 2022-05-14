@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using WanteDev.Commands.Auth;
-using WanteDev.Commands.DeveloperCommand;
+using WanteDev.Commands.DeveloperCommands;
 using WanteDev.Core.DataAccess.Abstraction;
 using WanteDev.Models;
 
@@ -19,18 +19,12 @@ namespace WanteDev.ViewModels.Windows.Login
     {
         public DeveloperRegistrationWindowViewModel(Window window, IUnitOfWork db) : base(window, db)
         {
-
         }
-
-        public ICommand Add => new SaveDeveloperCommand(this);
+        public ICommand UploadPhoto => new UploadPhoto(this);
 
         public ICommand UploadCv => new UploadCv(this);
-
-        public ICommand UploadPhoto => new UploadImage(this);
-
-
         private bool isImageSet;
-        public bool IsImageSet 
+        public bool IsImageSet
         {
             set
             {
@@ -76,25 +70,5 @@ namespace WanteDev.ViewModels.Windows.Login
                 OnPropertyChanged(nameof(CurrentValue));
             }
         }
-
-
-
-
-        //private Visibility passwordErrorVisibility;
-
-        //public Visibility PasswordErrorVisibility
-        //{
-        //    get { return passwordErrorVisibility; }
-        //    set { passwordErrorVisibility = value; }
-        //}
-
-
-        //private string passwordText;
-        //public string PasswordText
-        //{
-        //    get { return passwordText; }
-        //    set { passwordText = value; }
-        //}
-
     }
 }

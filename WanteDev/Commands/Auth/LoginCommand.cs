@@ -7,18 +7,11 @@ using WanteDev.Infrasturcture;
 using WanteDev.ViewModels.Windows.Login;
 using WanteDev.ViewModels.Windows.Main;
 using WanteDev.Views.Windows.Main;
-using WanteDev.ViewModels.Windows;
-using WanteDev.Views.Windows.Main;
 
 namespace WanteDev.Commands.Auth
 {
     public class LoginCommand : BaseCommand
     {
-        public void Sum(int a,int b)
-        {
-            //
-        }
-
         private readonly LoginWindowViewModel viewModel;
         public LoginCommand(LoginWindowViewModel viewModel)
         {
@@ -48,7 +41,7 @@ namespace WanteDev.Commands.Auth
                 return;
             }
 
-            string password = "MTT2906@";//passwordBox.Password;
+            string password = passwordBox.Password;
 
             string passwordHash = SecurityUtil.ComputeSha256Hash(password);
 

@@ -23,7 +23,7 @@ namespace WanteDev.Commands.Main
 
             EmployerRegistrationWindow employerRegistrationWindow = new EmployerRegistrationWindow();
 
-            EmployerRegistrationWindowViewModel employerWindowViewModel = new EmployerRegistrationWindowViewModel(employerRegistrationWindow, Kernel.DB);
+            EmployerRegistrationWindowViewModel employerWindowViewModel = new (employerRegistrationWindow, Kernel.DB);
 
             employerRegistrationWindow.DataContext = employerWindowViewModel;
             employerRegistrationWindow.Show();

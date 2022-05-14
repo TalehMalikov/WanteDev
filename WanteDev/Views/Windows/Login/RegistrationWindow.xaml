@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WanteDev.Views.Windows"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" BorderThickness="3" BorderBrush="White" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
-        Title="LoginWindow" Height="300" Width="400">
+        Title="LoginWindow" Height="340" Width="400">
 
 
 <Grid>
@@ -45,9 +45,11 @@
                     </Style>
                 </StackPanel.Resources>
 
-                <RadioButton FontSize="20" Margin="50 12 30 2" GroupName="radiobutton" IsChecked="{Binding Path= EmployerChecked}"  Content="Employer">
+               
+                <TextBlock FontSize="20" FontWeight="Bold" Foreground="White" Text="I am..." TextAlignment="Center"></TextBlock>
+                <RadioButton FontSize="20" Margin="50 12 30 2" GroupName="radiobutton" IsChecked="{Binding Path= EmployerChecked}"  Content="An Employer">
                 </RadioButton>
-                <RadioButton  FontSize="20" Margin="50 12 30 8" GroupName="radiobutton"  IsChecked="{Binding Path=DeveloperChecked}" Content="Developer">
+                <RadioButton  FontSize="20" Margin="50 12 30 8" GroupName="radiobutton"  IsChecked="{Binding Path=DeveloperChecked}" Content=" A Developer">
                 </RadioButton>
 
                 <Button Foreground="#3AA9AD" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Submit" Width="100" Height="30" Margin="30 0 10 0" >

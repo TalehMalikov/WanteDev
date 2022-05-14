@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:WanteDev.Views.Windows"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:System="clr-namespace:System;assembly=System.Runtime"
-        mc:Ignorable="d" WindowStartupLocation="CenterScreen" BorderBrush="DodgerBlue" BorderThickness="3" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" BorderBrush="DodgerBlue"
+        BorderThickness="3" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         Title="DeveloperRegistrationWindow" Height="450" Width="700">
     <Grid>
 

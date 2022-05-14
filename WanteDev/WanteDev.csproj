@@ -2,7 +2,8 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
+	  <!--net5.0-windows-->
+    <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
@@ -29,9 +30,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\avatar.jpg">
+    <Content Include="Images\avatar.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </Content>
     <Resource Include="Images\email.png" />
   </ItemGroup>
 

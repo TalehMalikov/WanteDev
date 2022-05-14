@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WantedDev.Core.DataAccess.Implementation.Sql;
 using WantedDev.Core.Domain.Enums;
 using WanteDev.Core.DataAccess.Abstraction;

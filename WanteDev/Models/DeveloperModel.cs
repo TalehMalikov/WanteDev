@@ -9,21 +9,18 @@ namespace WanteDev.Models
 {
     public class DeveloperModel : BaseModel
     {
-        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
         public string PasswordHash { get; set; }
-        public string Address { get; set; }
-        public string Phone { get; set; }
-        public DateTime BirthDate { get; set; } = DateTime.Now;
+        public string? Address { get; set; }
+        public string? Phone { get; set; }
+        public DateTime BirthDate { get; set; } = DateTime.Now.Date;
         public bool Gender { get; set; }
         public string CompanyName { get; set; }
         public string ApartmentName { get; set; }
         public string Position { get; set; }
         public string Bio { get; set; }
-        public string Experience { get; set; }
-        public string AdditionalSkills { get; set; }
         public byte[] Photo { get; set; }
         public byte[] CV { get; set; }
         public override object Clone()
@@ -63,13 +60,24 @@ namespace WanteDev.Models
                 message = ValidationHelper.GetRequiredMessage("Address");
                 return false;
             }
+            if (string.IsNullOrEmpty(CompanyName))
+            {
+                message = ValidationHelper.GetRequiredMessage(nameof(CompanyName));
+                return false;
+            }
+            if(CV is null)
+            {
+                message = ValidationHelper.GetRequiredMessage(nameof(CV));
+                return false;
+            }
+            //if (Gender)
+            //{
+            //    message = ValidationHelper.GetRequiredMessage(nameof(CV));
+            //    return false;
+            //}
             message = string.Empty;
             return true;
         }
 
-        public override string ToExcelString()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

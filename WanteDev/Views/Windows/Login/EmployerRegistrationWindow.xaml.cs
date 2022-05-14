@@ -40,5 +40,27 @@ namespace WanteDev.Views.Windows.Login
             passwordTxtBox.Visibility = Visibility.Collapsed;
             passwordTxt.Visibility = Visibility.Visible;
         }
+        private void btnRegisterInClick(object sender, RoutedEventArgs e)
+        {
+            if (showPassword.IsChecked == true)
+            {
+                passwordTxt.Password = passwordTxtBox.Text;
+            }
+        }
+
+        private void btnNext_Click(object sender, RoutedEventArgs e)
+        {
+            GirlPictureStackPanel.Visibility = Visibility.Collapsed;
+            FirstStackPanel.Visibility = Visibility.Hidden;
+            SecondStackPanel.Visibility = Visibility.Visible;
+            ThirdStackPanel.Visibility = Visibility.Visible;
+        }
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            GirlPictureStackPanel.Visibility = Visibility.Visible;
+            SecondStackPanel.Visibility = Visibility.Hidden;
+            FirstStackPanel.Visibility = Visibility.Visible;
+            ThirdStackPanel.Visibility = Visibility.Collapsed;
+        }
     }
 }

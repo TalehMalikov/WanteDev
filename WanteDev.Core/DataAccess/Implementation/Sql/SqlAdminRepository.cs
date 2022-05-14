@@ -12,9 +12,7 @@ namespace WanteDev.Core.DataAccess.Implementation.Sql
     {
         public SqlAdminRepository(string connectionstring) : base(connectionstring)
         {
-
         }
-
         public void Add(Admin value)
         {
             using (var connection = new SqlConnection(_connectionstring))
@@ -30,7 +28,7 @@ namespace WanteDev.Core.DataAccess.Implementation.Sql
                     cmd.Parameters.AddWithValue("@lastname", value.LastName);
                     cmd.Parameters.AddWithValue("@email", value.Email);
                     cmd.Parameters.AddWithValue("@passwordhash", value.PasswordHash);
-                    cmd.Parameters.AddWithValue("@adress", value.Adress);
+                    cmd.Parameters.AddWithValue("@adress", value.Address);
                     cmd.Parameters.AddWithValue("@phone", value.Phone);
                     cmd.Parameters.AddWithValue("@birthdate", value.BirthDate);
                     cmd.Parameters.AddWithValue("@gender", value.Gender);
@@ -135,6 +133,26 @@ namespace WanteDev.Core.DataAccess.Implementation.Sql
             }
         }
 
+        public List<Admin> GetAllAsUser()
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionstring))
+            {
+
+                List<Admin> list = new List<Admin>();
+                connection.Open();
+                string cmdText = "select * from Admins where IsDeleted=0";
+                using (SqlCommand cmd = new(cmdText, connection))
+                {
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        list.Add(GetFromReaderAsUser(reader));
+                    }
+                    return list;
+
+                }
+            }
+        }
         public void Update(Admin value)
         {
             using (SqlConnection connection = new SqlConnection(_connectionstring))
@@ -150,7 +168,7 @@ namespace WanteDev.Core.DataAccess.Implementation.Sql
                     cmd.Parameters.AddWithValue("@lastname", value.LastName);
                     cmd.Parameters.AddWithValue("@email", value.Email);
                     cmd.Parameters.AddWithValue("@passwordhash", value.PasswordHash);
-                    cmd.Parameters.AddWithValue("@adress", value.Adress);
+                    cmd.Parameters.AddWithValue("@adress", value.Address);
                     cmd.Parameters.AddWithValue("@phone", value.Phone);
                     cmd.Parameters.AddWithValue("@birthdate", value.BirthDate);
                     cmd.Parameters.AddWithValue("@gender", value.Gender);
@@ -187,7 +205,7 @@ namespace WanteDev.Core.DataAccess.Implementation.Sql
                 LastName = reader.Get<string>(nameof(Admin.LastName)),
                 Email = reader.Get<string>(nameof(Admin.Email)),
                 PasswordHash = reader.Get<string>(nameof(Admin.PasswordHash)),
-                Adress = reader.Get<string>(nameof(Admin.Adress)),
+                Address = reader.Get<string>(nameof(Admin.Address)),
                 Phone = reader.Get<string>(nameof(Admin.Phone)),
                 BirthDate = reader.Get<DateTime>(nameof(Admin.BirthDate)),
                 Gender = reader.Get<bool>(nameof(Admin.Gender)),

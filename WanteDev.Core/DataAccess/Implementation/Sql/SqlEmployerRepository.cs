@@ -28,7 +28,7 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                     cmd.Parameters.AddWithValue("@lastname", value.LastName);
                     cmd.Parameters.AddWithValue("@email", value.Email);
                     cmd.Parameters.AddWithValue("@passwordhash", value.PasswordHash);
-                    cmd.Parameters.AddWithValue("@adress", value.Adress);
+                    cmd.Parameters.AddWithValue("@adress", value.Address);
                     cmd.Parameters.AddWithValue("@phone", value.Phone);
                     cmd.Parameters.AddWithValue("@birthdate", value.BirthDate);
                     cmd.Parameters.AddWithValue("@gender", value.Gender);
@@ -58,6 +58,28 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                 }
             }
         }
+
+        public List<Employer> GetAllAsUser()
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionstring))
+            {
+
+                List<Employer> list = new List<Employer>();
+                connection.Open();
+                string cmdText = "select * from Employers where IsDeleted=0";
+                using (SqlCommand cmd = new(cmdText, connection))
+                {
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        list.Add(GetFromReaderAsUser(reader));
+                    }
+                    return list;
+                }
+            }
+        }
+
+
 
         public Employer Get(int id)
         {
@@ -142,7 +164,7 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                     cmd.Parameters.AddWithValue("@lastname", value.LastName);
                     cmd.Parameters.AddWithValue("@email", value.Email);
                     cmd.Parameters.AddWithValue("@passwordhash", value.PasswordHash);
-                    cmd.Parameters.AddWithValue("@adress", value.Adress);
+                    cmd.Parameters.AddWithValue("@adress", value.Address);
                     cmd.Parameters.AddWithValue("@phone", value.Phone);
                     cmd.Parameters.AddWithValue("@birthdate", value.BirthDate);
                     cmd.Parameters.AddWithValue("@gender", value.Gender);
@@ -192,7 +214,7 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                 LastName = reader.Get<string>(nameof(Employer.LastName)),
                 Email = reader.Get<string>(nameof(Employer.Email)),
                 PasswordHash = reader.Get<string>(nameof(Employer.PasswordHash)),
-                Adress = reader.Get<string>(nameof(Employer.Adress)),
+                Address = reader.Get<string>(nameof(Employer.Address)),
                 Phone = reader.Get<string>(nameof(Employer.Phone)),
                 BirthDate = reader.Get<DateTime>(nameof(Employer.BirthDate)),
                 Gender = reader.Get<bool>(nameof(Employer.Gender)),

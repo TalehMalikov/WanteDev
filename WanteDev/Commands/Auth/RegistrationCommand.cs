@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using WanteDev.Infrasturcture;
+﻿using WanteDev.Infrasturcture;
 using WanteDev.ViewModels.Windows.Login;
 using WanteDev.Views.Windows.Login;
 

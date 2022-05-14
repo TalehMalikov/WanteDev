@@ -12,4 +12,5 @@ namespace WanteDev.Mappers
     public class DeveloperMapper:BaseMapper<Developer,DeveloperModel>
     {
     }
+
 }
