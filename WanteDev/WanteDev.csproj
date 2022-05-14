@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Images\avatar.jpg" />
     <None Remove="Images\close.png" />
     <None Remove="Images\email.png" />
     <None Remove="Images\facebook.png" />
@@ -28,6 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\avatar.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\email.png" />
   </ItemGroup>
 

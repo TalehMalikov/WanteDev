@@ -117,7 +117,7 @@
                         <!--<Button  Style="{StaticResource LinkButton}" Command="{Binding Path=ForgotPassword}" Content="Forget password?" FontFamily="Times New Roman" FontSize="20"  Margin="10,0,0,10"/>-->
                     </WrapPanel>
 
-                    <Button Content="Sign In" Command="{Binding SignIn}" CommandParameter="{Binding ElementName=passwordTxt}" Style="{StaticResource mainbutton}"/>
+                    <Button Content="Sign In" Click="Button_Click" Command="{Binding SignIn}" CommandParameter="{Binding ElementName=passwordTxt}" Style="{StaticResource mainbutton}"/>
 
                 </StackPanel>
 

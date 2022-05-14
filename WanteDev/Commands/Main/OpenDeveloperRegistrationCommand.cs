@@ -24,7 +24,6 @@ namespace WanteDev.Commands.Main
             DeveloperRegistrationWindow developerRegistrationWindow = new DeveloperRegistrationWindow();
 
             DeveloperRegistrationWindowViewModel developerWindowViewModel = new DeveloperRegistrationWindowViewModel(developerRegistrationWindow, Kernel.DB);
-
             developerRegistrationWindow.DataContext = developerWindowViewModel;
             developerRegistrationWindow.Show();
         }

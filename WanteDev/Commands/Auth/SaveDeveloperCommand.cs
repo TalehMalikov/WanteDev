@@ -30,11 +30,12 @@ namespace WanteDev.Commands.Auth
                 var developer = developerMapper.Map(_viewModel.CurrentValue);
                 PasswordBox password = param as PasswordBox;
                 _viewModel.CurrentValue.PasswordHash = password?.Password;
-                if (dataValidator.IsDeveloperValid(_viewModel.CurrentValue, out string message) == false)
-                {
-                    MessageBox.Show(message, "Validation error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
+                developer.ModifiedDate = DateTime.Now;
+                //if (dataValidator.IsDeveloperValid(_viewModel.CurrentValue, out string message) == false)
+                //{
+                //    MessageBox.Show(message, "Validation error", MessageBoxButton.OK, MessageBoxImage.Error);
+                //    return;
+                //}
                 developer.PasswordHash = SecurityUtil.ComputeSha256Hash(password.Password); 
                 _viewModel.CurrentValue.PasswordHash = developer.PasswordHash;
                
@@ -44,14 +45,14 @@ namespace WanteDev.Commands.Auth
                 }
                 else
                 {
-                    _viewModel.DB.DeveloperRepository.AddDeveloper(developer);
+                    _viewModel.DB.DeveloperRepository.Add(developer);
                 }
                 MessageBox.Show("Operation completed successfully", "Registration is successfully!", MessageBoxButton.OK, MessageBoxImage.Error);
                 _viewModel.Window.Close();
             }
             catch (Exception e)
             {
-                throw new InvalidOperationException(e.Message);
+                MessageBox.Show(e.Message);
             }
 
         }
