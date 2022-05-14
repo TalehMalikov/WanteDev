@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WanteDev.ViewModels.Windows;
+using WanteDev.ViewModels.Windows.Login;
 
 namespace WanteDev.Commands.DeveloperCommand
 {
