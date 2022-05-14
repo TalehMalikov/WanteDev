@@ -38,7 +38,7 @@ namespace WanteDev.Views.Windows.Login
 
         private void OnCloseClicked(object sender, EventArgs e)
         {
-            Visibility = Visibility.Collapsed;
+            this.Close();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
