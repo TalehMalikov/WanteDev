@@ -3,6 +3,10 @@ using System.Windows.Controls;
 using WantedDev.Core.Domain.Entities;
 using WanteDev.Core.Domain.Entities;
 using WanteDev.Core.Utils;
+using WanteDev.Infrasturcture;
+using WanteDev.ViewModels.Windows.Login;
+using WanteDev.ViewModels.Windows.Main;
+using WanteDev.Views.Windows.Main;
 using WanteDev.ViewModels.Windows;
 using WanteDev.Views.Windows.Main;
 
@@ -10,6 +14,11 @@ namespace WanteDev.Commands.Auth
 {
     public class LoginCommand : BaseCommand
     {
+        public void Sum(int a,int b)
+        {
+            //
+        }
+
         private readonly LoginWindowViewModel viewModel;
         public LoginCommand(LoginWindowViewModel viewModel)
         {
@@ -26,8 +35,12 @@ namespace WanteDev.Commands.Auth
             // admin, employer,user : 
 
             Admin admineuser = viewModel.DB.AdminRepository.Get(viewModel.Email);
-            Employer employeruser = viewModel.DB.EmployerRepository.Get(viewModel.Email);
-            Developer developereuser = viewModel.DB.DeveloperRepository.Get(viewModel.Email);
+            Developer developereuser = null;
+            Employer employeruser = null;
+            if (admineuser==null)
+                 developereuser = viewModel.DB.DeveloperRepository.Get(viewModel.Email);
+            if(developereuser==null)
+                 employeruser = viewModel.DB.EmployerRepository.Get(viewModel.Email);
 
             if (admineuser == null && employeruser == null && developereuser == null)
             {
@@ -35,7 +48,7 @@ namespace WanteDev.Commands.Auth
                 return;
             }
 
-            string password = passwordBox.Password;
+            string password = "MTT2906@";//passwordBox.Password;
 
             string passwordHash = SecurityUtil.ComputeSha256Hash(password);
 
@@ -56,6 +69,14 @@ namespace WanteDev.Commands.Auth
             }
             else if (employeruser?.PasswordHash == passwordHash)// && user.Role == Role.User)
             {
+                EmployerMainWindow employerMainWindow = new EmployerMainWindow();
+                EmployerMainWindowViewModel employerMainWindowViewModel = new EmployerMainWindowViewModel(employerMainWindow, Kernel.DB);
+
+                viewModel.Window.Close();
+                Kernel.CurrentEmployer = employeruser;
+                employerMainWindowViewModel.CenterGrid = employerMainWindow.grdCenter;
+                employerMainWindow.DataContext = employerMainWindowViewModel;
+                employerMainWindow.Show();
                //
             }
             else

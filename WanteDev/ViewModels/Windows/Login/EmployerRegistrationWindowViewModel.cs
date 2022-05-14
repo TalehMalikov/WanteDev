@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 using WanteDev.Core.DataAccess.Abstraction;
 using WanteDev.Models;
 
-namespace WanteDev.ViewModels.Windows
+namespace WanteDev.ViewModels.Windows.Login
 {
     public class EmployerRegistrationWindowViewModel : BaseWindowViewModel
     {

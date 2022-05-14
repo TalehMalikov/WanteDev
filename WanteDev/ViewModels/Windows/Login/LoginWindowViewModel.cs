@@ -8,9 +8,9 @@ using System.Windows.Controls;
 using WanteDev.Commands.Auth;
 using WanteDev.Commands.Main;
 using WanteDev.Core.DataAccess.Abstraction;
-using WanteDev.Views.Windows;
+using WanteDev.Views.Windows.Login;
 
-namespace WanteDev.ViewModels.Windows
+namespace WanteDev.ViewModels.Windows.Login
 {
     public class LoginWindowViewModel : BaseWindowViewModel
     {
@@ -62,7 +62,7 @@ namespace WanteDev.ViewModels.Windows
 
         public LoginCommand SignIn => new LoginCommand(this);
         public RegistrationCommand SignUp => new RegistrationCommand(this);
-
+        public Grid CenterGrid { get; set; }
         //public ForgotPassword ForgotPassword => new ForgotPassword(this);
         //public SendConfirmationCode SendConfirmationCode => new SendConfirmationCode(this);
         //public VerifyConfirmationCode VerifyConfirmationCode => new VerifyConfirmationCode(this);
@@ -180,7 +180,7 @@ namespace WanteDev.ViewModels.Windows
             }
         }*/
 
-        public string Email { get; set; }
+        public string Email { get; set; } = "talehmalik29@gmail.com";
 
         private Visibility loginWindowVisibility = Visibility.Visible;
         public Visibility LoginWindowVisibility
@@ -197,7 +197,7 @@ namespace WanteDev.ViewModels.Windows
         }
 
 
-       
+
 
 
         private Visibility loginErrorVisibility = Visibility.Collapsed;

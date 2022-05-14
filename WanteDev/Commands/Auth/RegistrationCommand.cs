@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using WanteDev.Infrasturcture;
-using WanteDev.ViewModels.Windows;
-using WanteDev.Views.Windows;
+using WanteDev.ViewModels.Windows.Login;
+using WanteDev.Views.Windows.Login;
 
 namespace WanteDev.Commands.Auth
 {

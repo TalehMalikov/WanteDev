@@ -9,7 +9,7 @@ using WanteDev.Models;
 
 namespace WanteDev.Mappers
 {
-    public class DeveloperMapper:BaseMapper<Developer,DeveloperModel>
+    public class EmployerMapper:BaseMapper<Employer,EmployerModel>
     {
     }
 }
