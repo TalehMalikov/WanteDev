@@ -86,7 +86,7 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
             using (SqlConnection connection = new(_connectionstring))
             {
                 connection.Open();
-                using (SqlCommand cmd = new("select * from Employers where id = @id and IsDeleted=0"))
+                using (SqlCommand cmd = new("select * from Employers where id = @id and IsDeleted=0",connection))
                 {
                     cmd.Parameters.AddWithValue("@id", id);
 

@@ -6,15 +6,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
+using WanteDev.ViewModels.Controls;
 using WanteDev.ViewModels.Windows;
 using WanteDev.ViewModels.Windows.Login;
 
-namespace WanteDev.Commands.EmployerCommands
+namespace WanteDev.Commands.ControlCommands.Profiles.Employer
 {
     public class UploadPhoto : BaseCommand
     {
-        private readonly EmployerRegistrationWindowViewModel _viewModel;
-        public UploadPhoto(EmployerRegistrationWindowViewModel viewModel)
+        private readonly EmployerProfileControlViewModel _viewModel;
+        public UploadPhoto(EmployerProfileControlViewModel viewModel)
         {
             _viewModel = viewModel;
         }
@@ -28,11 +29,9 @@ namespace WanteDev.Commands.EmployerCommands
             // textBox1.Text = openFileDialog1.FileName;
             if (openFileDialog1.FileName == string.Empty)
                 return;
-            _viewModel.ProfileImageSource = new BitmapImage(new Uri(openFileDialog1.FileName));
+            _viewModel.CurrentValue.Image = new BitmapImage(new Uri(openFileDialog1.FileName));
             ImageArray = File.ReadAllBytes(openFileDialog1.FileName);
-            _viewModel.IsImageSet = true;
             _viewModel.CurrentValue.Photo = ImageArray;
-           
         }
 
     }

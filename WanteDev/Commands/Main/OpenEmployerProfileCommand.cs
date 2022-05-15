@@ -23,7 +23,7 @@ namespace WanteDev.Commands.Main
         {
             _viewModel.CenterGrid.Children.Clear();
 
-            EmployerProfileControlViewModel employerProfileControlViewModel = new EmployerProfileControlViewModel(Kernel.DB);
+            EmployerProfileControlViewModel employerProfileControlViewModel = new EmployerProfileControlViewModel(Kernel.DB,_viewModel.CurrentEmployer);
 
            // employerProfileControlViewModel.AllValues = viewModel.DataProvider.GetEmployees();
            // employerProfileControlViewModel.Apartments = new ObservableCollection<ApartmentModel>(viewModel.DataProvider.GetApartments());

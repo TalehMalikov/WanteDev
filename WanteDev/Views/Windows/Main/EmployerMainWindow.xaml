@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WanteDev.Views.Windows.Main"
-        mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
-        Title="EmployerMainWindow" Height="500" Width="800">
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"  
+        Title="EmployerMainWindow" Height="500" Width="900">
     <Grid Background="#f2f2f2">
         <Grid.RowDefinitions>
             <RowDefinition Height="1.7*"/>
@@ -29,7 +29,7 @@
 
         <Border Grid.Column="2" Grid.Row="0" >
             
-            <Image x:Name="userImage" Cursor="Hand" Source="\Images\user.png">
+            <Image x:Name="userImage" Cursor="Hand" Source="{Binding CurrentEmployer.Image}">
                 <Image.InputBindings>
                     <MouseBinding Gesture="LeftClick" Command="{Binding OpenEmployerProfile,Mode=OneTime}"/>
                 </Image.InputBindings>
@@ -62,10 +62,8 @@
 
 
         <Border Grid.ColumnSpan="3" Grid.Row="2">
-            <Grid Background="#f2f2f2" Name="grdCenter" >
+            <Grid  Name="grdCenter" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="733*"/>
-                    <ColumnDefinition Width="67*"/>
                 </Grid.ColumnDefinitions>
                 <!--//\\-->
             </Grid>

@@ -4,6 +4,7 @@ using WantedDev.Core.Domain.Entities;
 using WanteDev.Core.Domain.Entities;
 using WanteDev.Core.Utils;
 using WanteDev.Infrasturcture;
+using WanteDev.Mappers;
 using WanteDev.ViewModels.Windows.Login;
 using WanteDev.ViewModels.Windows.Main;
 using WanteDev.Views.Windows.Main;
@@ -41,7 +42,7 @@ namespace WanteDev.Commands.Auth
                 return;
             }
 
-            string password = passwordBox.Password;
+            string password = "Kamilova12@";//passwordBox.Password;
 
             string passwordHash = SecurityUtil.ComputeSha256Hash(password);
 
@@ -66,7 +67,10 @@ namespace WanteDev.Commands.Auth
                 EmployerMainWindowViewModel employerMainWindowViewModel = new EmployerMainWindowViewModel(employerMainWindow, Kernel.DB);
 
                 viewModel.Window.Close();
-                Kernel.CurrentEmployer = employeruser;
+
+                Kernel.CurrentEmployer = Kernel.DB.EmployerRepository.Get(employeruser.Id);
+
+                employerMainWindowViewModel.CurrentEmployer = new EmployerMapper().Map(Kernel.CurrentEmployer);
                 employerMainWindowViewModel.CenterGrid = employerMainWindow.grdCenter;
                 employerMainWindow.DataContext = employerMainWindowViewModel;
                 employerMainWindow.Show();

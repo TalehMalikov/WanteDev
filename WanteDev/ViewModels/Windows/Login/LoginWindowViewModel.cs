@@ -180,7 +180,7 @@ namespace WanteDev.ViewModels.Windows.Login
             }
         }*/
 
-        public string Email { get; set; } 
+        public string Email { get; set; } = "sureyya@gmail.com";
 
         private Visibility loginWindowVisibility = Visibility.Visible;
         public Visibility LoginWindowVisibility

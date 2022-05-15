@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 using WanteDev.Utils;
 
 namespace WanteDev.Models
@@ -21,11 +23,41 @@ namespace WanteDev.Models
         public string ApartmentName { get; set; }
         public string Position { get; set; }
         public string Bio { get; set; }
-        public byte[] Photo { get; set; }
+        public byte[] Photo 
+        { 
+            get
+            {
+                return Photo;
+            }
+            set
+            {
+                Image = LoadBitmapImage(value);
+            }
+        }
+        public BitmapImage Image { get; set; }
+
         public byte[] CV { get; set; }
         public override object Clone()
         {
             throw new NotImplementedException();
+        }
+
+        private static BitmapImage LoadBitmapImage(byte[] imageData)
+        {
+            if (imageData == null || imageData.Length == 0) return null;
+            var image = new BitmapImage();
+            using (var mem = new MemoryStream(imageData))
+            {
+                mem.Position = 0;
+                image.BeginInit();
+                image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.UriSource = null;
+                image.StreamSource = mem;
+                image.EndInit();
+            }
+            image.Freeze();
+            return image;
         }
 
         public override bool IsValid(out string message)
