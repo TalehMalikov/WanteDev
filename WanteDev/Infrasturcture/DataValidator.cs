@@ -1,4 +1,4 @@
-﻿global using WanteDev.Utils;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +6,7 @@ using WantedDev.Core.Domain.Entities;
 using WanteDev.Core.DataAccess.Abstraction;
 using WanteDev.Core.Domain.Entities;
 using WanteDev.Models;
+using WanteDev.Utils;
 
 namespace WanteDev.Infrasturcture
 {
