@@ -4,9 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WanteDev.Views.Windows.Main"
-        mc:Ignorable="d" WindowStartupLocation="CenterScreen"  
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" BorderThickness="5" BorderBrush="Purple" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         Title="EmployerMainWindow" Height="500" Width="900">
-    <Grid Background="#f2f2f2">
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="1.7*"/>
             <RowDefinition Height="10*"/>
@@ -20,7 +22,7 @@
         </Grid.ColumnDefinitions>
 
         <Border Grid.Column="0" Grid.Row="0">
-            <Image x:Name="logoImage" Cursor="Hand" Source="\Images\logo.jpeg" >
+            <Image  x:Name="logoImage" Cursor="Hand" Source="\Images\logo.jpeg" >
                 <Image.InputBindings>
                     <MouseBinding Gesture="LeftClick" Command="{Binding OpenMainWindow,Mode=OneTime}"/>
                 </Image.InputBindings>
@@ -28,16 +30,25 @@
         </Border>
 
         <Border Grid.Column="2" Grid.Row="0" >
+            <StackPanel Margin="0 0 48 0">
+                <Image Width="60" Height="70" x:Name="userImage" Cursor="Hand" Source="{Binding CurrentEmployer.Image}">
+                    <Image.InputBindings>
+                        <MouseBinding Gesture="LeftClick" Command="{Binding OpenEmployerProfile,Mode=OneTime}"/>
+                    </Image.InputBindings>
+                </Image>
+            </StackPanel>
             
-            <Image x:Name="userImage" Cursor="Hand" Source="{Binding CurrentEmployer.Image}">
-                <Image.InputBindings>
-                    <MouseBinding Gesture="LeftClick" Command="{Binding OpenEmployerProfile,Mode=OneTime}"/>
-                </Image.InputBindings>
-            </Image>
             
         </Border>
-    
-        
+        <Border Grid.Column="2" Grid.Row="0" >
+            <StackPanel Height="69" VerticalAlignment="Top">
+               
+                <Button HorizontalAlignment="Right" Width="40" Height="70" Background="Transparent" BorderThickness="0" Click="OnCloseClicked">
+                    <materialDesign:PackIcon  Kind="Close" Width="30" Height="30" Foreground="Purple"/>
+                </Button>
+            </StackPanel>
+
+        </Border>
 
         <Border Background="White" Grid.Column="1">
             <Border Height="30"  VerticalAlignment="Center" >
@@ -62,11 +73,111 @@
 
 
         <Border Grid.ColumnSpan="3" Grid.Row="2">
-            <Grid  Name="grdCenter" >
-                <Grid.ColumnDefinitions>
-                </Grid.ColumnDefinitions>
-                <!--//\\-->
+            <Grid  Name="grdCenter">
+                <!--StackPanel Background="AntiqueWhite" Orientation="Horizontal" HorizontalAlignment="Left" Width="300">
+                    <ScrollViewer Width="300" HorizontalScrollBarVisibility="Auto" 
+                                  VerticalScrollBarVisibility="Auto">
+
+
+
+                        <Expander Name="MyExpander" Margin="10,10" >
+                            <Expander.Content>
+                                <DataGrid Name="dataGrid1"
+                                          Cursor="Hand"/>
+                            </Expander.Content>
+                            <Expander.Style>
+                                <Style TargetType="Expander">
+                                    <Setter Property="IsExpanded" Value="False" />
+                                    <Setter Property="Header" Value="Click to See More" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsExpanded,RelativeSource={RelativeSource Self}}"                                 Value="True">
+                                            <Setter Property="Header" Value="Click to See Less" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Expander.Style>
+                        </Expander>
+                    </ScrollViewer>
+                </StackPanel-->
+
+                <!--<Border  Grid.Column="0" Background="#134187">
+                    <ScrollViewer>
+                        <Grid>
+                            <StackPanel Margin="0">
+                                <Button Height="55" Content="Back-end" FontSize="18" FontWeight="Bold" />
+                                <Button Height="55" Content="Front-end" FontSize="18" FontWeight="Bold" />
+                            </StackPanel>
+                        </Grid>
+                    </ScrollViewer>
+                </Border>-->
+
+                <Border Grid.Row="1" Grid.Column="0" Background="MediumPurple">
+                    <ScrollViewer Width="330" HorizontalAlignment="Left" Name="ScrollViewer1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="True">
+                        <StackPanel Background="MediumPurple">
+                            <ToggleButton  Width="330" HorizontalAlignment="Left" Background="Azure" Height="60">
+                                <DockPanel Width="180">
+                                    <Label Content="Back-end" Foreground="MediumPurple" HorizontalAlignment="Center" FontWeight="DemiBold" FontSize="30" x:Name="lbl_FarmSummary" />
+                                </DockPanel>
+                            </ToggleButton>
+                            <ToggleButton Width="330" HorizontalAlignment="Left" Background="Azure" Height="60">
+                                <DockPanel Width="180">
+                                    <Label Content="Front-end" Foreground="MediumPurple" HorizontalAlignment="Center" FontWeight="DemiBold" FontSize="30"/>
+                                </DockPanel>
+                            </ToggleButton>
+                            <ToggleButton Width="330" HorizontalAlignment="Left" Background="Azure" Height="60">
+                                <DockPanel Width="180">
+                                    <Label Content="Full-Stack" Foreground="MediumPurple" HorizontalAlignment="Center" FontWeight="DemiBold" FontSize="30"/>
+                                </DockPanel>
+                            </ToggleButton>
+
+                            <ToggleButton Width="330" HorizontalAlignment="Left" Background="Azure" Height="60">
+                                <DockPanel Width="180">
+                                    <Label Content="Android" Foreground="MediumPurple" HorizontalAlignment="Center" FontWeight="DemiBold" FontSize="30"/>
+                                </DockPanel>
+                            </ToggleButton>
+                            <ToggleButton Width="330" HorizontalAlignment="Left" Background="Azure" Height="60" x:Name="btnScan" >
+                                <DockPanel Width="180">
+                                    <Label Content="XXX" Foreground="MediumPurple" HorizontalAlignment="Center" FontWeight="DemiBold" FontSize="30" />
+                                </DockPanel>
+                            </ToggleButton>
+                            <ToggleButton Width="330" HorizontalAlignment="Left" Background="Azure" Height="60" >
+                                <DockPanel Width="180">
+                                    <Label Content="XXX" Foreground="MediumPurple" HorizontalAlignment="Center" FontWeight="DemiBold" FontSize="30" />
+                                </DockPanel>
+                            </ToggleButton>
+                            <ToggleButton Width="330" HorizontalAlignment="Left" Background="Azure" Height="60">
+                                <DockPanel Width="180">
+                                    <Label Content="XXX" Foreground="MediumPurple" HorizontalAlignment="Center" FontWeight="DemiBold" FontSize="30" />
+                                </DockPanel>
+                            </ToggleButton>
+                            <ToggleButton Width="330" HorizontalAlignment="Left" Background="Azure" Height="60">
+                                <DockPanel Width="180">
+                                    <Label Content="XXX" Foreground="MediumPurple" HorizontalAlignment="Center" FontWeight="DemiBold" FontSize="30" />
+                                </DockPanel>
+                            </ToggleButton>
+                            <ToggleButton Width="330" HorizontalAlignment="Left" Background="Azure" Height="60">
+                                <DockPanel Width="180">
+                                    <Label Content="XXX" Foreground="MediumPurple" HorizontalAlignment="Center" FontWeight="DemiBold" FontSize="30" />
+                                </DockPanel>
+                            </ToggleButton>
+                            <ToggleButton Width="330" HorizontalAlignment="Left" Background="Azure" Height="60">
+                                <DockPanel Width="180">
+                                    <Label Content="XXX" Foreground="MediumPurple" HorizontalAlignment="Center" FontWeight="DemiBold" FontSize="30" />
+                                </DockPanel>
+                            </ToggleButton>
+                        </StackPanel>
+                    </ScrollViewer>
+                    
+                </Border>
+                <StackPanel Background="MediumPurple" Orientation="Horizontal" HorizontalAlignment="right" Width="560">
+                    <Image  gif:ImageBehavior.RepeatBehavior="10x"
+                           gif:ImageBehavior.AnimatedSource="/Images/newgif.gif"/>
+                </StackPanel>
+
+                
             </Grid>
         </Border>
+
+
     </Grid>
 </Window>

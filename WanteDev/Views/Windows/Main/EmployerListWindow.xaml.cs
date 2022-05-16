@@ -15,17 +15,13 @@ using System.Windows.Shapes;
 namespace WanteDev.Views.Windows.Main
 {
     /// <summary>
-    /// Interaction logic for EmployerMainWindow.xaml
+    /// Interaction logic for EmployerListWindow.xaml
     /// </summary>
-    public partial class EmployerMainWindow : Window
+    public partial class EmployerListWindow : Window
     {
-        public EmployerMainWindow()
+        public EmployerListWindow()
         {
             InitializeComponent();
-        }
-        private void OnCloseClicked(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

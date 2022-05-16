@@ -20,8 +20,24 @@ namespace WanteDev.ViewModels
             DataProvider = new DataProvider(db);
         }
 
+        public List<T> AllValues { get; set; }
+
+        private ObservableCollection<T> values;
+        public ObservableCollection<T> Values
+        {
+            get
+            {
+                return values;
+            }
+            set
+            {
+                values = value;
+                OnPropertyChanged(nameof(Values));
+            }
+        }
+
         #region 
-        
+
         /* public virtual void Initialize()
         {
             Values = new ObservableCollection<T>(AllValues);

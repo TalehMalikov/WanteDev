@@ -31,6 +31,8 @@
             </Setter>
         </Style>
 
+        
+
         <Style x:Key="MyPasswordBox" TargetType="{x:Type PasswordBox}">
             <Setter Property="Height" Value="30" />
             <Setter Property="Template">
