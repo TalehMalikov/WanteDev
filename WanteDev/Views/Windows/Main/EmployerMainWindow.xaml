@@ -112,8 +112,33 @@
                 </Border>-->
 
                 <Border Grid.Row="1" Grid.Column="0" Background="MediumPurple">
+
                     <ScrollViewer Width="330" HorizontalAlignment="Left" Name="ScrollViewer1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="True">
                         <StackPanel Background="MediumPurple">
+                            <Expander Name="ExpanderControl"   
+                                      HorizontalAlignment="Left" Background="LavenderBlush"   
+                                      ExpandDirection="Down"  IsExpanded="False" Width="320"  
+                                      FontSize="20" FontWeight="Bold" Foreground="Purple" >
+                                <Expander.Header>
+                                    <BulletDecorator>
+                                        <BulletDecorator.Bullet>
+                                            <Image Width="50" />
+                                        </BulletDecorator.Bullet>
+                                        <TextBlock Margin="110,0,0,0">Info</TextBlock>
+                                    </BulletDecorator>
+                                </Expander.Header>
+                                <Expander.Content>
+                                    <ScrollViewer Width="310" Height="100" VerticalAlignment="Top" >
+                                        <TextBlock TextWrapping="Wrap" FontSize="14" FontWeight="Light" Foreground="Black">  
+                                            This is an Expander control. Within this control, all contents will be wrapped.  
+                                            At run-time, you may expand or collapse this control. Type more text here to be typed.  
+                                            Jump around and hype. This is an Expander control. Within this control, all contents will be wrapped.  
+                                            At run-time, you may expand or collapse this control. Type more text here to be typed.  
+                                            Jump around and hype.
+                                        </TextBlock>
+                                    </ScrollViewer>
+                                </Expander.Content>
+                            </Expander>
                             <ToggleButton  Width="330" HorizontalAlignment="Left" Background="Azure" Height="60">
                                 <DockPanel Width="180">
                                     <Label Content="Back-end" Foreground="MediumPurple" HorizontalAlignment="Center" FontWeight="DemiBold" FontSize="30" x:Name="lbl_FarmSummary" />
