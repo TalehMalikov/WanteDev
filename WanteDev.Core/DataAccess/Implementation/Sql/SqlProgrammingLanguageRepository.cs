@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using WantedDev.Core.DataAccess.Abstraction;
 using WantedDev.Core.Domain.Entities;
+using WanteDev.Core.Domain.Entities;
 using WanteDev.Core.Extensions;
 
 namespace WantedDev.Core.DataAccess.Implementation.Sql
 {
-    public class SqlProgrammingLanguageRepository :BaseRepository, IProgrammingLanguageRepository
+    public class SqlProgrammingLanguageRepository : BaseRepository, IProgrammingLanguageRepository
     {
         public SqlProgrammingLanguageRepository(string connectionstring) : base(connectionstring)
         {
         }
-
         public void Add(ProgrammingLanguage value)
         {
             using (var connection = new SqlConnection(_connectionstring))
@@ -25,7 +25,6 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                 value.Id = Convert.ToInt32(command.ExecuteScalar());
             }
         }
-
         public void Delete(int id)
         {
             using (var connection = new SqlConnection(_connectionstring))
@@ -38,7 +37,6 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
 
             }
         }
-
         public ProgrammingLanguage Get(int id)
         {
             using (var connection = new SqlConnection(_connectionstring))
@@ -63,13 +61,18 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
 
         public List<ProgrammingLanguage> GetAll()
         {
-            using(var connection = new SqlConnection(_connectionstring))
+            using (var connection = new SqlConnection(_connectionstring))
             {
                 connection.Open();
-                string query = "select * from ProgrammingLanguages";
+                string query = " select ProgrammingLanguages.Id as ProgId,ProgrammingLanguages.Name as ProgName,ProgrammingCategories.Id as CatId," +
+                 " ProgrammingCategories.Name as ProgCatName " +
+                 " FROM ProgrammingLanguages inner join ProgrammingCategories on ProgrammingCategories.Id = ProgrammingLanguages.CategoryId where isdeleted=0" ;
+
+
                 var command = new SqlCommand(query, connection);
                 var reader = command.ExecuteReader();
                 var list = new List<ProgrammingLanguage>();
+
                 while (reader.Read())
                 {
                     var exam = GetFromReader(reader);
@@ -77,8 +80,8 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                 }
                 return list;
             }
-        }
 
+        }
         public void Update(ProgrammingLanguage value)
         {
             using (var connection = new SqlConnection(_connectionstring))
@@ -90,17 +93,19 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                 command.Parameters.AddWithValue("name", value.Name);
                 command.Parameters.AddWithValue("isdeleted", value.IsDeleted);
                 command.ExecuteNonQuery();
-
             }
         }
-
         private ProgrammingLanguage GetFromReader(SqlDataReader reader)
         {
             return new ProgrammingLanguage
             {
-                Id = reader.Get<int>("Id"),
-                Name = reader.Get<string>("Name"),
-                IsDeleted = reader.Get<bool>("IsDeleted")
+                Id = reader.Get<int>("ProgId"),
+                Name = reader.Get<string>("ProgName"),
+                Category = new ProgrammingCategory()
+                {
+                    Id = reader.Get<int>("CatId"),
+                    Name = reader.Get<string>("ProgCatName"),
+                }
             };
         }
     }

@@ -28,7 +28,11 @@ namespace WanteDev.ViewModels.Windows.Main
         public OpenEmployerProfileCommand OpenEmployerProfile => new OpenEmployerProfileCommand(this);
         public Grid CenterGrid { get; set; }
 
-        public  ObservableCollection<ProgrammingLanguageModel> AllProgrammingLanguages { get; set; }
+        #region Properties
+        public  List<ProgrammingLanguageModel> AllProgrammingLanguages { get; set; }
+
+        public List<ProgrammingLanguageModel> BackEnd => (List<ProgrammingLanguageModel>)AllProgrammingLanguages.Select(p => p.Category.Name == "Backend" );
+
 
         private ProgrammingLanguageModel _selectedLanguage;
 
@@ -60,7 +64,7 @@ namespace WanteDev.ViewModels.Windows.Main
                 allDevelopers = value;
             }
         }
-
+        #endregion
 
     }
 }

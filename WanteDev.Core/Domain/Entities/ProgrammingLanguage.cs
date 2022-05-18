@@ -10,5 +10,6 @@ namespace WantedDev.Core.Domain.Entities
     public class ProgrammingLanguage : BaseEntity
     {
         public string Name { get; set; }
+        public ProgrammingCategory Category { get; set; }   
     }
 }

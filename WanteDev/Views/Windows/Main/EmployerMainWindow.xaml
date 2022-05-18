@@ -82,7 +82,8 @@
             <Grid  Name="grdCenter">
                 <Border Grid.Row="1" Grid.Column="0" Background="MediumPurple">
 
-                    <ScrollViewer Width="330" HorizontalAlignment="Left" Name="ScrollViewer1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" CanContentScroll="True">
+                    <ScrollViewer Width="330" HorizontalAlignment="Left" Name="ScrollViewer1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" 
+                         CanContentScroll="True">
                         <StackPanel Background="MediumPurple">
                             <Expander Name="ExpanderControl"   
                                       HorizontalAlignment="Left" Background="LavenderBlush"   
@@ -113,7 +114,7 @@
                                     <Label Content="Back-end" Foreground="MediumPurple" HorizontalAlignment="Center" FontWeight="DemiBold" FontSize="30" x:Name="lbl_FarmSummary" />
                                 </DockPanel>
                             </ToggleButton-->
-                            <ComboBox FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Back-end"  Foreground="Purple" BorderThickness="4" BorderBrush="Purple" FontSize="20" IsEditable="True" ItemsSource="{Binding AllProgrammingLanguages}" SelectedItem="{Binding SelectedProgrammingLanguage}" SelectedValue="{Binding Path=SelectedProgrammingLanguage.Id}" SelectedValuePath="Id" DisplayMemberPath="Name" Width="313" HorizontalAlignment="Left" Background="Azure" Height="60">
+                            <ComboBox FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Back-end"  Foreground="Purple" BorderThickness="4" BorderBrush="Purple" FontSize="20" IsEditable="True" ItemsSource="{Binding BackEnd}" SelectedItem="{Binding SelectedProgrammingLanguage}" SelectedValue="{Binding Path=SelectedProgrammingLanguage.Id}" SelectedValuePath="Id" DisplayMemberPath="Name" Width="313" HorizontalAlignment="Left" Background="Azure" Height="60">
                             </ComboBox>
                             <ComboBox FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Front-end"  Foreground="Purple" BorderThickness="4" BorderBrush="Purple" FontSize="20" IsEditable="True" ItemsSource="{Binding AllProgrammingLanguages}" SelectedItem="{Binding SelectedProgrammingLanguage}" SelectedValue="{Binding Path=SelectedProgrammingLanguage.Id}" SelectedValuePath="Id" DisplayMemberPath="Name" Width="313" HorizontalAlignment="Left" Background="Azure" Height="60">
                             </ComboBox>

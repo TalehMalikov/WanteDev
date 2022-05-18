@@ -12,7 +12,6 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
         public SqlUnitOfWork(string connectionstring) : base(connectionstring)
         {
         }
-
         public IDeveloperExamRepository DeveloperExamRepository => new SqlDeveloperExamRepository(_connectionstring);
 
         public IDeveloperLanguageRepository DeveloperLanguageRepository => new SqlDeveloperLanguageRepository(_connectionstring);
