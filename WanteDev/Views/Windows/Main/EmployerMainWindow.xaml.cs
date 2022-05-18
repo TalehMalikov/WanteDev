@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WantedDev.Core.Domain.Entities;
+using WanteDev.Views.Controls;
+using WanteDev.Views.Windows.Login;
 
 namespace WanteDev.Views.Windows.Main
 {
@@ -27,5 +30,6 @@ namespace WanteDev.Views.Windows.Main
         {
             this.Close();
         }
+
     }
 }

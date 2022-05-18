@@ -62,5 +62,6 @@ namespace WanteDev.Views.Windows.Login
             FirstStackPanel.Visibility = Visibility.Visible;
             ThirdStackPanel.Visibility = Visibility.Collapsed;
         }
+
     }
 }

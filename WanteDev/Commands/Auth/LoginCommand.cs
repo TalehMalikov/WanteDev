@@ -1,10 +1,12 @@
-﻿using System.Windows;
+﻿using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Controls;
 using WantedDev.Core.Domain.Entities;
 using WanteDev.Core.Domain.Entities;
 using WanteDev.Core.Utils;
 using WanteDev.Infrasturcture;
 using WanteDev.Mappers;
+using WanteDev.Models;
 using WanteDev.ViewModels.Windows.Login;
 using WanteDev.ViewModels.Windows.Main;
 using WanteDev.Views.Windows.Main;
@@ -13,10 +15,10 @@ namespace WanteDev.Commands.Auth
 {
     public class LoginCommand : BaseCommand
     {
-        private readonly LoginWindowViewModel viewModel;
+        private readonly LoginWindowViewModel _viewModel;
         public LoginCommand(LoginWindowViewModel viewModel)
         {
-            this.viewModel = viewModel;
+            this._viewModel = viewModel;
         }
 
         public override void Execute(object parameter)
@@ -28,17 +30,17 @@ namespace WanteDev.Commands.Auth
 
             // admin, employer,user : 
 
-            Admin admineuser = viewModel.DB.AdminRepository.Get(viewModel.Email);
+            Admin admineuser = _viewModel.DB.AdminRepository.Get(_viewModel.Email);
             Developer developereuser = null;
             Employer employeruser = null;
             if (admineuser==null)
-                 developereuser = viewModel.DB.DeveloperRepository.Get(viewModel.Email);
+                 developereuser = _viewModel.DB.DeveloperRepository.Get(_viewModel.Email);
             if(developereuser==null)
-                 employeruser = viewModel.DB.EmployerRepository.Get(viewModel.Email);
+                 employeruser = _viewModel.DB.EmployerRepository.Get(_viewModel.Email);
 
             if (admineuser == null && employeruser == null && developereuser == null)
             {
-                viewModel.LoginErrorVisibility = Visibility.Visible;
+                _viewModel.LoginErrorVisibility = Visibility.Visible;
                 return;
             }
 
@@ -56,7 +58,7 @@ namespace WanteDev.Commands.Auth
 
 
                 DeveloperMainWindow developerMain = new DeveloperMainWindow();
-                developerMain.DataContext = new object(); // --- appropriate viewModel
+                developerMain.DataContext = new object(); // --- appropriate _viewModel
                 developerMain.Show();
 
                 // main developer window show
@@ -66,19 +68,20 @@ namespace WanteDev.Commands.Auth
                 EmployerMainWindow employerMainWindow = new EmployerMainWindow();
                 EmployerMainWindowViewModel employerMainWindowViewModel = new EmployerMainWindowViewModel(employerMainWindow, Kernel.DB);
 
-                viewModel.Window.Close();
+                _viewModel.Window.Close();
 
                 Kernel.CurrentEmployer = Kernel.DB.EmployerRepository.Get(employeruser.Id);
 
                 employerMainWindowViewModel.CurrentEmployer = new EmployerMapper().Map(Kernel.CurrentEmployer);
                 employerMainWindowViewModel.CenterGrid = employerMainWindow.grdCenter;
+                employerMainWindowViewModel.AllProgrammingLanguages = new ObservableCollection<ProgrammingLanguageModel>(_viewModel.DataProvider.GetProgrammingLanguages());
                 employerMainWindow.DataContext = employerMainWindowViewModel;
                 employerMainWindow.Show();
                //
             }
             else
             {
-                viewModel.LoginErrorVisibility = Visibility.Visible;
+                _viewModel.LoginErrorVisibility = Visibility.Visible;
                 return;
             }
         }

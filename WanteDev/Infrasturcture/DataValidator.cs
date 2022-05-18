@@ -20,12 +20,6 @@ namespace WanteDev.Infrasturcture
 
 
 
-
-
-
-
-
-
         public bool IsDeveloperValid(EmployerModel currentEmployer, out string message)
         {
             List<Developer> devModels = new List<Developer>(_db.DeveloperRepository.GetAllAsUser());

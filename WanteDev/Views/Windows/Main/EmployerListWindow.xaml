@@ -27,7 +27,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <GroupBox Header="List Employers" Margin="20,0,0,0">
-                <ListBox>
+                <ListBox ItemsSource="{Binding Employers}">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
@@ -56,6 +56,7 @@
                             <Button Margin="10" MinWidth="100">Update</Button>
                             <Button Margin="10" MinWidth="100">Delete</Button>
                         </StackPanel>
+                        
                     </Grid>
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>

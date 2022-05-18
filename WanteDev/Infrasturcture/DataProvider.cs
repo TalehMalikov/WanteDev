@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +32,21 @@ namespace WanteDev.Infrasturcture
             }
 
             return employers;
+        }
+
+        public List<ProgrammingLanguageModel> GetProgrammingLanguages()
+        {
+            var entities = Kernel.DB.ProgrammingLanguageRepository.GetAll();
+            var languages = new List<ProgrammingLanguageModel>();
+            ProgrammingLanguageMapper languageMapper = new ProgrammingLanguageMapper();
+            for (int i = 0; i < entities.Count; i++)
+            {
+                var language = entities[i];
+                var languageModel = languageMapper.Map(language);
+                languageModel.NO = i + 1;
+                languages.Add(languageModel);
+            }
+            return languages;
         }
     }
 }

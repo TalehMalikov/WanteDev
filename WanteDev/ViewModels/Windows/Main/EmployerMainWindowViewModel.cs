@@ -23,9 +23,24 @@ namespace WanteDev.ViewModels.Windows.Main
         // example : OpenPrivateInformationCommand
         public EmployerModel CurrentEmployer { get; set; }
 
-        public OpenMainWindowCommand OpenMainWindow => new OpenMainWindowCommand(this);
+        public OpenEmployerMainWindowCommand OpenEmployerMainWindow => new OpenEmployerMainWindowCommand(this);
+
         public OpenEmployerProfileCommand OpenEmployerProfile => new OpenEmployerProfileCommand(this);
         public Grid CenterGrid { get; set; }
+
+        public  ObservableCollection<ProgrammingLanguageModel> AllProgrammingLanguages { get; set; }
+
+        private ProgrammingLanguageModel _selectedLanguage;
+
+        public ProgrammingLanguageModel SelectedProgrammingLanguage
+        {
+            get => _selectedLanguage;
+            set
+            {
+                _selectedLanguage = value;
+                OnPropertyChanged(nameof(_selectedLanguage));
+            }
+        }
 
 
 

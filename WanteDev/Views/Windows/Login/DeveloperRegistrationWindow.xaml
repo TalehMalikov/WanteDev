@@ -6,6 +6,7 @@
         
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:System="clr-namespace:System;assembly=System.Runtime"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" BorderBrush="DodgerBlue"
         BorderThickness="3" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         Title="DeveloperRegistrationWindow" Height="450" Width="700">
@@ -280,19 +281,9 @@
                         </TextBox>
                     </StackPanel>
 
-
-
-
                     <StackPanel Orientation="Horizontal" Margin="10 15 10 10">
                     <materialDesign:PackIcon Kind="ClipboardTextDate" Width="25" Height="25" Foreground="White"/>
-                        <TextBox Text="{Binding CurrentValue.Experience,Mode=TwoWay}" x:Name="txtExperience"  Style="{StaticResource MyWaterMarkStyle}" Tag="Tell us about your experience" Margin="10 0" 
-                             Foreground="black" Width="250" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448">
-                            <TextBox.Resources>
-                                <Style TargetType="{x:Type Border}">
-                                    <Setter Property="CornerRadius" Value="10"/>
-                                </Style>
-                            </TextBox.Resources>
-                        </TextBox>
+                    <xctk:IntegerUpDown Margin="10 0" Foreground="black" Width="250" BorderBrush="White" Value="0" Increment="1" Text="{Binding CurrentValue.Experience,Mode=TwoWay}"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" Margin="10 15 10 10">
