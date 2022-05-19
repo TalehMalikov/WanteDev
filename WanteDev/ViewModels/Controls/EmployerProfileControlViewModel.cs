@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using WanteDev.Commands.Auth.ProfilesChangePassword.Employer;
 using WanteDev.Commands.ControlCommands.Profiles.Employer;
 using WanteDev.Commands.EmployerCommands;
 using WanteDev.Core.DataAccess.Abstraction;
@@ -32,8 +33,9 @@ namespace WanteDev.ViewModels.Controls
         public ICommand UploadPhoto => new UploadPhoto(this);
 
         public SaveEmployerCommand Add => new SaveEmployerCommand(this);
+        public ChangePasswordCommand ChangePassword => new (this);
 
-        public  void Initialize()
+        public void Initialize()
         {
         }
     }

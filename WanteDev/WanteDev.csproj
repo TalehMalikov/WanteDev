@@ -66,4 +66,23 @@
     <Resource Include="Views\Windows\Main\content_web-scraping-05.gif" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Views\ChangePassword\Employer\ChangePasswordInProfileWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Views\ChangePassword\Employer\ChangePasswordInProfileWindow.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Commands\Auth\ProfilesChangePassword\Developer\" />
+    <Folder Include="ViewModels\ChangePassword\Developer\" />
+    <Folder Include="Views\ChangePassword\Developer\" />
+  </ItemGroup>
+
 </Project>

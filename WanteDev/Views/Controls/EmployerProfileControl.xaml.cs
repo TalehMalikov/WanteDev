@@ -44,5 +44,10 @@ namespace WanteDev.Views.Controls
             //    passwordTxt.Password = passwordTxtBox.Text;
             //}
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
