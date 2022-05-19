@@ -1,17 +1,30 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using WantedDev.Core.Domain.Entities;
 using WanteDev.Core.DataAccess.Abstraction;
 using WanteDev.Core.Domain.Entities;
 using WanteDev.Models;
 using WanteDev.Utils;
+using System.Diagnostics;
+using Newtonsoft.Json;
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+#pragma warning disable CS8604 // Possible null reference argument.
+#pragma warning disable SYSLIB0014 // Type or member is obsolete
 
 namespace WanteDev.Infrasturcture
 {
     public class DataValidator
     {
+
+        private class Response
+        {
+            public string result { get; set; }
+            public string reason { get; set; }
+        }
         private readonly IUnitOfWork _db;
         public DataValidator(IUnitOfWork db)
         {
@@ -28,17 +41,69 @@ namespace WanteDev.Infrasturcture
             if (currentEmployer.IsValid(out message) == false)
                 return false;
 
-           
-                #region EmailCheck
-                bool resultDev = devModels.Any(x => x.Email == currentEmployer.Email);
-                bool resultAdm = adModels.Any(x => x.Email == currentEmployer.Email);
-                bool resultEmp = empModels.Any(x => x.Email == currentEmployer.Email);
-                if (resultDev || resultEmp || resultAdm)
+
+            #region EmailCheck
+            bool resultDev = devModels.Any(x => x.Email == currentEmployer.Email);
+            bool resultAdm = adModels.Any(x => x.Email == currentEmployer.Email);
+            bool resultEmp = empModels.Any(x => x.Email == currentEmployer.Email && x.Id != currentEmployer.Id);
+            if (resultDev || resultEmp || resultAdm)
+            {
+                message = ValidationHelper.GetUniqueMessage("Email");
+                return false;
+            }
+
+            try
+            {
+                string apiKey = "e994902b6e61b201cb70723f8577b53ff462db535cb229917d53505b9fbd";
+                string emailToValidate = currentEmployer.Email;
+                string? responseString = "";
+                string apiURL = "http://api.quickemailverification.com/v1/verify?email=" + WebUtility.UrlEncode(emailToValidate) + "&apikey=" + apiKey;
+
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(apiURL);
+                request.Method = "GET";
+
+                using (WebResponse response = request.GetResponse())
                 {
-                    message = ValidationHelper.GetUniqueMessage("Email");
+
+                    using (StreamReader ostream = new StreamReader(response.GetResponseStream()))
+                    {
+                        responseString = ostream.ReadLine();
+                    }
+                }
+
+                Response info = JsonConvert.DeserializeObject<Response>(responseString);
+                if (info == null)
+                {
+                    message = "Something went wrong";
                     return false;
                 }
-                #endregion
+                //if (info.reason == "rejected_email")
+                //{
+                //    message = "Enter existed email";
+                //    return false;
+                //}
+                if (info.result == "invalid")
+                {
+                    message = $"Either format incorrect or {currentEmployer.Email} does not exist";
+                    return false;
+                }
+                if (info.reason == "no_connect")
+                {
+                    message = "Check your network, please";
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                message = "Something went wrong... Check your internet";
+                return false;
+                //Catch Exception - All errors will be shown here - if there are issues with the API
+            }
+
+
+
+
+            #endregion
 
             //Name
             if (currentEmployer.FirstName.Any(x => char.IsLetter(x) == false))

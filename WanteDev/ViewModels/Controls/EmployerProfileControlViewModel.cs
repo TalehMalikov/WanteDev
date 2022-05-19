@@ -17,11 +17,11 @@ namespace WanteDev.ViewModels.Controls
 {
     public class EmployerProfileControlViewModel : BaseControlViewModel<EmployerModel>
     {
-        public EmployerModel Model { get; }
+       //// public EmployerModel Model { get; }
 
         public EmployerProfileControlViewModel(IUnitOfWork db,EmployerModel model) : base(db)
         {
-            Model = model;
+           // Model = model;
             CurrentValue = model;
             EmployerRegistrationWindowViewModel = new EmployerRegistrationWindowViewModel(new Window(), db);
             EmployerRegistrationWindowViewModel.CurrentValue = model;
@@ -32,5 +32,9 @@ namespace WanteDev.ViewModels.Controls
         public ICommand UploadPhoto => new UploadPhoto(this);
 
         public SaveEmployerCommand Add => new SaveEmployerCommand(this);
+
+        public  void Initialize()
+        {
+        }
     }
 }

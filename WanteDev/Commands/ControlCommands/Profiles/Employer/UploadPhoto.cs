@@ -32,6 +32,7 @@ namespace WanteDev.Commands.ControlCommands.Profiles.Employer
             _viewModel.CurrentValue.Image = new BitmapImage(new Uri(openFileDialog1.FileName));
             ImageArray = File.ReadAllBytes(openFileDialog1.FileName);
             _viewModel.CurrentValue.Photo = ImageArray;
+            _viewModel.Initialize();
         }
 
     }

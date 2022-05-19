@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -9,33 +10,48 @@ using WanteDev.Utils;
 
 namespace WanteDev.Models
 {
-    public  class EmployerModel:BaseModel
+    public  class EmployerModel:BaseModel, INotifyPropertyChanged
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public string PasswordHash { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+        public string? Email { get; set; }
+        public string? PasswordHash { get; set; }
         public string? Address { get; set; }
-        public string Phone { get; set; }
+        public string? Phone { get; set; }
         public DateTime BirthDate { get; set; } = DateTime.Now.Date;
         public bool Gender { get; set; }
-        public string CompanyName { get; set; }
-        public string ApartmentName { get; set; }
-        public string Position { get; set; }
-        public string Bio { get; set; }
+        public string? CompanyName { get; set; }
+        public string? ApartmentName { get; set; }
+        public string? Position { get; set; }
+        public string? Bio { get; set; }
+
+        private byte[]? photo;
         public byte[] Photo
         {
             get
             {
-                return Photo;
+                return photo;
                 // TODO : File dersindeki kimi 10000 - 10000 oxumaq
             }
             set
             {
+                photo=value;
                 Image = LoadBitmapImage(value);
             }
         }
-        public BitmapImage Image { get; set; }
+        private BitmapImage image;
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        public BitmapImage Image
+        {
+            get => image;
+            set
+            {
+                image=value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Image)));
+            }
+        }
 
         private static BitmapImage LoadBitmapImage(byte[] imageData)
         {
@@ -48,6 +64,17 @@ namespace WanteDev.Models
                 image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
                 image.CacheOption = BitmapCacheOption.OnLoad;
                 image.UriSource = null;
+                //int totalCount = 0;
+                //int readCount = 10000;
+                //while (totalCount< imageData.Length)
+                //{
+                //    if(imageData.Length < 10000)
+                //    {
+                //        readCount = imageData.Length - totalCount;
+                //    }
+                //    mem.Read(imageData,totalCount,readCount);
+                //    totalCount+=readCount;
+                //}
                 image.StreamSource = mem;
                 image.EndInit();
             }

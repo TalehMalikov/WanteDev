@@ -32,6 +32,7 @@ namespace WanteDev.Commands.Main
 
             EmployerProfileControl employeescontrol = new EmployerProfileControl();
             //employerProfileControlViewModel.ErrorDialog = employeescontrol.ErrorDialog;
+            
             employeescontrol.DataContext = employerProfileControlViewModel;
             _viewModel.CenterGrid.Children.Add(employeescontrol);
         }

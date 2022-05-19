@@ -31,16 +31,16 @@ namespace WanteDev.Commands.ControlCommands.Profiles.Employer
                 UserDefaultFiller.Fill(_viewModel.CurrentValue);
                 EmployerMapper mapper = new EmployerMapper();
                 var employer = mapper.Map(_viewModel.CurrentValue);
-                PasswordBox password = param as PasswordBox;
-                _viewModel.CurrentValue.PasswordHash = password?.Password;
+             //   PasswordBox password = param as PasswordBox;
+                //_viewModel.CurrentValue.PasswordHash = password?.Password;
                 employer.ModifiedDate = DateTime.Now;
                 if (dataValidator.IsDeveloperValid(_viewModel.CurrentValue, out string message) == false)
                 {
                     MessageBox.Show(message, "Validation error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
-                employer.PasswordHash = SecurityUtil.ComputeSha256Hash(password.Password);
-                _viewModel.CurrentValue.PasswordHash = employer.PasswordHash;
+                //  employer.PasswordHash = SecurityUtil.ComputeSha256Hash(password.Password);
+                // _viewModel.CurrentValue.PasswordHash = employer.PasswordHash;
 
                 if (employer.Id != 0)
                 {
