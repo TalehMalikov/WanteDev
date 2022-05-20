@@ -3,6 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:WanteDev">
     <Application.Resources>
+        
+        <Style x:Key="LinkButton" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <TextBlock TextDecorations="Underline">
+                <ContentPresenter /></TextBlock>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="Green" />
+            <Style.Triggers>
+                <Trigger  Property="IsMouseOver" Value="true">
+                    <Setter Property="Foreground" Value="GreenYellow" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
         <!--#region Style -->
         <Style x:Key="MyWaterMarkStyle" TargetType="{x:Type TextBox}">

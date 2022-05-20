@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WanteDev.Views.Windows.Login"
         xmlns:style="clr-namespace:WanteDev"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:companents="clr-namespace:WanteDev.Views.Components"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         Title="LoginWindow" Height="500" Width="800">
     <Grid>
@@ -42,87 +42,210 @@
 
         </Border>
 
+        <Border  Background="#ffffff" Grid.Column="1" CornerRadius="0 10 10 0"   Visibility="{Binding FirstStackPanelVisibility}" >
+            <StackPanel Name="FirstStackPanel" >
+                
+                <Button HorizontalAlignment="Right" VerticalAlignment="top" Width="30" Height="30" Background="Transparent" BorderThickness="0" Click="OnCloseClicked">
+                    <materialDesign:PackIcon  Kind="Close" Width="30" Height="30" Foreground="LightSeaGreen"/>
+                </Button>
+                <StackPanel VerticalAlignment="Center" Margin="0 100" >
+                    <TextBlock Text="Enter your email:" Style="{StaticResource normalText}" Foreground="#878787" Margin="0 0 0 10"/>
+                    <Border BorderThickness="1" BorderBrush="#acb0af" Margin="70 7 70 10" CornerRadius="5">
+                        <Grid Margin="7 9">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="\Images\email.png" Height="20"/>
+                            <TextBox x:Name="txEmail" Text="{Binding Email,Mode=TwoWay}"  Style="{StaticResource textBox}">
+                                <TextBox.InputBindings>
+                                    <KeyBinding Command="{Binding Path=SignIn}" CommandParameter="{Binding ElementName=passwordTxt}" Key="Enter" />
+                                </TextBox.InputBindings>
+                            </TextBox>
+                        </Grid>
+                    </Border>
+                    <TextBlock Text="User Not Found" FontSize="20" Foreground="Red" HorizontalAlignment="Center" Visibility="{Binding UserNotFound}">
+                    
+                    </TextBlock>
+                    <Button Content="Next" Click="Button_Click" Command="{Binding SendConfirmationCode}" Style="{StaticResource mainbutton}"/>
+                </StackPanel>
+               
+            </StackPanel>
+        </Border>
 
-        <Border Background="#ffffff" Grid.Column="1" CornerRadius="0 10 10 0" >
-            <StackPanel VerticalAlignment="Center" Height="500">
+        <Border  Background="#ffffff" Grid.Column="1" CornerRadius="0 10 10 0"  Visibility="{Binding SecondStackPanelVisibility,FallbackValue=Collapsed}">
+            <StackPanel Name="SecondStackPanel" >
+                <Button HorizontalAlignment="Right" VerticalAlignment="top" Width="30" Height="30" Background="Transparent" BorderThickness="0" Click="OnCloseClicked">
+                    <materialDesign:PackIcon  Kind="Close" Width="30" Height="30" Foreground="LightSeaGreen"/>
+                </Button>
+                
+                <TextBlock Text="Enter confirmation code:" Style="{StaticResource normalText}" Foreground="#878787" Margin="0 0 0 10"/>
+                <Border BorderThickness="1" BorderBrush="#acb0af" Margin="70 7 70 10" CornerRadius="5">
+                    <Grid Margin="7 9">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="\Images\lock.png" Height="20"/>
+                        <TextBox x:Name="txtConfirm" Text="{Binding UserEnteredConfirmationCode, Mode=TwoWay}"  Style="{StaticResource textBox}">
+                        </TextBox>
+                    </Grid>
+                </Border>
+                <TextBlock Text="No Code Provided" Visibility="{Binding NullCodeVisibility}"></TextBlock>
+                <TextBlock Text="Incorrect Confirmation Code" Visibility="{Binding IncorrectCodeVisibility}"></TextBlock>
+                <Button Content="Next" Style="{StaticResource mainbutton}" Command="{Binding VerifyConfirmationCode}">
+
+                </Button>
+            </StackPanel>
+        </Border>
+
+
+
+        <Border Background="#ffffff" Grid.Column="1" CornerRadius="0 10 10 0" 
+           Visibility="{Binding LoginWindowVisibility}"> 
+            <StackPanel VerticalAlignment="Center" Height="500" >
                 <Button HorizontalAlignment="Right" VerticalAlignment="top" Width="30" Height="30" Background="Transparent" BorderThickness="0" Click="OnCloseClicked">
                     <materialDesign:PackIcon  Kind="Close" Width="30" Height="30" Foreground="LightSeaGreen"/>
                 </Button>
                 <TextBlock Text="Sign in to WanteDev" Style="{StaticResource titleText}" Foreground="#3AB19B"/>
-                    <StackPanel Orientation="Horizontal" Margin="0 20" HorizontalAlignment="Center">
-                        <Button Style="{StaticResource buttonCircle}">
-                            <Image Source="\Images\google.png" Width="20" Height="20"/>
-                            <!--google sehifesine yonelt-->
-                        </Button>
+                <StackPanel Orientation="Horizontal" Margin="0 20" HorizontalAlignment="Center">
+                    <Button Style="{StaticResource buttonCircle}">
+                        <Image Source="\Images\google.png" Width="20" Height="20"/>
+                        <!--google sehifesine yonelt-->
+                    </Button>
 
-                        <Button Style="{StaticResource buttonCircle}">
-                            <Image Source="\Images\facebook.png" Width="20" Height="20"/>
-                            <!--linkedin lehifesine yonelt-->
-                        </Button>
+                    <Button Style="{StaticResource buttonCircle}">
+                        <Image Source="\Images\facebook.png" Width="20" Height="20"/>
+                        <!--linkedin lehifesine yonelt-->
+                    </Button>
 
-                        <Button Style="{StaticResource buttonCircle}">
-                            <Image Source="\Images\linkedin.png" Width="20" Height="20"/>
-                            <!--facebook sehifesine yonelt-->
-                        </Button>
-                    </StackPanel>
-
-                    <TextBlock Text="or use your email info :" Style="{StaticResource normalText}" Foreground="#878787" Margin="0 0 0 10"/>
-
-                    <Border BorderThickness="1" BorderBrush="#acb0af" Margin="70 7 70 10" CornerRadius="5">
-                        <Grid Margin="7 9">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Image Source="\Images\email.png" Height="20"/>
-                            <TextBox x:Name="txtEmail" Text="{Binding Email, Mode=TwoWay}"  Style="{StaticResource textBox}">
-                                <TextBox.InputBindings>
-                                    <KeyBinding Command="{Binding Path=SignIn}" CommandParameter="{Binding ElementName=passwordTxt}" Key="Enter" />
-                                </TextBox.InputBindings>
-                            </TextBox>
-                        </Grid>
-                    </Border>
-
-
-
-                    <Border BorderThickness="1" BorderBrush="#acb0af" Margin="70 7 70 10" CornerRadius="5">
-                        <Grid Margin="7 9">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Image Source="\Images\lock.png" Height="20"/>
-                            <PasswordBox x:Name="passwordTxt"  Style="{StaticResource textBox}" PasswordChar="*">
-                                <PasswordBox.InputBindings>
-                                    <KeyBinding Command="{Binding Path=SignIn}" CommandParameter="{Binding ElementName=passwordTxt}" Key="Enter" />
-                                </PasswordBox.InputBindings>
-                            </PasswordBox>
-                            <TextBox x:Name="passwordTxtBox" Style="{StaticResource textBox}" Visibility="Collapsed">
-                                <TextBox.InputBindings>
-                                    <KeyBinding Command="{Binding Path=SignIn}" CommandParameter="{Binding ElementName=passwordTxt}" Key="Enter" />
-                                </TextBox.InputBindings>
-                            </TextBox>
-
-                        </Grid>
-
-                    </Border>
-
-                    <WrapPanel>
-                        <CheckBox Margin="70 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black" FontWeight="Bold" FontSize="14" Content="Show password" x:Name="showPassword" Unchecked="ShowPassword_Unchecked" Checked="ShowPassword_Checked"/>
-                        <!--Unchecked="ShowPassword_Unchecked" Checked="ShowPassword_Checked"/>-->
-                        <TextBlock Text="Email or password is incorrect" VerticalAlignment="Center" HorizontalAlignment="Right" Background="White" FontFamily="Times New Roman" FontSize="20" 
-                               Foreground="Red" Margin="70 0" Visibility="{Binding LoginErrorVisibility}"/>
-                        <!--<Button  Style="{StaticResource LinkButton}" Command="{Binding Path=ForgotPassword}" Content="Forget password?" FontFamily="Times New Roman" FontSize="20"  Margin="10,0,0,10"/>-->
-                    </WrapPanel>
-
-                    <Button Content="Sign In" Click="Button_Click" Command="{Binding SignIn}" CommandParameter="{Binding ElementName=passwordTxt}" Style="{StaticResource mainbutton}"/>
-
+                    <Button Style="{StaticResource buttonCircle}">
+                        <Image Source="\Images\linkedin.png" Width="20" Height="20"/>
+                        <!--facebook sehifesine yonelt-->
+                    </Button>
                 </StackPanel>
 
-            </Border>
-            
+                <TextBlock Text="or use your email info :" Style="{StaticResource normalText}" Foreground="#878787" Margin="0 0 0 10"/>
+
+                <Border BorderThickness="1" BorderBrush="#acb0af" Margin="70 7 70 10" CornerRadius="5">
+                    <Grid Margin="7 9">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="\Images\email.png" Height="20"/>
+                        <TextBox x:Name="txtEmail" Text="{Binding Email, Mode=TwoWay}"  Style="{StaticResource textBox}">
+                            <TextBox.InputBindings>
+                                <KeyBinding Command="{Binding Path=SignIn}" CommandParameter="{Binding ElementName=passwordTxt}" Key="Enter" />
+                            </TextBox.InputBindings>
+                        </TextBox>
+                    </Grid>
+                </Border>
+
+
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+
+                <Border BorderThickness="1" BorderBrush="#acb0af" Margin="70 7 70 10" CornerRadius="5">
+                    <Grid Margin="7 9">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="\Images\lock.png" Height="20"/>
+                        <PasswordBox x:Name="passwordTxt"  Style="{StaticResource textBox}" PasswordChar="*">
+                            <PasswordBox.InputBindings>
+                                <KeyBinding Command="{Binding Path=SignIn}" CommandParameter="{Binding ElementName=passwordTxt}" Key="Enter" />
+                            </PasswordBox.InputBindings>
+                        </PasswordBox>
+                        <TextBox x:Name="passwordTxtBox" Style="{StaticResource textBox}" Visibility="Collapsed">
+                            <TextBox.InputBindings>
+                                <KeyBinding Command="{Binding Path=SignIn}" CommandParameter="{Binding ElementName=passwordTxt}" Key="Enter" />
+                            </TextBox.InputBindings>
+                        </TextBox>
+
+                    </Grid>
+
+                </Border>
+
+                <WrapPanel>
+                    <CheckBox Margin="70 0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black" FontWeight="Bold" FontSize="14" Content="Show password" x:Name="showPassword" Unchecked="ShowPassword_Unchecked" Checked="ShowPassword_Checked"/>
+                    <!--Unchecked="ShowPassword_Unchecked" Checked="ShowPassword_Checked"/>-->
+                    <TextBlock Text="Email or password is incorrect" VerticalAlignment="Center" HorizontalAlignment="Right" Background="White" FontFamily="Times New Roman" FontSize="20" 
+                               Foreground="Red" Margin="70 0" Visibility="{Binding LoginErrorVisibility}"/>
+                    <!--<Button  Style="{StaticResource LinkButton}" Command="{Binding Path=ForgotPassword}" Content="Forget password?" FontFamily="Times New Roman" FontSize="20"  Margin="10,0,0,10"/>-->
+                </WrapPanel>
+                <Button Style="{StaticResource LinkButton }" Content="Forgot Password" Command="{Binding ForgotPassword}" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center" Height="25" FontFamily="Times New Roman" FontSize="20"></Button>
+                <Button Content="Sign In" Click="Button_Click" Command="{Binding SignIn}" CommandParameter="{Binding ElementName=passwordTxt}" Style="{StaticResource mainbutton}"/>
+
+            </StackPanel>
+
+        </Border>
+        <Border Background="#ffffff" Grid.Column="1"  CornerRadius="0 10 10 0" Visibility="{Binding ThirdStackPanelVisibility}">
+            <StackPanel Name="ThirdStackPanel" >
+                <Button HorizontalAlignment="Right" VerticalAlignment="top" Width="30" Height="30" Background="Transparent" BorderThickness="0" Click="OnCloseClicked">
+                    <materialDesign:PackIcon  Kind="Close" Width="30" Height="30" Foreground="LightSeaGreen"/>
+                </Button>
+
+                <Border BorderThickness="1" BorderBrush="#acb0af" Margin="70 7 70 10"  CornerRadius="5" Height="92">
+                    <Grid Margin="7 9">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Margin="10" Text="Enter new password"></TextBlock>
+                        <companents:CustomPasswordBox Password="{Binding Path=NewPassword,UpdateSourceTrigger=PropertyChanged}" Width="200" Height="50">
+                        </companents:CustomPasswordBox>
+                        <TextBlock Margin="10" Text="Confirm password"></TextBlock>
+                        <companents:CustomPasswordBox Password="{Binding Path=PasswordToConfirm,UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Text="Passwords are not the same" Visibility="{Binding TextInfoVisibility}" Foreground="Red" >
+                        </TextBlock>
+                        <Button Width="100" Height="20" Margin="20" Command="{Binding SaveChangedPassword}" IsEnabled="{Binding IsChangeEnabled,Mode=TwoWay}" Content="Change">
+
+                        </Button>
+
+                    </Grid>
+
+                </Border>
+                <Button Content="Change Password" Style="{StaticResource mainbutton}" Command="{Binding ChangePassword}">
+
+                </Button>
+            </StackPanel>
+        </Border>
+
+
+
+
     </Grid>
 
 </Window>

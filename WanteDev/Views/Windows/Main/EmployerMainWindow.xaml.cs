@@ -29,6 +29,7 @@ namespace WanteDev.Views.Windows.Main
         private void OnCloseClicked(object sender, EventArgs e)
         {
             this.Close();
+            App.Current.Shutdown(); 
         }
 
     }
