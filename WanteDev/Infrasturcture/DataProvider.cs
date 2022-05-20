@@ -48,5 +48,21 @@ namespace WanteDev.Infrasturcture
             }
             return languages;
         }
+
+        public List<DeveloperModel> GetDevelopersForSearch()
+        {
+            var entities = Kernel.DB.DeveloperRepository.GetAllSearch();
+            var developers = new List<DeveloperModel>();
+            DeveloperMapper mapper = new DeveloperMapper();
+            for (int i = 0; i < entities.Count; i++)
+            {
+                var developer = entities[i];
+                var developerModel = mapper.Map(developer);
+                developerModel.NO = i + 1;
+                developers.Add(developerModel);
+            }
+            return developers;
+        }
+
     }
 }

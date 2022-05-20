@@ -75,6 +75,7 @@ namespace WanteDev.Commands.Auth
                 employerMainWindowViewModel.CurrentEmployer = new EmployerMapper().Map(Kernel.CurrentEmployer);
                 employerMainWindowViewModel.CenterGrid = employerMainWindow.grdCenter;
                 employerMainWindowViewModel.AllProgrammingLanguages = _viewModel.DataProvider.GetProgrammingLanguages();
+                employerMainWindowViewModel.AllDevelopers = new ObservableCollection<DeveloperModel>(_viewModel.DataProvider.GetDevelopersForSearch());
                 employerMainWindow.DataContext = employerMainWindowViewModel;
                 employerMainWindow.Show();
                //

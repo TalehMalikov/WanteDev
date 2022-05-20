@@ -14,5 +14,6 @@ namespace WantedDev.Core.DataAccess.Abstraction
         void AddDeveloper(Developer developer);
         List<Developer> GetAllDevelopers();
         List<Developer> GetAllAsUser();
+        List<Developer> GetAllSearch();
     }
 }

@@ -29,7 +29,9 @@ namespace WanteDev.Commands.Main
             employerMainWindowViewModel.CurrentEmployer = new EmployerMapper().Map(Kernel.CurrentEmployer);
             employerMainWindowViewModel.CenterGrid = employerMainWindow.grdCenter;
             employerMainWindowViewModel.AllProgrammingLanguages =_viewModel.DataProvider.GetProgrammingLanguages();
+            employerMainWindowViewModel.AllDevelopers = new ObservableCollection<DeveloperModel>(_viewModel.DataProvider.GetDevelopersForSearch());
             employerMainWindow.DataContext = employerMainWindowViewModel;
+            _viewModel.Window.Close();
             employerMainWindow.Show();
         }
     }

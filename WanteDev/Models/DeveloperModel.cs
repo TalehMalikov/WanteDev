@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -23,23 +24,33 @@ namespace WanteDev.Models
         public string ApartmentName { get; set; }
         public string Position { get; set; }
         public string Bio { get; set; }
-        public byte[] Photo 
-        { 
+
+        private byte[]? photo;
+        public byte[] Photo
+        {
             get
             {
-                return Photo;
+                return photo;
+                // TODO : File dersindeki kimi 10000 - 10000 oxumaq
             }
             set
             {
+                photo = value;
                 Image = LoadBitmapImage(value);
             }
         }
-        public BitmapImage Image { get; set; }
+        private BitmapImage image;
 
-        public byte[] CV { get; set; }
-        public override object Clone()
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        public BitmapImage Image
         {
-            throw new NotImplementedException();
+            get => image;
+            set
+            {
+                image = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Image)));
+            }
         }
 
         private static BitmapImage LoadBitmapImage(byte[] imageData)
@@ -53,11 +64,28 @@ namespace WanteDev.Models
                 image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
                 image.CacheOption = BitmapCacheOption.OnLoad;
                 image.UriSource = null;
+                //int totalCount = 0;
+                //int readCount = 10000;
+                //while (totalCount< imageData.Length)
+                //{
+                //    if(imageData.Length < 10000)
+                //    {
+                //        readCount = imageData.Length - totalCount;
+                //    }
+                //    mem.Read(imageData,totalCount,readCount);
+                //    totalCount+=readCount;
+                //}
                 image.StreamSource = mem;
                 image.EndInit();
             }
             image.Freeze();
             return image;
+        }
+
+        public byte[] CV { get; set; }
+        public override object Clone()
+        {
+            throw new NotImplementedException();
         }
 
         public override bool IsValid(out string message)

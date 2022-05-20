@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using WanteDev.Commands.Auth;
 using WanteDev.Commands.DeveloperCommands;
 using WanteDev.Core.DataAccess.Abstraction;
 using WanteDev.Models;
@@ -20,6 +21,8 @@ namespace WanteDev.ViewModels.Windows.Login
         public DeveloperRegistrationWindowViewModel(Window window, IUnitOfWork db) : base(window, db)
         {
         }
+        public ICommand Add => new SaveDeveloperCommand(this);
+
         public ICommand UploadPhoto => new UploadPhoto(this);
 
         public ICommand UploadCv => new UploadCv(this);

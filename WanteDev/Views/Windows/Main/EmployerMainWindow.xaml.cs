@@ -31,5 +31,26 @@ namespace WanteDev.Views.Windows.Main
             this.Close();
         }
 
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox? textbox = sender as TextBox;
+            if (textbox?.Text == "Firstname")
+                textbox_Firstname.Text = "";
+            else if (textbox?.Text == "Lastname")
+                textbox_Lastname.Text = "";
+            else if (textbox?.Text == "Email")
+                textbox_Email.Text = "";
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox? textbox = sender as TextBox;
+            if (textbox?.Text == "" && textbox?.Name== "textbox_Firstname")
+                textbox_Firstname.Text = "Firstname";
+            else if (textbox?.Text == "" && textbox?.Name == "textbox_Lastname")
+                textbox_Lastname.Text = "Lastname";
+            else if (textbox?.Text == "" && textbox?.Name == "textbox_Email")
+                textbox_Email.Text = "Email";
+        }
     }
 }

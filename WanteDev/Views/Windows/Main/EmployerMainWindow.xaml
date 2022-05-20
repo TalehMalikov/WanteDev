@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WanteDev.Views.Windows.Main"
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf" 
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:z=" Windows.UI.Xaml.Controls"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" BorderThickness="5" BorderBrush="Purple" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
@@ -59,20 +60,48 @@
         <Border Background="White" Grid.Column="1">
             <Border Height="30"  VerticalAlignment="Center" >
                 <WrapPanel>
-                    <Image Source="\Images\search.png" Height="20" Width="20" Margin="5 5 5 5" />
                     <WrapPanel>
-
-                        <TextBox Width="130" Height="30" HorizontalAlignment="Left">
-
+                        <TextBox x:Name="textbox_Firstname" Width="130" FontSize="16" Height="30" HorizontalAlignment="Left" Text="{Binding CurrentValue.FirstName,Mode=TwoWay}" Style="{StaticResource MyWaterMarkStyle}" Tag="First Name"  materialDesign:HintAssist.Hint="Enter Username / Email" Foreground="black" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </TextBox.Resources>
                         </TextBox>
-                        <TextBox Width="130" HorizontalAlignment="Left">
-
+                        <TextBox x:Name="textbox_Lastname" Margin="5 0" Width="130" FontSize="16" Height="30" HorizontalAlignment="Left" Text="{Binding CurrentValue.FirstName,Mode=TwoWay}" Style="{StaticResource MyWaterMarkStyle}" Tag="Last Name"  materialDesign:HintAssist.Hint="Enter Username / Email" Foreground="black" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </TextBox.Resources>
                         </TextBox>
-                        <TextBox Width="130" HorizontalAlignment="Left">
-
+                        <TextBox x:Name="textbox_Email" Width="130" FontSize="16" Height="30" HorizontalAlignment="Left" Text="{Binding CurrentValue.FirstName,Mode=TwoWay}" Style="{StaticResource MyWaterMarkStyle}" Tag="Email"  materialDesign:HintAssist.Hint="Enter Username / Email" Foreground="black" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="10"/>
+                                </Style>
+                            </TextBox.Resources>
                         </TextBox>
+
+                        <!--#region NewRegion -->
+                        <!--<DataGrid>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Width="130" Header="FirstName" />
+                                <DataGridTextColumn Width="130" Header="Lastname"/>
+                                <DataGridTextColumn Width="130" Header="Experience"/>
+                            </DataGrid.Columns>
+                        </DataGrid>-->
+                        <!--#endregion-->
+
+                        <!--<Grid>
+                            <syncfusion:SfDataGrid  x:Name="dataGrid" Width="560" Height="30" ItemsSource="{Binding AllDevelopers}" ColumnSizer="Star" AllowSorting="True" AllowTriStateSorting="True" HideEmptyGridViewDefinition="True"/>
+                        </Grid>-->
                     </WrapPanel>
-
+                    <Image Source="\Images\search.png" Cursor="Hand"  Height="20" Width="20" Margin="5 5 5 5">
+                        <Image.InputBindings>
+                            <MouseBinding Gesture="LeftClick" Command="{Binding Search,Mode=OneTime}"/>
+                        </Image.InputBindings>
+                    </Image>
                 </WrapPanel>
             </Border>
         </Border>

@@ -37,7 +37,7 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                     cmd.Parameters.AddWithValue("@apartmentname", value.ApartmentName);
                     cmd.Parameters.AddWithValue("@position", value.Position);
                     cmd.Parameters.AddWithValue("@bio", value.Bio);
-                    cmd.Parameters.AddWithValue("@experience", short.Parse(value.Experience));
+                    cmd.Parameters.AddWithValue("@experience", value.Experience);
                     cmd.Parameters.AddWithValue("@additionalskills", value.AdditionalSkills);
                     cmd.Parameters.AddWithValue("@photo", value.Photo);
                     cmd.Parameters.AddWithValue("@CV", value.CV);
@@ -183,6 +183,30 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                 }
             }
         }
+
+        public List<Developer> GetAllSearch()
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionstring))
+            {
+                connection.Open();
+                string cmdText = "select * from Developers where IsDeleted=0";
+
+                List<Developer> developers = new List<Developer>();
+                using (SqlCommand cmd = new SqlCommand(cmdText, connection))
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    Developer employee = null;
+
+                    while (reader.Read())
+                    {
+                        employee = GetFromReaderAsDeveloperSearch(reader);
+                        developers.Add(employee);
+                    }
+                    return developers;
+                }
+            }
+        }
+
         public List<Developer> GetAllDevelopers()
         {
             using (SqlConnection connection = new SqlConnection(_connectionstring))
@@ -273,12 +297,27 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                 ApartmentName=reader.Get<string>(nameof(Developer.ApartmentName)),
                 Position=reader.Get<string>(nameof(Developer.Position)),
                 Bio=reader.Get<string>(nameof(Developer.Bio)),
-                Experience=reader.Get<string>(nameof(Developer.Experience)),
+                Experience=reader.Get<byte>(nameof(Developer.Experience)),
                 AdditionalSkills=reader.Get<string>(nameof(Developer.AdditionalSkills)),
                 Photo=reader.Get<byte[]>(nameof(Developer.Photo)),
                 CV=reader.Get<byte[]>(nameof(Developer.CV))
             };
         }
+
+        private Developer GetFromReaderAsDeveloperSearch(SqlDataReader reader)
+        {
+            return new Developer()
+            {
+                Id = reader.Get<int>(nameof(Developer.Id)),
+                FirstName = reader.Get<string>(nameof(Developer.FirstName)),
+                LastName = reader.Get<string>(nameof(Developer.LastName)),
+                Email = reader.Get<string>(nameof(Developer.Email)),
+                Address = reader.Get<string>(nameof(Developer.Address)),
+                Phone = reader.Get<string>(nameof(Developer.Phone)),
+                //Experience = reader.Get<byte>(nameof(Developer.Experience)),
+            };
+        }
+
         private Developer GetFromReaderDeveloper(SqlDataReader reader)
         {
             return new Developer()
