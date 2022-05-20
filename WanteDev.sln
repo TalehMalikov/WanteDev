@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32228.343
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WanteDev.Core", "WanteDev.Core\WanteDev.Core.csproj", "{B6C0A71D-6159-417B-B823-32E26E8B6BDA}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntroToStylingAndTemplating", "IntroToStylingAndTemplating\IntroToStylingAndTemplating.csproj", "{9A0D825F-45FB-439C-A57D-E206B4918C95}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoringImageInDB", "StoringImageInDB\StoringImageInDB.csproj", "{0923A6E9-FA13-4695-8848-ED8EF66490B2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailService", "..\muradazimzada321\E-Service.AdminPanel\EmailService\EmailService.csproj", "{787E5955-DAE6-4CF9-82D6-49B8A53EBE07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,14 @@ Global
 		{0923A6E9-FA13-4695-8848-ED8EF66490B2}.Release|Any CPU.ActiveCfg = Release|x86
 		{0923A6E9-FA13-4695-8848-ED8EF66490B2}.Release|x86.ActiveCfg = Release|x86
 		{0923A6E9-FA13-4695-8848-ED8EF66490B2}.Release|x86.Build.0 = Release|x86
+		{787E5955-DAE6-4CF9-82D6-49B8A53EBE07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{787E5955-DAE6-4CF9-82D6-49B8A53EBE07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{787E5955-DAE6-4CF9-82D6-49B8A53EBE07}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{787E5955-DAE6-4CF9-82D6-49B8A53EBE07}.Debug|x86.Build.0 = Debug|Any CPU
+		{787E5955-DAE6-4CF9-82D6-49B8A53EBE07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{787E5955-DAE6-4CF9-82D6-49B8A53EBE07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{787E5955-DAE6-4CF9-82D6-49B8A53EBE07}.Release|x86.ActiveCfg = Release|Any CPU
+		{787E5955-DAE6-4CF9-82D6-49B8A53EBE07}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

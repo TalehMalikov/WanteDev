@@ -47,6 +47,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\muradazimzada321\E-Service.AdminPanel\EmailService\EmailService.csproj" />
     <ProjectReference Include="..\WanteDev.Core\WanteDev.Core.csproj" />
   </ItemGroup>
 
@@ -63,6 +64,25 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\user.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\ChangePassword\Employer\ChangePasswordInProfileWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Views\ChangePassword\Employer\ChangePasswordInProfileWindow.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Commands\Auth\ProfilesChangePassword\Developer\" />
+    <Folder Include="ViewModels\ChangePassword\Developer\" />
+    <Folder Include="Views\ChangePassword\Developer\" />
   </ItemGroup>
 
 </Project>

@@ -30,8 +30,9 @@ namespace WanteDev.Commands.ControlCommands.Profiles.Employer
             {
                 UserDefaultFiller.Fill(_viewModel.CurrentValue);
                 EmployerMapper mapper = new EmployerMapper();
+
                 var employer = mapper.Map(_viewModel.CurrentValue);
-             //   PasswordBox password = param as PasswordBox;
+                //PasswordBox password = param as PasswordBox;
                 //_viewModel.CurrentValue.PasswordHash = password?.Password;
                 employer.ModifiedDate = DateTime.Now;
                 if (dataValidator.IsDeveloperValid(_viewModel.CurrentValue, out string message) == false)
