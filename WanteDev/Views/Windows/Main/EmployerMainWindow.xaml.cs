@@ -32,26 +32,33 @@ namespace WanteDev.Views.Windows.Main
             App.Current.Shutdown(); 
         }
 
-        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        private void ComboBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            TextBox? textbox = sender as TextBox;
-            if (textbox?.Text == "Firstname")
-                textbox_Firstname.Text = "";
-            else if (textbox?.Text == "Lastname")
-                textbox_Lastname.Text = "";
-            else if (textbox?.Text == "Email")
-                textbox_Email.Text = "";
-        }
-
-        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            TextBox? textbox = sender as TextBox;
-            if (textbox?.Text == "" && textbox?.Name== "textbox_Firstname")
-                textbox_Firstname.Text = "Firstname";
-            else if (textbox?.Text == "" && textbox?.Name == "textbox_Lastname")
-                textbox_Lastname.Text = "Lastname";
-            else if (textbox?.Text == "" && textbox?.Name == "textbox_Email")
-                textbox_Email.Text = "Email";
+            ComboBox? combobox = sender as ComboBox;
+            if (combobox?.Name == "cmb_Backend")
+                cmb_Backend.Text = "Backend";
+            else if (combobox?.Name == "cmb_Frontend")
+                cmb_Frontend.Text = "Frontend";
+            else if (combobox?.Name == "cmb_MobileDevelopment")
+                cmb_MobileDevelopment.Text = "Mobile Development";
+            else if (combobox?.Name == "cmb_Fullstack")
+                cmb_Fullstack.Text = "Fullstack";
+            else if (combobox?.Name == "cmb_Cloud")
+                cmb_Cloud.Text = "Cloud";
+            else if (combobox?.Name == "cmb_CyberSecurity")
+                cmb_CyberSecurity.Text = "Cyber Security";
+            else if (combobox?.Name == "cmb_DBA")
+                cmb_DBA.Text = "DBA";
+            else if (combobox?.Name == "cmb_DataScience")
+                cmb_DataScience.Text = "Data Science";
+            else if (combobox?.Name == "cmb_GameDevelopment")
+                cmb_GameDevelopment.Text = "Game Development";
+            else if (combobox?.Name == "cmb_MachineLearning")
+                cmb_MachineLearning.Text = "Machine Learning";
+            else if (combobox?.Name == "cmb_NetworkAdminstration")
+                cmb_NetworkAdminstration.Text = "Network Administration";
+            else if (combobox?.Name == "cmb_UXUI")
+                cmb_UXUI.Text = "UX/UI";
         }
     }
 }

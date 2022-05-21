@@ -61,21 +61,21 @@
             <Border Height="30"  VerticalAlignment="Center" >
                 <WrapPanel>
                     <WrapPanel>
-                        <TextBox x:Name="textbox_Firstname" Width="130" FontSize="16" Height="30" HorizontalAlignment="Left" Text="{Binding CurrentValue.FirstName,Mode=TwoWay}" Style="{StaticResource MyWaterMarkStyle}" Tag="First Name"  materialDesign:HintAssist.Hint="Enter Username / Email" Foreground="black" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448">
+                        <TextBox  Width="130" FontSize="16" Height="30" HorizontalAlignment="Left"  Style="{StaticResource MyWaterMarkStyle}" Tag="First Name" Foreground="black" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448">
                             <TextBox.Resources>
                                 <Style TargetType="{x:Type Border}">
                                     <Setter Property="CornerRadius" Value="10"/>
                                 </Style>
                             </TextBox.Resources>
                         </TextBox>
-                        <TextBox x:Name="textbox_Lastname" Margin="5 0" Width="130" FontSize="16" Height="30" HorizontalAlignment="Left" Text="{Binding CurrentValue.FirstName,Mode=TwoWay}" Style="{StaticResource MyWaterMarkStyle}" Tag="Last Name"  materialDesign:HintAssist.Hint="Enter Username / Email" Foreground="black" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448">
+                        <TextBox Margin="5 0" Width="130" FontSize="16" Height="30" HorizontalAlignment="Left"  Style="{StaticResource MyWaterMarkStyle}" Tag="Last Name"  materialDesign:HintAssist.Hint="Enter Username / Email" Foreground="black" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448">
                             <TextBox.Resources>
                                 <Style TargetType="{x:Type Border}">
                                     <Setter Property="CornerRadius" Value="10"/>
                                 </Style>
                             </TextBox.Resources>
                         </TextBox>
-                        <TextBox x:Name="textbox_Email" Width="130" FontSize="16" Height="30" HorizontalAlignment="Left" Text="{Binding CurrentValue.FirstName,Mode=TwoWay}" Style="{StaticResource MyWaterMarkStyle}" Tag="Email"  materialDesign:HintAssist.Hint="Enter Username / Email" Foreground="black" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448">
+                        <TextBox  Width="130" FontSize="16" Height="30" HorizontalAlignment="Left"  Style="{StaticResource MyWaterMarkStyle}" Tag="Email"  materialDesign:HintAssist.Hint="Enter Username / Email" Foreground="black" BorderBrush="White" CaretBrush="#FFD94448" SelectionBrush="#FFD94448">
                             <TextBox.Resources>
                                 <Style TargetType="{x:Type Border}">
                                     <Setter Property="CornerRadius" Value="10"/>
@@ -111,63 +111,35 @@
             <Grid  Name="grdCenter">
                 <Border Grid.Row="1" Grid.Column="0" Background="MediumPurple">
 
-                    <ScrollViewer Width="330" HorizontalAlignment="Left" Name="ScrollViewer1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" 
+                    <ScrollViewer Width="330"  HorizontalAlignment="Left" Name="ScrollViewer1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" 
                          CanContentScroll="True">
                         <StackPanel Background="MediumPurple">
-                            <Expander Name="ExpanderControl"   
-                                      HorizontalAlignment="Left" Background="LavenderBlush"   
-                                      ExpandDirection="Down"  IsExpanded="False" Width="313"  
-                                      FontSize="20" FontWeight="Bold" Foreground="Purple" >
-                                <Expander.Header>
-                                    <BulletDecorator>
-                                        <BulletDecorator.Bullet>
-                                            <Image Width="50" />
-                                        </BulletDecorator.Bullet>
-                                        <TextBlock Margin="110,0,0,0">Info</TextBlock>
-                                    </BulletDecorator>
-                                </Expander.Header>
-                                <Expander.Content>
-                                    <ScrollViewer Width="310" Height="100" VerticalAlignment="Top" >
-                                        <TextBlock TextWrapping="Wrap" FontSize="14" FontWeight="Light" Foreground="Black">  
-                                            This is an Expander control. Within this control, all contents will be wrapped.  
-                                            At run-time, you may expand or collapse this control. Type more text here to be typed.  
-                                            Jump around and hype. This is an Expander control. Within this control, all contents will be wrapped.  
-                                            At run-time, you may expand or collapse this control. Type more text here to be typed.  
-                                            Jump around and hype.
-                                        </TextBlock>
-                                    </ScrollViewer>
-                                </Expander.Content>
-                            </Expander>
-                            <!--ToggleButton Width="330" HorizontalAlignment="Left" Background="Azure" Height="60">
-                                <DockPanel Width="180">
-                                    <Label Content="Back-end" Foreground="MediumPurple" HorizontalAlignment="Center" FontWeight="DemiBold" FontSize="30" x:Name="lbl_FarmSummary" />
-                                </DockPanel>
-                            </ToggleButton-->
-                            <ComboBox FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Backend"  Foreground="Purple" BorderThickness="4" BorderBrush="Purple" FontSize="20" IsEditable="True" ItemsSource="{Binding BackEnd}" SelectedItem="{Binding SelectedProgrammingLanguage}" SelectedValue="{Binding Path=SelectedProgrammingLanguage.Id}" SelectedValuePath="Id" DisplayMemberPath="Name" Width="313" HorizontalAlignment="Left" Background="Azure" Height="60">
+
+                            <Button Height="40" Content="Search" Command="{Binding OpenDeveloperList}" CommandParameter="{Binding SelectedProgrammingLanguage}"  FontSize="20" FontWeight="Bold"></Button>
+
+                            <ComboBox x:Name="cmb_Backend" LostFocus="ComboBox_LostFocus" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Backend"  Foreground="Purple" BorderThickness="4" BorderBrush="Purple" FontSize="20" IsEditable="True" IsReadOnly="True" ItemsSource="{Binding BackEnd}" SelectedItem="{Binding SelectedProgrammingLanguage}" SelectedValue="{Binding Path=SelectedProgrammingLanguage.Id}" SelectedValuePath="Id" DisplayMemberPath="Name" Width="313" HorizontalAlignment="Left" Background="Azure" Height="60">
                             </ComboBox>
-                            <ComboBox FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Frontend"  Foreground="Purple" BorderThickness="4" BorderBrush="Purple" FontSize="20" IsEditable="True" ItemsSource="{Binding FrontEnd}" SelectedItem="{Binding SelectedProgrammingLanguage}" SelectedValue="{Binding Path=SelectedProgrammingLanguage.Id}" SelectedValuePath="Id" DisplayMemberPath="Name" Width="313" HorizontalAlignment="Left" Background="Azure" Height="60">
+                            <ComboBox x:Name="cmb_Frontend" LostFocus="ComboBox_LostFocus" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Frontend"  Foreground="Purple" BorderThickness="4" BorderBrush="Purple" FontSize="20" IsEditable="True" IsReadOnly="True" ItemsSource="{Binding FrontEnd}" SelectedItem="{Binding SelectedProgrammingLanguage}" SelectedValue="{Binding Path=SelectedProgrammingLanguage.Id}" SelectedValuePath="Id" DisplayMemberPath="Name" Width="313" HorizontalAlignment="Left" Background="Azure" Height="60">
                             </ComboBox>
-                            <ComboBox FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Mobile Development"  Foreground="Purple" BorderThickness="4" BorderBrush="Purple" FontSize="20" IsEditable="True" ItemsSource="{Binding MobileDevelopment}" SelectedItem="{Binding SelectedProgrammingLanguage}" SelectedValue="{Binding Path=SelectedProgrammingLanguage.Id}" SelectedValuePath="Id" DisplayMemberPath="Name" Width="313" HorizontalAlignment="Left" Background="Azure" Height="60">
+                            <ComboBox x:Name="cmb_MobileDevelopment" LostFocus="ComboBox_LostFocus" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Mobile Development"  Foreground="Purple" BorderThickness="4" BorderBrush="Purple" FontSize="20" IsEditable="True" IsReadOnly="True"  ItemsSource="{Binding MobileDevelopment}" SelectedItem="{Binding SelectedProgrammingLanguage}" SelectedValue="{Binding Path=SelectedProgrammingLanguage.Id}" SelectedValuePath="Id" DisplayMemberPath="Name" Width="313" HorizontalAlignment="Left" Background="Azure" Height="60">
                             </ComboBox>
-                            <ComboBox FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Full Stack"  Foreground="Purple" BorderThickness="4" BorderBrush="Purple" FontSize="20" IsEditable="True" ItemsSource="{Binding FullStack}" SelectedItem="{Binding SelectedProgrammingLanguage}" SelectedValue="{Binding Path=SelectedProgrammingLanguage.Id}" SelectedValuePath="Id" DisplayMemberPath="Name" Width="313" HorizontalAlignment="Left" Background="Azure" Height="60">
+                            <ComboBox x:Name="cmb_Fullstack" LostFocus="ComboBox_LostFocus" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Full Stack"  Foreground="Purple" BorderThickness="4" BorderBrush="Purple" FontSize="20" IsEditable="True" IsReadOnly="True"  ItemsSource="{Binding FullStack}" SelectedItem="{Binding SelectedProgrammingLanguage}" SelectedValue="{Binding Path=SelectedProgrammingLanguage.Id}" SelectedValuePath="Id" DisplayMemberPath="Name" Width="313" HorizontalAlignment="Left" Background="Azure" Height="60">
                             </ComboBox>
-                            <ComboBox FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Cloud"  Foreground="Purple" BorderThickness="4" BorderBrush="Purple" FontSize="20" IsEditable="True" ItemsSource="{Binding Cloud}" SelectedItem="{Binding SelectedProgrammingLanguage}" SelectedValue="{Binding Path=SelectedProgrammingLanguage.Id}" SelectedValuePath="Id" DisplayMemberPath="Name" Width="313" HorizontalAlignment="Left" Background="Azure" Height="60">
+                            <ComboBox x:Name="cmb_Cloud" LostFocus="ComboBox_LostFocus" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Cloud"  Foreground="Purple" BorderThickness="4" BorderBrush="Purple" FontSize="20" IsEditable="True" IsReadOnly="True"  ItemsSource="{Binding Cloud}" SelectedItem="{Binding SelectedProgrammingLanguage}" SelectedValue="{Binding Path=SelectedProgrammingLanguage.Id}" SelectedValuePath="Id" DisplayMemberPath="Name" Width="313" HorizontalAlignment="Left" Background="Azure" Height="60">
                             </ComboBox>
-                            <ComboBox FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Cybersecurity"  Foreground="Purple" BorderThickness="4" BorderBrush="Purple" FontSize="20" IsEditable="True" ItemsSource="{Binding Cybersecurity}" SelectedItem="{Binding SelectedProgrammingLanguage}" SelectedValue="{Binding Path=SelectedProgrammingLanguage.Id}" SelectedValuePath="Id" DisplayMemberPath="Name" Width="313" HorizontalAlignment="Left" Background="Azure" Height="60">
+                            <ComboBox x:Name="cmb_CyberSecurity" LostFocus="ComboBox_LostFocus" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Cybersecurity"  Foreground="Purple" BorderThickness="4" BorderBrush="Purple" FontSize="20" IsEditable="True" IsReadOnly="True"  ItemsSource="{Binding Cybersecurity}" SelectedItem="{Binding SelectedProgrammingLanguage}" SelectedValue="{Binding Path=SelectedProgrammingLanguage.Id}" SelectedValuePath="Id" DisplayMemberPath="Name" Width="313" HorizontalAlignment="Left" Background="Azure" Height="60">
                             </ComboBox>
-                            <ComboBox FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="DBA"  Foreground="Purple" BorderThickness="4" BorderBrush="Purple" FontSize="20" IsEditable="True" ItemsSource="{Binding DBA}" SelectedItem="{Binding SelectedProgrammingLanguage}" SelectedValue="{Binding Path=SelectedProgrammingLanguage.Id}" SelectedValuePath="Id" DisplayMemberPath="Name" Width="313" HorizontalAlignment="Left" Background="Azure" Height="60">
+                            <ComboBox x:Name="cmb_DBA" LostFocus="ComboBox_LostFocus" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="DBA"  Foreground="Purple" BorderThickness="4" BorderBrush="Purple" FontSize="20" IsEditable="True" ItemsSource="{Binding DBA}" SelectedItem="{Binding SelectedProgrammingLanguage}" SelectedValue="{Binding Path=SelectedProgrammingLanguage.Id}" SelectedValuePath="Id" DisplayMemberPath="Name" Width="313" HorizontalAlignment="Left" Background="Azure" Height="60">
                             </ComboBox>
-                            <ComboBox FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Network Adminstration"  Foreground="Purple" BorderThickness="4" BorderBrush="Purple" FontSize="20" IsEditable="True" ItemsSource="{Binding NetworkAdminstration}" SelectedItem="{Binding SelectedProgrammingLanguage}" SelectedValue="{Binding Path=SelectedProgrammingLanguage.Id}" SelectedValuePath="Id" DisplayMemberPath="Name" Width="313" HorizontalAlignment="Left" Background="Azure" Height="60">
+                            <ComboBox x:Name="cmb_NetworkAdminstration" LostFocus="ComboBox_LostFocus" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Network Adminstration"  Foreground="Purple" BorderThickness="4" BorderBrush="Purple" FontSize="20" IsEditable="True"  ItemsSource="{Binding NetworkAdminstration}" SelectedItem="{Binding SelectedProgrammingLanguage}" SelectedValue="{Binding Path=SelectedProgrammingLanguage.Id}" SelectedValuePath="Id" DisplayMemberPath="Name" Width="313" HorizontalAlignment="Left" Background="Azure" Height="60">
                             </ComboBox>
-                            <ComboBox FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Machine Learning"  Foreground="Purple" BorderThickness="4" BorderBrush="Purple" FontSize="20" IsEditable="True" ItemsSource="{Binding MachineLearning}" SelectedItem="{Binding SelectedProgrammingLanguage}" SelectedValue="{Binding Path=SelectedProgrammingLanguage.Id}" SelectedValuePath="Id" DisplayMemberPath="Name" Width="313" HorizontalAlignment="Left" Background="Azure" Height="60">
+                            <ComboBox x:Name="cmb_MachineLearning" LostFocus="ComboBox_LostFocus" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Machine Learning"  Foreground="Purple" BorderThickness="4" BorderBrush="Purple" FontSize="20" IsEditable="True" ItemsSource="{Binding MachineLearning}" SelectedItem="{Binding SelectedProgrammingLanguage}" SelectedValue="{Binding Path=SelectedProgrammingLanguage.Id}" SelectedValuePath="Id" DisplayMemberPath="Name" Width="313" HorizontalAlignment="Left" Background="Azure" Height="60">
                             </ComboBox>
-                            <ComboBox FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Data Science"  Foreground="Purple" BorderThickness="4" BorderBrush="Purple" FontSize="20" IsEditable="True" ItemsSource="{Binding DataScience}" SelectedItem="{Binding SelectedProgrammingLanguage}" SelectedValue="{Binding Path=SelectedProgrammingLanguage.Id}" SelectedValuePath="Id" DisplayMemberPath="Name" Width="313" HorizontalAlignment="Left" Background="Azure" Height="60">
+                            <ComboBox x:Name="cmb_DataScience" LostFocus="ComboBox_LostFocus" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Data Science"  Foreground="Purple" BorderThickness="4" BorderBrush="Purple" FontSize="20" IsEditable="True" ItemsSource="{Binding DataScience}" SelectedItem="{Binding SelectedProgrammingLanguage}" SelectedValue="{Binding Path=SelectedProgrammingLanguage.Id}" SelectedValuePath="Id" DisplayMemberPath="Name" Width="313" HorizontalAlignment="Left" Background="Azure" Height="60">
                             </ComboBox>
-                            <ComboBox FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="UX/UI"  Foreground="Purple" BorderThickness="4" BorderBrush="Purple" FontSize="20" IsEditable="True" ItemsSource="{Binding UXUI}" SelectedItem="{Binding SelectedProgrammingLanguage}" SelectedValue="{Binding Path=SelectedProgrammingLanguage.Id}" SelectedValuePath="Id" DisplayMemberPath="Name" Width="313" HorizontalAlignment="Left" Background="Azure" Height="60">
+                            <ComboBox x:Name="cmb_UXUI" LostFocus="ComboBox_LostFocus" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="UX/UI"  Foreground="Purple" BorderThickness="4" BorderBrush="Purple" FontSize="20" IsEditable="True" ItemsSource="{Binding UXUI}" SelectedItem="{Binding SelectedProgrammingLanguage}" SelectedValue="{Binding Path=SelectedProgrammingLanguage.Id}" SelectedValuePath="Id" DisplayMemberPath="Name" Width="313" HorizontalAlignment="Left" Background="Azure" Height="60">
                             </ComboBox>
-                            <ComboBox FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Mobile Development"  Foreground="Purple" BorderThickness="4" BorderBrush="Purple" FontSize="20" IsEditable="True" ItemsSource="{Binding MobileDevelopment}" SelectedItem="{Binding SelectedProgrammingLanguage}" SelectedValue="{Binding Path=SelectedProgrammingLanguage.Id}" SelectedValuePath="Id" DisplayMemberPath="Name" Width="313" HorizontalAlignment="Left" Background="Azure" Height="60">
-                            </ComboBox>
-                            <ComboBox FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Game Development"  Foreground="Purple" BorderThickness="4" BorderBrush="Purple" FontSize="20" IsEditable="True" ItemsSource="{Binding GameDevelopment}" SelectedItem="{Binding SelectedProgrammingLanguage}" SelectedValue="{Binding Path=SelectedProgrammingLanguage.Id}" SelectedValuePath="Id" DisplayMemberPath="Name" Width="313" HorizontalAlignment="Left" Background="Azure" Height="60">
+                            <ComboBox x:Name="cmb_GameDevelopment" LostFocus="ComboBox_LostFocus" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="Game Development"  Foreground="Purple" BorderThickness="4" BorderBrush="Purple" FontSize="20" IsEditable="True" ItemsSource="{Binding GameDevelopment}" SelectedItem="{Binding SelectedProgrammingLanguage}" SelectedValue="{Binding Path=SelectedProgrammingLanguage.Id}" SelectedValuePath="Id" DisplayMemberPath="Name" Width="313" HorizontalAlignment="Left" Background="Azure" Height="60">
                             </ComboBox>
                         </StackPanel>
                     </ScrollViewer>

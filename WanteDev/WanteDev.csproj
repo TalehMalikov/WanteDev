@@ -42,12 +42,13 @@
     <PackageReference Include="MaterialDesignThemes" Version="4.5.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Syncfusion.SfGrid.WPF" Version="20.1.0.56" />
+    <PackageReference Include="Syncfusion.Tools.WPF" Version="20.1.0.56" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
     <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\muradazimzada321\E-Service.AdminPanel\EmailService\EmailService.csproj" />
+    <ProjectReference Include="..\..\E-Service.AdminPanel\EmailService\EmailService.csproj" />
     <ProjectReference Include="..\WanteDev.Core\WanteDev.Core.csproj" />
   </ItemGroup>
 

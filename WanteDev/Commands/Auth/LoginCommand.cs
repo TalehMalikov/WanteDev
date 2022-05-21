@@ -44,7 +44,7 @@ namespace WanteDev.Commands.Auth
                 return;
             }
 
-            string password = "Kamilova12@";//passwordBox.Password;
+            string password = passwordBox.Password; //"Kamilova12@";;
 
             string passwordHash = SecurityUtil.ComputeSha256Hash(password);
 
@@ -78,7 +78,6 @@ namespace WanteDev.Commands.Auth
                 employerMainWindowViewModel.AllDevelopers = new ObservableCollection<DeveloperModel>(_viewModel.DataProvider.GetDevelopersForSearch());
                 employerMainWindow.DataContext = employerMainWindowViewModel;
                 employerMainWindow.Show();
-               //
             }
             else
             {

@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using WanteDev.Commands.Auth;
+using WanteDev.Commands.EmployerCommands;
 using WanteDev.Commands.Main;
 using WanteDev.Core.DataAccess.Abstraction;
 using WanteDev.Models;
@@ -40,6 +41,8 @@ namespace WanteDev.ViewModels.Windows.Main
         public OpenEmployerMainWindowCommand OpenEmployerMainWindow => new OpenEmployerMainWindowCommand(this);
 
         public OpenEmployerProfileCommand OpenEmployerProfile => new OpenEmployerProfileCommand(this);
+
+        public ICommand OpenDeveloperList => new OpenDeveloperListCommand(this);
 
         #region Properties
         public List<ProgrammingLanguageModel> AllProgrammingLanguages { get; set; }
