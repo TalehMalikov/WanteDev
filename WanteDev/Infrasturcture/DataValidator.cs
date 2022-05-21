@@ -221,7 +221,7 @@ namespace WanteDev.Infrasturcture
 
 
 
-
+            //Name Validation
             //Name
             if (currentDeveloper.FirstName.Any(x => char.IsLetter(x) == false))
             {
