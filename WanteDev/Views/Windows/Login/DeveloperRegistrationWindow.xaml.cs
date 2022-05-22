@@ -55,6 +55,14 @@ namespace WanteDev.Views.Windows.Login
             SecondStackPanel.Visibility = Visibility.Visible;
             ThirdStackPanel.Visibility = Visibility.Visible;
         }
+
+        private void btnNextNext_Click(object sender, RoutedEventArgs e)
+        {
+            SecondStackPanel.Visibility = Visibility.Collapsed;
+            ThirdStackPanel.Visibility = Visibility.Collapsed;
+            FourthStackPanel.Visibility = Visibility.Visible;
+        }
+
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             GirlPictureStackPanel.Visibility = Visibility.Visible;
@@ -62,5 +70,13 @@ namespace WanteDev.Views.Windows.Login
             FirstStackPanel.Visibility = Visibility.Visible;
             ThirdStackPanel.Visibility = Visibility.Collapsed;
         }
+
+        private void btnBackBack_Click(object sender, RoutedEventArgs e)
+        {
+            SecondStackPanel.Visibility = Visibility.Visible;
+            ThirdStackPanel.Visibility = Visibility.Visible;
+            FourthStackPanel.Visibility = Visibility.Collapsed;
+        }
+
     }
 }

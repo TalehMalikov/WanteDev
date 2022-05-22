@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data.SqlClient;
+using System.Transactions;
 using WantedDev.Core.DataAccess.Abstraction;
 using WantedDev.Core.Domain.Entities;
 using WanteDev.Core.Extensions;
@@ -14,7 +15,7 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
         {
         }
 
-        public void Add(Developer value)
+        public void Add(Developer value, List<ProgrammingLanguage> languages)
         {
             using (var connection = new SqlConnection(_connectionstring))
             {
@@ -23,7 +24,7 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                 string query = "Insert into Developers(FirstName, LastName, Email, PasswordHash, Address, Phone, BirthDate, Gender, CompanyName, ApartmentName, Position, Bio, Experience, AdditionalSkills, Photo, CV,ModifiedDate)" +
                                "output inserted.id values(@firstname,@lastname,@email,@passwordhash,@address,@phone,@birthdate,@gender,@companyname,@apartmentname,@position,@bio,@experience,@additionalskills,@photo,@CV,@modifieddate)";
 
-                using(SqlCommand cmd = new SqlCommand(query, connection))
+                using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
                     cmd.Parameters.AddWithValue("@firstname", value.FirstName);
                     cmd.Parameters.AddWithValue("@lastname", value.LastName);
@@ -44,6 +45,25 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                     cmd.Parameters.AddWithValue("@modifieddate", value.ModifiedDate);
                     value.Id = Convert.ToInt32(cmd.ExecuteScalar());
                 }
+            }
+            using (var connection = new SqlConnection(_connectionstring))
+            {
+                connection.Open();
+                string query = "insert into DeveloperLanguages values (@developerid,@programminglanguageid,@isdeleted,@modifieddate)";
+
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    for (int i = 0; i < languages.Count; i++)
+                    {
+                        cmd.Parameters.AddWithValue("@developerid", value.Id);
+                        cmd.Parameters.AddWithValue("@programminglanguageid", languages[i].Id);
+                        cmd.Parameters.AddWithValue("@isdeleted", 0);
+                        cmd.Parameters.AddWithValue("@modifieddate", value.ModifiedDate);
+                        cmd.ExecuteNonQuery();
+                        cmd.Parameters.Clear();
+                    }
+                }
+
             }
         }
         public void AddDeveloper(Developer value)
@@ -98,7 +118,7 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                     if (reader.Read())
                     {
                         return GetFromReaderAsDeveloper(reader);
-                        
+
                     }
                     else
                     {
@@ -141,12 +161,12 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                 using (SqlCommand cmd = new(cmdText, connection))
                 {
                     var reader = cmd.ExecuteReader();
-                   while(reader.Read())
+                    while (reader.Read())
                     {
                         list.Add(GetFromReaderAsUser(reader));
                     }
                     return list;
-                    
+
                 }
             }
         }
@@ -284,23 +304,23 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
         {
             return new Developer()
             {
-                Id=reader.Get<int>(nameof(Developer.Id)),
-                FirstName=reader.Get<string>(nameof(Developer.FirstName)),
-                LastName=reader.Get<string>(nameof(Developer.LastName)),
-                Email=reader.Get<string>(nameof(Developer.Email)),
-                PasswordHash=reader.Get<string>(nameof(Developer.PasswordHash)),
-                Address=reader.Get<string>(nameof(Developer.Address)),
-                Phone=reader.Get<string>(nameof(Developer.Phone)),
-                BirthDate=reader.Get<DateTime>(nameof(Developer.BirthDate)),
-                Gender=reader.Get<bool>(nameof(Developer.Gender)),
-                CompanyName=reader.Get<string>(nameof(Developer.CompanyName)),
-                ApartmentName=reader.Get<string>(nameof(Developer.ApartmentName)),
-                Position=reader.Get<string>(nameof(Developer.Position)),
-                Bio=reader.Get<string>(nameof(Developer.Bio)),
-                Experience=reader.Get<byte>(nameof(Developer.Experience)),
-                AdditionalSkills=reader.Get<string>(nameof(Developer.AdditionalSkills)),
-                Photo=reader.Get<byte[]>(nameof(Developer.Photo)),
-                CV=reader.Get<byte[]>(nameof(Developer.CV))
+                Id = reader.Get<int>(nameof(Developer.Id)),
+                FirstName = reader.Get<string>(nameof(Developer.FirstName)),
+                LastName = reader.Get<string>(nameof(Developer.LastName)),
+                Email = reader.Get<string>(nameof(Developer.Email)),
+                PasswordHash = reader.Get<string>(nameof(Developer.PasswordHash)),
+                Address = reader.Get<string>(nameof(Developer.Address)),
+                Phone = reader.Get<string>(nameof(Developer.Phone)),
+                BirthDate = reader.Get<DateTime>(nameof(Developer.BirthDate)),
+                Gender = reader.Get<bool>(nameof(Developer.Gender)),
+                CompanyName = reader.Get<string>(nameof(Developer.CompanyName)),
+                ApartmentName = reader.Get<string>(nameof(Developer.ApartmentName)),
+                Position = reader.Get<string>(nameof(Developer.Position)),
+                Bio = reader.Get<string>(nameof(Developer.Bio)),
+                Experience = reader.Get<byte>(nameof(Developer.Experience)),
+                AdditionalSkills = reader.Get<string>(nameof(Developer.AdditionalSkills)),
+                Photo = reader.Get<byte[]>(nameof(Developer.Photo)),
+                CV = reader.Get<byte[]>(nameof(Developer.CV))
             };
         }
 
@@ -332,6 +352,11 @@ namespace WantedDev.Core.DataAccess.Implementation.Sql
                 BirthDate = reader.Get<DateTime>(nameof(Developer.BirthDate)),
                 Gender = reader.Get<bool>(nameof(Developer.Gender))
             };
+        }
+
+        public void Add(Developer value)
+        {
+            throw new NotImplementedException();
         }
     }
 }

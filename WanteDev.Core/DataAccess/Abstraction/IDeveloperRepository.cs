@@ -12,6 +12,7 @@ namespace WantedDev.Core.DataAccess.Abstraction
         Developer Get(string email);
         bool UpdatePassword(string email, string passwordhash);
         void AddDeveloper(Developer developer);
+        void Add(Developer value, List<ProgrammingLanguage> languages);
         List<Developer> GetAllDevelopers();
         List<Developer> GetAllAsUser();
         List<Developer> GetAllSearch();

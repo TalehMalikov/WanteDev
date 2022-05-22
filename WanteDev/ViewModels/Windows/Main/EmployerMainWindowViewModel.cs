@@ -68,9 +68,25 @@ namespace WanteDev.ViewModels.Windows.Main
             {
                 _selectedLanguage = value;
                 OnPropertyChanged(nameof(_selectedLanguage));
+                if (value != null)
+                    SearchedProgrammingLanguage = (ProgrammingLanguageModel)_selectedLanguage.Clone();
             }
         }
 
+        private ProgrammingLanguageModel _searchlanguage ;
+
+        public ProgrammingLanguageModel SearchedProgrammingLanguage
+        {
+            get 
+            { 
+                return _searchlanguage; 
+            }
+            set 
+            { 
+                _searchlanguage = value;
+                OnPropertyChanged(nameof(_searchlanguage));
+            }
+        }
 
 
 

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using WantedDev.Core.Domain.Entities;
 using WanteDev.Core.Utils;
 using WanteDev.Infrasturcture;
 using WanteDev.Mappers;
@@ -38,7 +40,7 @@ namespace WanteDev.Commands.Auth
                     MessageBox.Show(message, "Validation error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
-                developer.PasswordHash = SecurityUtil.ComputeSha256Hash(password.Password); 
+                developer.PasswordHash = SecurityUtil.ComputeSha256Hash(password.Password);  
                 _viewModel.CurrentValue.PasswordHash = developer.PasswordHash;
                
                
@@ -48,8 +50,16 @@ namespace WanteDev.Commands.Auth
                 }
                 else
                 {
-                    _viewModel.DB.DeveloperRepository.Add(developer);
+                    List<ProgrammingLanguage> languages = new List<ProgrammingLanguage>();
+                    var mapper = new ProgrammingLanguageMapper();
+                    for (int i = 0; i < _viewModel.AllAddedProgrammingLanguages.Count; i++)
+                    {
+                        languages.Add(mapper.Map(_viewModel.AllAddedProgrammingLanguages[i]));
+                    }
+
+                    _viewModel.DB.DeveloperRepository.Add(developer, languages);
                 }
+                //TODO xetali da olsa Operation Completed Succesfully verir
                 MessageBox.Show("Operation completed successfully", "Registration is successfully!", MessageBoxButton.OK, MessageBoxImage.Information);
                 _viewModel.Window.Close();
             }

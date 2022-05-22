@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -73,5 +69,80 @@ namespace WanteDev.ViewModels.Windows.Login
                 OnPropertyChanged(nameof(CurrentValue));
             }
         }
+
+
+        #region LanguageProperties
+
+        private ObservableCollection<ProgrammingLanguageModel> _alllangauge;
+
+        public ObservableCollection<ProgrammingLanguageModel> AllProgrammingLanguages
+        {
+            get 
+            { 
+                return _alllangauge; 
+            }
+            set 
+            {
+                _alllangauge = value;
+            }
+        }
+
+
+        private ProgrammingLanguageModel _selectedlangauge;
+
+        public ProgrammingLanguageModel SelectedProgrammingLanguage
+        {
+            get
+            {
+                return _selectedlangauge;
+            }
+            set
+            {
+                _selectedlangauge = value;
+                if(value!=null)
+                {
+                    AllAddedProgrammingLanguages.Add(_selectedlangauge);
+                    AllProgrammingLanguages.Remove(_selectedlangauge);
+                }
+                OnPropertyChanged(nameof(SelectedProgrammingLanguage));
+            }
+        }
+
+        private ObservableCollection<ProgrammingLanguageModel> _alladdedlangauge = new ObservableCollection<ProgrammingLanguageModel>();
+
+        public ObservableCollection<ProgrammingLanguageModel> AllAddedProgrammingLanguages
+        {
+            get
+            {
+                return _alladdedlangauge;
+            }
+            set
+            {
+                _alladdedlangauge = value;
+            }
+        }
+
+        private ProgrammingLanguageModel _selectedaddedlangauge;
+
+        public ProgrammingLanguageModel SelectedAddedProgrammingLanguage
+        {
+            get
+            {
+                return _selectedaddedlangauge;
+            }
+            set
+            {
+                _selectedaddedlangauge = value;
+                if (value != null)
+                {
+                    AllAddedProgrammingLanguages.Remove(_selectedaddedlangauge);
+                    AllProgrammingLanguages.Add(_selectedaddedlangauge);
+                }
+                OnPropertyChanged(nameof(SelectedAddedProgrammingLanguage));
+            }
+        }
+
+        
+        #endregion
     }
 }

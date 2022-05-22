@@ -22,6 +22,8 @@ namespace WanteDev.Models
         public bool Gender { get; set; }
         public string CompanyName { get; set; }
         public string ApartmentName { get; set; }
+        public string AdditionalSkills { get; set; }
+        public byte Experience { get; set; }
         public string Position { get; set; }
         public string Bio { get; set; }
 

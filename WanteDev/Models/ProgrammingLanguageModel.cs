@@ -11,7 +11,12 @@ namespace WanteDev.Models
         public string? Name { get; set; }
         public override object Clone()
         {
-            throw new NotImplementedException();
+            return new ProgrammingLanguageModel()
+            {
+                Id = Id,
+                Name = Name,
+                Category= Category
+            };
         }
         public ProgrammingCategoryModel? Category { get; set; }
         public override bool IsValid(out string message)

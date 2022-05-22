@@ -28,12 +28,12 @@
         <StackPanel Orientation="Horizontal" >
             <!--Change it later  -->
             <StackPanel Width="250"  Name="GirlPictureStackPanel">
-                <TextBlock Text="Registration" FontStyle="Normal"  Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="Great Vibes"></TextBlock>
+                <TextBlock Text="Registration"  FontStyle="Normal"  Foreground="White" TextAlignment="Center" FontSize="38" FontFamily="Great Vibes"></TextBlock>
                 <Image Source="\Images\login.png" Width="250" Height="320" VerticalAlignment="Top" Stretch="Fill"/>
             </StackPanel>
 
 
-            <StackPanel Name="ThirdStackPanel">
+            <StackPanel Name="ThirdStackPanel" >
                 <StackPanel.Style>
                     <Style TargetType="StackPanel">
                         <Setter Property="Visibility" Value="Collapsed">
@@ -80,12 +80,10 @@
                         </TextBox>
                     </StackPanel>
 
-
-
-
                 </StackPanel>
             </StackPanel>
-                <StackPanel x:Name="FirstStackPanel">
+
+            <StackPanel x:Name="FirstStackPanel">
                     <StackPanel Width="350">
                         <StackPanel Margin="20 10 20 20" >
 
@@ -229,9 +227,7 @@
 
                     </StackPanel>
                 </StackPanel>
-
             </StackPanel>
-
 
             <StackPanel x:Name="SecondStackPanel" Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Top">
 
@@ -309,9 +305,9 @@
                                 </Style>
                             </Button.Resources>
                         </Button>
-                    <Button Click="btnRegisterInClick" CommandParameter="{Binding ElementName=passwordTxt}" Command="{Binding Add}" Margin="0 0 35 0" Width="100" Height="30" 
+                    <Button Click="btnNextNext_Click" Margin="0 0 35 0" Width="100" Height="30" 
                                 materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="DarkBlue"
-                                Background="DodgerBlue" Foreground="White" ToolTip="Login" x:Name="btnLogin" Content="Register">
+                                Background="DodgerBlue" Foreground="White" ToolTip="Login" x:Name="btnNext2" Content="Next">
                             <Button.Resources>
                                 <Style TargetType="{x:Type Border}">
                                     <Setter Property="CornerRadius" Value="10"/>
@@ -323,5 +319,54 @@
 
                 </StackPanel>
             </StackPanel>
+
+            <StackPanel x:Name="FourthStackPanel"  >
+            
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Setter Property="Visibility" Value="Collapsed">
+                    </Setter>
+                </Style>
+            </StackPanel.Style>
+            
+            <ComboBox Width="300" Height="30" Margin="20 10 0 10" ItemsSource="{Binding AllProgrammingLanguages}" SelectedItem="{Binding SelectedProgrammingLanguage}" SelectedValue="{Binding SelectedProgrammingLanguage.Id}" SelectedValuePath="Id" DisplayMemberPath="Name" HorizontalAlignment="Left"></ComboBox>
+            <ListView x:Name="MainList" Width="300" Height="200" Margin="20 0" HorizontalAlignment="Left" ItemsSource="{Binding AllAddedProgrammingLanguages}"  Style="{StaticResource listViewCustom}"
+                      SelectedItem="{Binding SelectedAddedProgrammingLanguage,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                <ListView.View>
+                    <GridView >
+                        <GridViewColumn Header="Language" Width="300">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=Name}" Style="{StaticResource gridViewTextColumn}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <StackPanel HorizontalAlignment="Center" Margin="0 70 0 0"  Orientation="Horizontal">
+                <Button Click="btnBackBack_Click" Margin="20 0 30 0" Width="100" Height="30" 
+                                 materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="DarkBlue"
+                                 Background="DodgerBlue" Foreground="White" ToolTip="Login" x:Name="btnBack2" Content="Back">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button Click="btnRegisterInClick" CommandParameter="{Binding ElementName=passwordTxt}" Command="{Binding Add}" Margin="0 0 35 0" Width="100" Height="30" 
+                                materialDesign:ButtonAssist.CornerRadius="10" BorderThickness="2" BorderBrush="DarkBlue"
+                                Background="DodgerBlue" Foreground="White" ToolTip="Login" x:Name="btnLogin" Content="Register">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+            </StackPanel>
+        </StackPanel>
+    
     </Grid>
 </Window>

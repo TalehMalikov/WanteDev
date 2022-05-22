@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,7 @@ namespace WanteDev.Commands.Main
             DeveloperRegistrationWindow developerRegistrationWindow = new DeveloperRegistrationWindow();
 
             DeveloperRegistrationWindowViewModel developerWindowViewModel = new DeveloperRegistrationWindowViewModel(developerRegistrationWindow, Kernel.DB);
+            developerWindowViewModel.AllProgrammingLanguages = new ObservableCollection<Models.ProgrammingLanguageModel>(_viewModel.DataProvider.GetProgrammingLanguages());
             developerRegistrationWindow.DataContext = developerWindowViewModel;
             developerRegistrationWindow.Show();
         }
