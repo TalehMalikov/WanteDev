@@ -48,7 +48,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\E-Service.AdminPanel\EmailService\EmailService.csproj" />
+    <ProjectReference Include="..\EmailService\EmailService.csproj" />
     <ProjectReference Include="..\WanteDev.Core\WanteDev.Core.csproj" />
   </ItemGroup>
 
