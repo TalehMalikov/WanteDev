@@ -325,7 +325,7 @@ namespace WanteDev.ViewModels.Windows.Login
             }
         }*/
 
-        private string email = "sureyya@gmail.com";
+        private string email;
         public string Email
         {
             get

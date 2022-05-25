@@ -7,6 +7,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WanteDev.Commands.Auth;
 using WanteDev.Commands.DeveloperCommands;
+using WanteDev.Commands.DeveloperCommands.LanguageCommands;
 using WanteDev.Core.DataAccess.Abstraction;
 using WanteDev.Models;
 
@@ -16,12 +17,32 @@ namespace WanteDev.ViewModels.Windows.Login
     {
         public DeveloperRegistrationWindowViewModel(Window window, IUnitOfWork db) : base(window, db)
         {
+            //PropertyChanged += propChangHandler;
         }
+
+        //private void propChangHandler(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        //{
+        //    switch (e.PropertyName)
+        //    {
+        //        case "SelectedProgrammingLanguage":
+        //            this.AddToSelected();
+        //            break;
+        //        case "SelectedAddedProgrammingLanguage":
+        //            this.RetunToList();
+        //            break;
+        //    }
+        //}
+
         public ICommand Add => new SaveDeveloperCommand(this);
 
         public ICommand UploadPhoto => new UploadPhoto(this);
 
         public ICommand UploadCv => new UploadCv(this);
+
+        public ICommand ListviewSelectedChange => new ListviewSelectionChangedCommand(this);
+
+        public ICommand ComboboxSelectedChange => new ComboboxSelectionChangedCommand(this);
+
         private bool isImageSet;
         public bool IsImageSet
         {
@@ -77,11 +98,11 @@ namespace WanteDev.ViewModels.Windows.Login
 
         public ObservableCollection<ProgrammingLanguageModel> AllProgrammingLanguages
         {
-            get 
-            { 
-                return _alllangauge; 
+            get
+            {
+                return _alllangauge;
             }
-            set 
+            set
             {
                 _alllangauge = value;
             }
@@ -99,11 +120,11 @@ namespace WanteDev.ViewModels.Windows.Login
             set
             {
                 _selectedlangauge = value;
-                if(value!=null)
-                {
-                    AllAddedProgrammingLanguages.Add(_selectedlangauge);
-                    AllProgrammingLanguages.Remove(_selectedlangauge);
-                }
+                //if(string.IsNullOrEmpty(_selectedlangauge?.Name) == false)
+                //{
+                //    _alladdedlangauge.Add(_selectedlangauge);
+                //    _alllangauge.Remove(_selectedlangauge);
+                //}
                 OnPropertyChanged(nameof(SelectedProgrammingLanguage));
             }
         }
@@ -133,16 +154,36 @@ namespace WanteDev.ViewModels.Windows.Login
             set
             {
                 _selectedaddedlangauge = value;
-                if (value != null)
-                {
-                    AllAddedProgrammingLanguages.Remove(_selectedaddedlangauge);
-                    AllProgrammingLanguages.Add(_selectedaddedlangauge);
-                }
+                //if (string.IsNullOrEmpty(_selectedaddedlangauge?.Name)==false)
+                //{
+                //    _alladdedlangauge.Remove(_selectedaddedlangauge);
+                //    _alllangauge.Add(_selectedaddedlangauge);
+                //}
                 OnPropertyChanged(nameof(SelectedAddedProgrammingLanguage));
             }
         }
 
-        
+
+        #endregion
+
+        #region private
+        /*public void AddToSelected()
+        {
+            if(string.IsNullOrEmpty(_selectedlangauge?.Name) == false)
+            {
+                _alladdedlangauge.Add(_selectedlangauge);
+                _alllangauge.Remove(_selectedlangauge);
+            }
+        }
+
+        public void RetunToList()
+        {
+            if (string.IsNullOrEmpty(_selectedaddedlangauge?.Name) == false)
+            {
+                _alladdedlangauge.Remove(_selectedaddedlangauge);
+                _alllangauge.Add(_selectedaddedlangauge);
+            }
+        }*/
         #endregion
     }
 }
